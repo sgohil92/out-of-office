@@ -16,16 +16,19 @@ export default function MoodPortrait<E extends ArchiveEntry>({
 
   return (
     <div>
-      {mood.week ? (
-        <p className="mb-3 font-mono text-[10px] tracking-[0.28em] text-[#A07E55]">{mood.week.toUpperCase()}</p>
-      ) : null}
-      <p
-        className={`font-serif italic text-[1.6rem] leading-[1.25] tracking-[-0.01em] sm:text-[2rem] ${
-          mood.text ? "text-[#EAE5D9] -rotate-[0.5deg]" : "text-[#8E8E93]/35"
-        }`}
-      >
-        {mood.text || "—"}
-      </p>
+      {/* Quiet, like something said just to you. */}
+      <div className="max-w-md border-l border-[#A07E55]/50 pl-4">
+        {mood.week ? (
+          <p className="font-mono text-[9px] tracking-[0.28em] text-[#A07E55]/80">{mood.week.toUpperCase()}</p>
+        ) : null}
+        <p
+          className={`mt-2 font-serif text-[17px] italic leading-relaxed sm:text-[18px] ${
+            mood.text ? "text-[#C9C2B4]" : "text-[#8E8E93]/35"
+          }`}
+        >
+          {mood.text || "—"}
+        </p>
+      </div>
 
       <div className="mt-8">
         <p className="border-b border-[#242220] pb-2 font-mono text-[10px] tracking-[0.28em] text-[#8E8E93]">
