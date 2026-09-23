@@ -134,16 +134,37 @@ function PrintFrame({
   );
 }
 
+const MONTH_NAMES = [
+  "JANUARY",
+  "FEBRUARY",
+  "MARCH",
+  "APRIL",
+  "MAY",
+  "JUNE",
+  "JULY",
+  "AUGUST",
+  "SEPTEMBER",
+  "OCTOBER",
+  "NOVEMBER",
+  "DECEMBER",
+];
+
 /** A paw-print postmark for Destinations, like the stop was stamped by the dog. */
 function Postmark({ place, date }: { place: string; date: string }) {
-  const [m, d, y] = date.split(".");
-  const when = date ? `${m}·${d}·${y}` : "· 2026 ·";
+  const parts = date.split(".");
+  // "06.2026" (month only) reads "JUNE · 2026"; "06.14.2026" reads "06·14·2026".
+  const when =
+    parts.length === 3
+      ? parts.join("·")
+      : parts.length === 2
+        ? `${MONTH_NAMES[Number(parts[0]) - 1] ?? parts[0]} · ${parts[1]}`
+        : "· 2026 ·";
   return (
     <svg
       viewBox="0 0 220 104"
       className="mt-6 block w-[200px] -rotate-[7deg] text-[#A07E55]"
       role="img"
-      aria-label={`Postmarked ${place}${date ? `, ${date}` : ""}`}
+      aria-label={`Postmarked ${place}${date ? `, ${when.replaceAll("·", " ").trim()}` : ""}`}
     >
       <defs>
         <path id="ooo-pm-top" d="M 16 52 A 36 36 0 0 1 88 52" />

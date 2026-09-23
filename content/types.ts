@@ -38,7 +38,7 @@ export type Entry = {
   section: SectionId;
   /** Display number, like "01.03". Order on the page follows the array, not this number. */
   index: string;
-  /** Shown as a stamp. Use MM.DD.YYYY. */
+  /** Shown as a stamp. Use MM.DD.YYYY, or MM.YYYY if you only know the month. */
   date: string;
   place?: string;
   title: string;
