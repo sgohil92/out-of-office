@@ -45,12 +45,6 @@ function legsFor(points: Point[], modes: Travel[]): Leg[] {
   });
 }
 
-const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
-const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-const reducedMotion = () =>
-  typeof window !== "undefined" &&
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
 /* ——— The lab, drawn from the photo: glossy black, grey muzzle, soft ears, tongue out. ——— */
 
 function LabHead({ goggles }: { goggles?: boolean }) {
@@ -273,19 +267,14 @@ export default function RoadAtlas<E extends ArchiveEntry>({
     [home, stops],
   );
 
-  const [current, setCurrent] = useState(-1);
+  const [current, setCurrent] = useState(stops.length - 1);
   const [sides, setSides] = useState<("right" | "left" | "below")[]>([]);
   const labelRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const legRefs = useRef<(SVGPathElement | null)[]>([]);
   const cumRef = useRef<number[]>([0]);
   const riderRef = useRef<SVGGElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
-  const posRef = useRef(0);
   const facingRef = useRef(1);
-  const frameRef = useRef(0);
-  const frameToken = useRef(0);
-  const runRef = useRef(0);
-  const headingTo = useRef<number | null>(null);
 
   const legAt = useCallback(
     (s: number) => {
@@ -331,95 +320,12 @@ export default function RoadAtlas<E extends ArchiveEntry>({
     [home, legAt, legs],
   );
 
-  const travel = useCallback(
-    (to: number, speed: number, maxMs: number) =>
-      new Promise<boolean>((resolve) => {
-        cancelAnimationFrame(frameRef.current);
-        const token = ++frameToken.current;
-        const rider = riderRef.current;
-        const from = posRef.current;
-        const delta = to - from;
-        if (reducedMotion() || Math.abs(delta) < 0.5 || !rider) {
-          posRef.current = to;
-          place(to, 1, false);
-          resolve(true);
-          return;
-        }
-        const dir = Math.sign(delta);
-        const duration = Math.min(maxMs, Math.max(500, (Math.abs(delta) / speed) * 1000));
-        const start = performance.now();
-        rider.classList.add("is-moving");
-        const step = (now: number) => {
-          if (token !== frameToken.current) {
-            resolve(false);
-            return;
-          }
-          const t = Math.min(1, (now - start) / duration);
-          posRef.current = from + delta * ease(t);
-          place(posRef.current, dir, true);
-          if (t < 1) {
-            frameRef.current = requestAnimationFrame(step);
-          } else {
-            rider.classList.remove("is-moving");
-            place(to, dir, false);
-            resolve(true);
-          }
-        };
-        frameRef.current = requestAnimationFrame(step);
-      }),
-    [place],
-  );
-
-  /** Drive the whole trip from home, stop by stop. */
-  const playTrip = useCallback(async () => {
-    const run = ++runRef.current;
-    const last = cumRef.current.length - 1;
-    if (reducedMotion()) {
-      posRef.current = cumRef.current[last];
-      place(posRef.current, 1, false);
-      setCurrent(stops.length - 1);
-      return;
-    }
-    ++frameToken.current;
-    posRef.current = 0;
-    facingRef.current = 1;
-    place(0, 1, false);
-    setCurrent(-1);
-    await wait(350);
-    for (let k = 0; k < stops.length; k++) {
-      if (runRef.current !== run) return;
-      const ok = await travel(cumRef.current[k + 1], 190, 2600);
-      if (!ok || runRef.current !== run) return;
-      setCurrent(k);
-      await wait(420);
-    }
-  }, [place, stops.length, travel]);
-
-  // Measure the legs, park at home, and drive the trip once the map is on screen.
+  // Measure the route and park Truffles at the newest stop.
   useEffect(() => {
     const lens = legRefs.current.slice(0, legs.length).map((p) => p?.getTotalLength() ?? 0);
     cumRef.current = lens.reduce<number[]>((acc, l) => [...acc, acc[acc.length - 1] + l], [0]);
-    place(0, 1, false);
-    const node = mapRef.current;
-    if (!node) return;
-    const seen = new IntersectionObserver(
-      (items) => {
-        if (items.some((i) => i.isIntersecting)) {
-          seen.disconnect();
-          playTrip();
-        }
-      },
-      { threshold: 0.45 },
-    );
-    seen.observe(node);
-    return () => {
-      seen.disconnect();
-      cancelAnimationFrame(frameRef.current);
-      // Bumping the run counter stops a trip that's mid-way; it's a counter, not a DOM ref.
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      runRef.current++;
-    };
-  }, [legs, place, playTrip]);
+    place(cumRef.current[cumRef.current.length - 1], 1, false);
+  }, [legs, place]);
 
   // Put each label on whichever side of its pin it fits, at the map's real size.
   useEffect(() => {
@@ -443,53 +349,17 @@ export default function RoadAtlas<E extends ArchiveEntry>({
     return () => watch.disconnect();
   }, [stops, W]);
 
-  const visit = async (k: number) => {
+  const visit = (k: number) => {
     const entry = byId.get(stops[k].id);
     if (!entry) return;
-    const target = cumRef.current[k + 1];
-    // Already there, or impatient second tap: open straight away.
-    if (Math.abs(posRef.current - target) < 1 || headingTo.current === k) {
-      runRef.current++;
-      ++frameToken.current;
-      riderRef.current?.classList.remove("is-moving");
-      posRef.current = target;
-      place(target, 1, false);
-      headingTo.current = null;
-      setCurrent(k);
-      onOpen(entry);
-      return;
-    }
-    const run = ++runRef.current;
-    headingTo.current = k;
-    const ok = await travel(target, 520, 1500);
-    if (headingTo.current === k) headingTo.current = null;
-    if (!ok || runRef.current !== run) return;
     setCurrent(k);
     onOpen(entry);
   };
 
-  // Home base (San Francisco): Truffles drives back to the start, then it opens.
+  // Home base (San Francisco) opens from the SF house.
   const homeEntry = entries.find((e) => e.homeBase);
-  const goHome = async () => {
-    if (!homeEntry) return;
-    if (Math.abs(posRef.current) < 1 || headingTo.current === -1) {
-      runRef.current++;
-      ++frameToken.current;
-      riderRef.current?.classList.remove("is-moving");
-      posRef.current = 0;
-      place(0, 1, false);
-      headingTo.current = null;
-      setCurrent(-1);
-      onOpen(homeEntry);
-      return;
-    }
-    const run = ++runRef.current;
-    headingTo.current = -1;
-    const ok = await travel(0, 520, 1500);
-    if (headingTo.current === -1) headingTo.current = null;
-    if (!ok || runRef.current !== run) return;
-    setCurrent(-1);
-    onOpen(homeEntry);
+  const goHome = () => {
+    if (homeEntry) onOpen(homeEntry);
   };
 
   const last = stops[stops.length - 1];
@@ -505,14 +375,6 @@ export default function RoadAtlas<E extends ArchiveEntry>({
               {words.dogName}&rsquo;s Official Road Atlas
             </p>
           </div>
-          <button
-            type="button"
-            onClick={() => playTrip()}
-            aria-label="Replay the trip"
-            className="ooo-atlas-again shrink-0 px-1.5 py-1 font-mono text-[9px] tracking-[0.12em] text-[#9A3A28]"
-          >
-            ↻ AGAIN!
-          </button>
         </div>
         <div className="relative w-full" style={{ aspectRatio: `${W} / ${H}` }}>
           <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 h-full w-full" aria-hidden>
