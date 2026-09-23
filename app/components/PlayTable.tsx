@@ -214,10 +214,11 @@ function Cookbook({ index }: { index: string }) {
   );
 }
 
-/** A typed page on the table, showing the latest pondering. */
-function TypedPage({ index, typed }: { index: string; typed?: { title: string; date: string } }) {
+/** A typed page on the table: a contents page listing the ponderings. */
+function TypedPage({ index, contents }: { index: string; contents?: string[] }) {
+  const titles = contents?.slice(0, 4) ?? [];
   return (
-    <span className="ooo-paper relative block aspect-[4/5] px-3 pt-4 font-mono text-[6.5px] leading-[1.7] text-[#2A2520]">
+    <span className="ooo-paper relative block aspect-[4/5] px-3 pt-4 text-left font-mono text-[6.5px] leading-[1.7] text-[#2A2520]">
       <svg
         viewBox="0 0 14 36"
         className="absolute -top-2.5 left-4 h-9 w-3.5"
@@ -231,15 +232,25 @@ function TypedPage({ index, typed }: { index: string; typed?: { title: string; d
           strokeLinecap="round"
         />
       </svg>
-      <span className="block text-right tracking-[0.14em]">{typed?.date || index}</span>
-      <span className="mt-1 block text-[7.5px] font-bold leading-[1.35] tracking-[0.08em]">
-        {(typed?.title ?? "Untitled").toUpperCase()}
-      </span>
-      {[92, 80, 88, 60, 84, 72].map((w, i) => (
+      <span className="block text-right tracking-[0.14em]">{index}</span>
+      <span className="mt-1 block text-[8px] font-bold tracking-[0.22em]">PONDERINGS</span>
+      <span aria-hidden className="mt-[3px] block h-px w-full bg-[#2A2520]/40" />
+      {titles.length ? (
+        <span className="mt-[5px] block space-y-[3px]">
+          {titles.map((t) => (
+            <span key={t} className="block leading-[1.35]">
+              — {t}
+            </span>
+          ))}
+        </span>
+      ) : (
+        <span className="mt-1 block">[ Entry forthcoming. ]</span>
+      )}
+      {[88, 72, 80].slice(0, Math.max(1, 4 - titles.length)).map((w, i) => (
         <span
           key={i}
           aria-hidden
-          className="mt-[5px] block h-[2px] bg-[#2A2520]/20"
+          className="mt-[6px] block h-[2px] bg-[#2A2520]/20"
           style={{ width: `${w}%` }}
         />
       ))}
@@ -247,7 +258,7 @@ function TypedPage({ index, typed }: { index: string; typed?: { title: string; d
   );
 }
 
-function objectFor(hobby: Hobby, index: string, typed?: { title: string; date: string }): ReactNode {
+function objectFor(hobby: Hobby, index: string, contents?: string[]): ReactNode {
   switch (hobby) {
     case "dance":
       return <Record45 index={index} />;
@@ -256,19 +267,19 @@ function objectFor(hobby: Hobby, index: string, typed?: { title: string; date: s
     case "market":
       return <Cookbook index={index} />;
     case "writing":
-      return <TypedPage index={index} typed={typed} />;
+      return <TypedPage index={index} contents={contents} />;
   }
 }
 
 export default function PlayTable<E extends ArchiveEntry>({
   entries,
   onOpen,
-  latestPondering,
+  ponderings,
 }: {
   entries: E[];
   onOpen: (entry: E) => void;
-  /** Typed onto the page on the table. */
-  latestPondering?: { title: string; date: string };
+  /** Pondering titles, newest first, typed onto the page on the table. */
+  ponderings?: string[];
 }) {
   return (
     <div className="ooo-table w-full min-w-0 border border-[#242220] px-3 py-8 sm:px-6">
@@ -290,7 +301,7 @@ export default function PlayTable<E extends ArchiveEntry>({
                     hobby.key === "writing" ? "w-[78%]" : "w-full"
                   }`}
                 >
-                  {objectFor(hobby.key, entry.index, latestPondering)}
+                  {objectFor(hobby.key, entry.index, ponderings)}
                 </span>
                 <span className="ooo-tag font-mono text-[9px] tracking-[0.28em]">
                   {hobby.label}

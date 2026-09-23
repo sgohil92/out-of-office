@@ -268,7 +268,7 @@ export const ENTRIES: Entry[] = [
     index: "02.04",
     date: "",
     title: "Ponderings",
-    dek: "",
+    dek: "Longer thoughts, typed up. Some finished, some still brewing.",
     body: "",
     tags: [],
   },

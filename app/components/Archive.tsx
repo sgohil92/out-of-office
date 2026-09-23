@@ -501,7 +501,6 @@ export default function Archive({
 
   // Ponderings (section "mood") open from the typed page on the Play table.
   const ponderings = entries.filter((e) => e.section === "mood");
-  const latestPondering = ponderings[ponderings.length - 1];
   const ponderingsEntry = entries.find((e) => e.section === "play" && e.hobby === "writing");
 
   // Destinations lead with the story; a big set of photos becomes a scrapbook grid.
@@ -667,11 +666,7 @@ export default function Archive({
                 <PlayTable
                   entries={section.entries}
                   onOpen={setActive}
-                  latestPondering={
-                    latestPondering
-                      ? { title: latestPondering.title, date: latestPondering.date }
-                      : undefined
-                  }
+                  ponderings={[...ponderings].reverse().map((p) => p.title)}
                 />
               ) : section.id === "next" ? (
                 <WishList entries={section.entries} onOpen={setActive} />
