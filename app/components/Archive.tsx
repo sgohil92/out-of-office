@@ -419,11 +419,7 @@ function Bookshelf({
             <IpodOnShelf podcasts={podcasts} onOpen={() => setIpodOpen(true)} />
           </div>
           {ipodOpen ? (
-            <IpodPlayer
-              podcasts={podcasts}
-              onClose={() => setIpodOpen(false)}
-              onRecommend={() => setSlipOpen(true)}
-            />
+            <IpodPlayer podcasts={podcasts} onClose={() => setIpodOpen(false)} />
           ) : null}
         </div>
         <div aria-hidden className="shelf-plank">

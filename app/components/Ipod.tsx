@@ -6,16 +6,8 @@ import type { Entry } from "../../content/types";
 
 const PLACEHOLDER_BODY = "[ Entry forthcoming. ]";
 
-type View = "main" | "podcasts" | "now" | "truffles";
-type Row = { key: string; label: string; arrow?: boolean; disabled?: boolean };
-
-const MAIN: Row[] = [
-  { key: "podcasts", label: "Podcasts", arrow: true },
-  { key: "truffles", label: "Truffles' Playlist", arrow: true },
-  { key: "recommend", label: "Recommend one", arrow: true },
-  { key: "music", label: "Music", disabled: true },
-  { key: "photos", label: "Photos", disabled: true },
-];
+type View = "podcasts" | "now";
+type Row = { key: string; label: string; disabled?: boolean };
 
 const labelFor = (entry: Entry) => entry.spine ?? entry.title;
 
@@ -104,28 +96,18 @@ export function DanglingEarbuds({ className = "" }: { className?: string }) {
 }
 
 /** The full-size iPod: a working menu, click wheel and Now Playing screen. */
-export function IpodPlayer({
-  podcasts,
-  onClose,
-  onRecommend,
-}: {
-  podcasts: Entry[];
-  onClose: () => void;
-  onRecommend: () => void;
-}) {
-  const [view, setView] = useState<View>("main");
+export function IpodPlayer({ podcasts, onClose }: { podcasts: Entry[]; onClose: () => void }) {
+  const [view, setView] = useState<View>("podcasts");
   const [sel, setSel] = useState(0);
   const [playing, setPlaying] = useState(0);
   const wheel = useRef<{ angle: number; spin: number } | null>(null);
 
   const rows: Row[] =
-    view === "main"
-      ? MAIN
-      : view === "podcasts"
-        ? podcasts.length
-          ? podcasts.map((p) => ({ key: p.id, label: labelFor(p), arrow: true }))
-          : [{ key: "none", label: "No podcasts yet", disabled: true }]
-        : [];
+    view === "podcasts"
+      ? podcasts.length
+        ? podcasts.map((p) => ({ key: p.id, label: labelFor(p) }))
+        : [{ key: "none", label: "Nothing on right now", disabled: true }]
+      : [];
 
   const move = (d: number) => {
     if (!rows.length) return;
@@ -139,30 +121,15 @@ export function IpodPlayer({
 
   const select = (index = sel) => {
     const row = rows[index];
-    if (!row || row.disabled) return;
-    if (view === "main") {
-      if (row.key === "podcasts") {
-        setView("podcasts");
-        setSel(0);
-      } else if (row.key === "truffles") {
-        setView("truffles");
-      } else if (row.key === "recommend") {
-        onClose();
-        onRecommend();
-      }
-    } else if (view === "podcasts") {
-      setPlaying(index);
-      setView("now");
-    }
+    if (view !== "podcasts" || !row || row.disabled) return;
+    setPlaying(index);
+    setView("now");
   };
 
   const back = () => {
     if (view === "now") {
       setView("podcasts");
       setSel(playing);
-    } else if (view !== "main") {
-      setSel(view === "podcasts" ? 0 : 1);
-      setView("main");
     }
   };
 
@@ -216,7 +183,7 @@ export function IpodPlayer({
 
   const current = podcasts[playing];
   const note = current && current.body && current.body !== PLACEHOLDER_BODY ? current.body : "";
-  const title = view === "main" ? "iPod" : view === "podcasts" ? "Podcasts" : "Now Playing";
+  const title = view === "podcasts" ? "Podcasts" : "Now Playing";
 
   return createPortal(
     <div role="dialog" aria-modal="true" aria-label="iPod" className="fixed inset-0 z-[70] flex flex-col bg-[#0C0B0A]/92 backdrop-blur-sm">
@@ -238,7 +205,7 @@ export function IpodPlayer({
             style={{ aspectRatio: "4 / 3", fontFamily: "'Helvetica Neue', Arial, sans-serif" }}
           >
             <div className="flex items-center justify-between border-b border-[#9FB0BC] bg-gradient-to-b from-[#F4F7F9] to-[#CBD5DC] px-2 py-[3px] text-[11px] font-bold">
-              <span className="w-8">{view === "now" || view === "truffles" ? "▶" : ""}</span>
+              <span className="w-8">{view === "now" ? "▶" : ""}</span>
               <span>{title}</span>
               <span className="flex w-8 justify-end" aria-label="Battery 83%">
                 <span className="relative inline-block h-[8px] w-[16px] rounded-[2px] border border-[#1E2A33]">
@@ -247,7 +214,7 @@ export function IpodPlayer({
               </span>
             </div>
 
-            {view === "main" || view === "podcasts" ? (
+            {view === "podcasts" ? (
               <ul className="text-[13px]">
                 {rows.map((row, i) => (
                   <li key={row.key}>
@@ -267,12 +234,12 @@ export function IpodPlayer({
                       }`}
                     >
                       <span className="truncate">{row.label}</span>
-                      {row.arrow ? <span aria-hidden>›</span> : null}
+                      {row.disabled ? null : <span aria-hidden>›</span>}
                     </button>
                   </li>
                 ))}
               </ul>
-            ) : view === "now" && current ? (
+            ) : current ? (
               <NowPlaying
                 index={playing}
                 total={podcasts.length}
@@ -282,17 +249,7 @@ export function IpodPlayer({
                 left="-31:02"
                 progress={0.28}
               />
-            ) : (
-              <NowPlaying
-                index={0}
-                total={1}
-                title="Squeaky Toy (Extended Mix)"
-                subtitle="Truffles · Walkies, Vol. 1"
-                time="4:20"
-                left="-∞"
-                progress={0.62}
-              />
-            )}
+            ) : null}
           </div>
 
           {/* click wheel */}
@@ -332,8 +289,6 @@ export function IpodPlayer({
                 </a>
               ) : null}
             </>
-          ) : view === "truffles" ? (
-            <p className="font-serif text-[16px] italic text-[#8E8E93]">On repeat. Truffles approves this playlist.</p>
           ) : (
             <p className="font-mono text-[9px] tracking-[0.24em] text-[#6B6760]">
               SCROLL THE WHEEL, TAP A ROW, OR USE ↑ ↓ ↵
