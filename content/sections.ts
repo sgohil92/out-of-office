@@ -21,7 +21,7 @@ export const SECTIONS: {
     id: "bookshelf",
     title: "SHELF",
     rubric:
-      "Seeing where each conversation with friends and strangers takes me. Tell me what to read or listen to next.",
+      "Tell me what to read or listen to next.",
   },
   {
     id: "next",
