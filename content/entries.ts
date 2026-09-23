@@ -154,7 +154,7 @@ export const ENTRIES: Entry[] = [
     ],
     // Where each photo was taken. Leave "" for no caption.
     imageCaptions: ["", "", "", "", "", "", "", ""],
-    featured: [{ src: "/destinations/colombia/colombia-08.jpg", stamp: "PERMANENT RECORD" }],
+    featured: [{ src: "/destinations/colombia/colombia-08.jpg" }],
     tags: [],
   },
   {
