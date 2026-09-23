@@ -308,7 +308,6 @@ function BookSpine({
   lean?: boolean;
   onOpen: (entry: Entry) => void;
 }) {
-  const [sec, sub] = entry.index.split(".");
   const band = (
     <span
       aria-hidden
@@ -342,13 +341,7 @@ function BookSpine({
         <span className="font-sc mx-auto min-h-0 overflow-hidden text-[13px] leading-none tracking-[0.08em] [writing-mode:vertical-rl]">
           {entry.spine ?? entry.title}
         </span>
-        <span className="flex flex-col gap-[5px]">
-          <span className="flex flex-col items-center font-mono text-[8px] leading-[1.15] tracking-[0.04em] opacity-80">
-            <span>{sec}</span>
-            <span>.{sub}</span>
-          </span>
-          {band}
-        </span>
+        {band}
       </button>
     </li>
   );
@@ -681,7 +674,6 @@ export default function Archive({
               ) : (
               <ul className="space-y-3">
                 {section.entries.map((entry) => {
-                  const [sec, sub] = entry.index.split(".");
                   return (
                   <li key={entry.id}>
                     <button
@@ -693,11 +685,6 @@ export default function Archive({
                         aria-hidden
                         className="absolute inset-x-4 top-3 h-px bg-[#A07E55]/30"
                       />
-                      <span className="mt-0.5 flex w-10 shrink-0 flex-col font-mono text-[10px] leading-snug tracking-widest">
-                        <span className="text-[#6B6760]">OO</span>
-                        <span className="text-[#A07E55]">{sec}</span>
-                        <span className="text-[#A07E55]">.{sub}</span>
-                      </span>
                       <span className="min-w-0 flex-1">
                         <span className="flex flex-wrap items-baseline justify-between gap-2">
                           <span className="font-serif text-xl leading-tight transition-colors duration-300 group-hover:text-[#A07E55]">
@@ -721,9 +708,6 @@ export default function Archive({
                               {entry.tags.join(", ")}
                             </span>
                           )}
-                        </span>
-                        <span className="mt-3 block text-center font-mono text-[9px] tracking-[0.3em] text-[#6B6760]">
-                          — {entry.index} —
                         </span>
                       </span>
                     </button>
@@ -760,7 +744,7 @@ export default function Archive({
               <div className="flex items-start justify-between gap-4 border-b-[3px] border-double border-[#34302B] pb-4">
                 <p className="font-mono text-[10px] tracking-[0.28em] text-[#A07E55]">
                   {active.stamp ??
-                    `${active.index} / ${sections.find((x) => x.id === active.section)?.title ?? (active.section === "mood" ? "PONDERINGS" : active.section.toUpperCase())}${active.reading ? " · CURRENTLY READING" : ""}`}
+                    `${sections.find((x) => x.id === active.section)?.title ?? (active.section === "mood" ? "PONDERINGS" : active.section.toUpperCase())}${active.reading ? " · CURRENTLY READING" : ""}`}
                 </p>
                 <button
                   type="button"
@@ -845,11 +829,6 @@ export default function Archive({
               {storyFirst ? null : story}
               <div className="mt-10 flex flex-col items-center gap-2">
                 <span aria-hidden className="h-px w-10 bg-[#A07E55]/50" />
-                {!active.stamp && (
-                  <span className="font-mono text-[9px] tracking-[0.3em] text-[#6B6760]">
-                    — {active.index} —
-                  </span>
-                )}
               </div>
               {active.tags.length > 0 && (
                 <ul className="mt-10 flex flex-wrap gap-2">

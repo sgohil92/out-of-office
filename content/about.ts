@@ -1,6 +1,6 @@
 import type { Entry } from "./types";
 
-/** The [ 00 / ABOUT ] drawer. Edit the words here; photo lives in public/about.jpg */
+/** The [ ABOUT ] drawer. Edit the words here; photo lives in public/about.jpg */
 export const ABOUT: Entry = {
   id: "manifesto",
   section: "about",
@@ -21,5 +21,5 @@ export const ABOUT: Entry = {
   imageAlt: "Portrait at a vineyard, glass of red wine in hand",
   imageAspect: "portrait",
   tags: [],
-  stamp: "[ 00 / ABOUT ]",
+  stamp: "[ ABOUT ]",
 };

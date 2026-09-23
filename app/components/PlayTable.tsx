@@ -12,7 +12,7 @@ const HOBBIES: { key: Hobby; label: string; tilt: number }[] = [
 
 const GROOVES = [23, 26, 29, 32, 35, 38, 41, 44, 46.5];
 
-function Record45({ index }: { index: string }) {
+function Record45() {
   return (
     <svg viewBox="0 0 160 110" className="block w-full" aria-hidden>
       <g className="ooo-reel">
@@ -53,17 +53,6 @@ function Record45({ index }: { index: string }) {
         >
           45 RPM · SIDE A
         </text>
-        <text
-          x="104"
-          y="68.5"
-          textAnchor="middle"
-          className="font-mono"
-          fontSize="3.6"
-          letterSpacing="0.6"
-          fill="#3A332B"
-        >
-          {index}
-        </text>
         <circle cx="104" cy="55" r="5" fill="#0C0B0A" stroke="#6B5236" strokeWidth="0.5" />
       </g>
       <rect x="2" y="4" width="86" height="102" fill="#E4DCC8" />
@@ -78,7 +67,7 @@ function Record45({ index }: { index: string }) {
 }
 
 /** A loose watercolor-and-ink sketch of the Ferry Building. */
-function InkWash({ index }: { index: string }) {
+function InkWash() {
   return (
     <span className="ooo-paper relative block overflow-hidden">
       <svg viewBox="0 0 160 116" className="block w-full" aria-hidden>
@@ -171,15 +160,12 @@ function InkWash({ index }: { index: string }) {
         </g>
         <circle cx="30" cy="40" r="1.6" fill="#6B5236" fillOpacity="0.3" />
         <circle cx="142" cy="96" r="2.2" fill="#3B4654" fillOpacity="0.3" />
-        <text x="152" y="112" textAnchor="end" className="font-mono" fontSize="5" letterSpacing="0.8" fill="#2A2520" fillOpacity="0.45">
-          {index}
-        </text>
       </svg>
     </span>
   );
 }
 
-function Cookbook({ index }: { index: string }) {
+function Cookbook() {
   return (
     <svg viewBox="0 0 160 116" className="block w-full" aria-hidden>
       <path d="M 12 10 H 150 Q 154 10 154 14 V 104 Q 154 108 150 108 H 12 Z" fill="#E4DCC8" />
@@ -200,18 +186,6 @@ function Cookbook({ index }: { index: string }) {
       <text x="86" y="52" textAnchor="middle" className="font-sc" fontSize="13" fill="#C9A66B">
         Feed Me
       </text>
-      <text
-        x="86"
-        y="62"
-        textAnchor="middle"
-        className="font-mono"
-        fontSize="4.2"
-        letterSpacing="0.8"
-        fill="#C9A66B"
-        fillOpacity="0.85"
-      >
-        No. {index}
-      </text>
       <circle cx="120" cy="84" r="5" fill="#EAE5D9" fillOpacity="0.06" />
       <circle cx="129" cy="80" r="1.6" fill="#EAE5D9" fillOpacity="0.07" />
       <circle cx="113" cy="90" r="1.1" fill="#EAE5D9" fillOpacity="0.07" />
@@ -221,7 +195,7 @@ function Cookbook({ index }: { index: string }) {
 }
 
 /** A typed page on the table: a contents page listing the ponderings. */
-function TypedPage({ index, contents }: { index: string; contents?: string[] }) {
+function TypedPage({ contents }: { contents?: string[] }) {
   const titles = contents?.slice(0, 4) ?? [];
   return (
     <span className="ooo-paper relative block aspect-[4/5] px-3 pt-4 text-left font-mono text-[6.5px] leading-[1.7] text-[#2A2520]">
@@ -238,7 +212,6 @@ function TypedPage({ index, contents }: { index: string; contents?: string[] }) 
           strokeLinecap="round"
         />
       </svg>
-      <span className="block text-right tracking-[0.14em]">{index}</span>
       <span className="mt-1 block text-[7.5px] font-bold leading-[1.35] tracking-[0.12em]">
         THE CONTEMPLATIVE LIFE
         <span className="ml-1 font-serif text-[9px] font-normal italic tracking-normal text-[#6B5E4E]">
@@ -269,16 +242,16 @@ function TypedPage({ index, contents }: { index: string; contents?: string[] }) 
   );
 }
 
-function objectFor(hobby: Hobby, index: string, contents?: string[]): ReactNode {
+function objectFor(hobby: Hobby, contents?: string[]): ReactNode {
   switch (hobby) {
     case "dance":
-      return <Record45 index={index} />;
+      return <Record45 />;
     case "painting":
-      return <InkWash index={index} />;
+      return <InkWash />;
     case "market":
-      return <Cookbook index={index} />;
+      return <Cookbook />;
     case "writing":
-      return <TypedPage index={index} contents={contents} />;
+      return <TypedPage contents={contents} />;
   }
 }
 
@@ -312,11 +285,10 @@ export default function PlayTable<E extends ArchiveEntry>({
                     hobby.key === "writing" ? "w-[78%]" : "w-full"
                   }`}
                 >
-                  {objectFor(hobby.key, entry.index, ponderings)}
+                  {objectFor(hobby.key, ponderings)}
                 </span>
                 <span className="ooo-tag font-mono text-[9px] tracking-[0.28em]">
                   {hobby.label}
-                  <span className="text-[#6B6760]"> · {entry.index}</span>
                 </span>
               </button>
             </li>

@@ -96,9 +96,6 @@ export default function BookRecommendSlip({
         <span className="font-sc block text-[12px] leading-[1.1]">
           Recommend a book or podcast
         </span>
-        <span className="block font-mono text-[7px] tracking-[0.16em] text-[#A07E55]">
-          OO / 03
-        </span>
       </button>
 
       {open &&
@@ -118,7 +115,7 @@ export default function BookRecommendSlip({
             <aside className="drawer-panel relative z-10 flex h-full w-full max-w-md min-w-0 flex-col overflow-y-auto overflow-x-hidden border-l border-[#242220] bg-[#141312] p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:p-8">
               <div className="flex items-start justify-between gap-4 border-b-[3px] border-double border-[#34302B] pb-4">
                 <p className="font-mono text-[10px] tracking-[0.28em] text-[#A07E55]">
-                  03 / SHELF
+                  SHELF
                 </p>
                 <button
                   type="button"
@@ -187,9 +184,6 @@ function SlipForm() {
       <div className="flex items-baseline justify-between gap-4 border-b-[3px] border-double border-[#5A5247]/60 pb-2">
         <p className="font-mono text-[9px] tracking-[0.26em] text-[#5A5247]">
           REQUEST FOR ACQUISITION
-        </p>
-        <p className="font-mono text-[9px] tracking-[0.2em] text-[#5A5247]">
-          OO / 03 / —
         </p>
       </div>
       <p className="font-sc mt-3 text-xl leading-tight">Recommend a book or podcast</p>
