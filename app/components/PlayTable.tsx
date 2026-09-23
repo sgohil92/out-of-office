@@ -55,13 +55,14 @@ function Record45() {
         </text>
         <circle cx="104" cy="55" r="5" fill="#0C0B0A" stroke="#6B5236" strokeWidth="0.5" />
       </g>
-      <rect x="2" y="4" width="86" height="102" fill="#E4DCC8" />
-      <path d="M 88 4 V 106" stroke="#8C7D63" strokeWidth="0.6" />
-      <path d="M 84 4 V 106" stroke="#8C7D63" strokeOpacity="0.35" strokeWidth="0.4" />
-      <text x="10" y="18" className="font-mono" fontSize="6" letterSpacing="1.2" fill="#3A332B">
+      {/* burgundy sleeve, gold lettering */}
+      <rect x="2" y="4" width="86" height="102" fill="#5E1F26" />
+      <path d="M 88 4 V 106" stroke="#3A1217" strokeWidth="0.8" />
+      <path d="M 84 4 V 106" stroke="#C9A66B" strokeOpacity="0.25" strokeWidth="0.4" />
+      <text x="10" y="18" className="font-mono" fontSize="6" letterSpacing="1.2" fill="#C9A66B">
         45
       </text>
-      <path d="M 10 22 H 40" stroke="#8C7D63" strokeWidth="0.5" />
+      <path d="M 10 22 H 40" stroke="#C9A66B" strokeOpacity="0.7" strokeWidth="0.5" />
     </svg>
   );
 }
