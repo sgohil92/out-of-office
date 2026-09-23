@@ -16,7 +16,7 @@ export default function Home() {
   const { home, doodles, ...words } = ATLAS;
   // Stops are listed newest first; Truffles travels them oldest first.
   const drawing = drawAtlas(
-    entries.filter((entry) => entry.section === "destinations").reverse(),
+    entries.filter((entry) => entry.section === "destinations" && !entry.homeBase).reverse(),
     home,
     doodles,
   );

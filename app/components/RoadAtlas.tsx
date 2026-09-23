@@ -470,6 +470,30 @@ export default function RoadAtlas<E extends ArchiveEntry>({
     onOpen(entry);
   };
 
+  // Home base (San Francisco): Truffles drives back to the start, then it opens.
+  const homeEntry = entries.find((e) => e.homeBase);
+  const goHome = async () => {
+    if (!homeEntry) return;
+    if (Math.abs(posRef.current) < 1 || headingTo.current === -1) {
+      runRef.current++;
+      ++frameToken.current;
+      riderRef.current?.classList.remove("is-moving");
+      posRef.current = 0;
+      place(0, 1, false);
+      headingTo.current = null;
+      setCurrent(-1);
+      onOpen(homeEntry);
+      return;
+    }
+    const run = ++runRef.current;
+    headingTo.current = -1;
+    const ok = await travel(0, 520, 1500);
+    if (headingTo.current === -1) headingTo.current = null;
+    if (!ok || runRef.current !== run) return;
+    setCurrent(-1);
+    onOpen(homeEntry);
+  };
+
   const last = stops[stops.length - 1];
   const pct = (p: Point) => ({ left: `${(p.x / W) * 100}%`, top: `${(p.y / H) * 100}%` });
 
@@ -707,6 +731,30 @@ export default function RoadAtlas<E extends ArchiveEntry>({
 
         </div>
       </div>
+
+      {homeEntry ? (
+        <button
+          type="button"
+          onClick={goHome}
+          aria-label={`Home base: ${homeEntry.place ?? homeEntry.title}${homeEntry.dek ? ` — ${homeEntry.dek.replace(/\.$/, "")}` : ""}. Open`}
+          className="group mt-4 flex w-full flex-wrap items-center gap-x-3 gap-y-1 border-b border-[#242220] pb-3 text-left focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55]"
+        >
+          <svg viewBox="0 0 12 12" className="h-3.5 w-3.5 shrink-0 text-[#A07E55]" aria-hidden>
+            <path d="M 1 6 L 6 1.5 L 11 6 M 2.5 5 V 11 H 9.5 V 5" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+            <rect x="5" y="7.5" width="2" height="3.5" fill="currentColor" />
+          </svg>
+          <span className="font-mono text-[10px] tracking-[0.24em] text-[#A07E55]">HOME BASE</span>
+          <span className="font-sc text-[15px] leading-none text-[#EAE5D9] group-hover:text-[#A07E55]">
+            {homeEntry.place ?? homeEntry.title}
+          </span>
+          {homeEntry.dek ? (
+            <span className="font-serif text-[14px] italic text-[#8E8E93]">{homeEntry.dek}</span>
+          ) : null}
+          <span aria-hidden className="ml-auto text-[#A07E55] transition-transform group-hover:translate-x-1">
+            →
+          </span>
+        </button>
+      ) : null}
 
       {drawing.unpinned.length > 0 ? (
         <p className="mt-3 font-mono text-[10px] tracking-[0.06em] text-[#6B6760]">

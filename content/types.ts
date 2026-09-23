@@ -65,6 +65,8 @@ export type Entry = {
   stamp?: string;
   /** Destinations only: where the stop sits on the map. */
   pin?: Pin;
+  /** Destinations only: true = this is home (San Francisco), where the trip starts. Not a numbered stop; opens from "Home base" under the map. */
+  homeBase?: boolean;
   /** Destinations only: how the dog arrives here from the stop before it in time (the one listed below it). Defaults to "drive". */
   arrive?: Travel;
   /** Play only: which object on the table this entry belongs to. */

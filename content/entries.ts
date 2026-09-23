@@ -28,6 +28,24 @@ function placeholder(
 
 export const ENTRIES: Entry[] = [
   {
+    // Home base: local adventures in SF. Opens from the line under the map, not a numbered stop.
+    // SAMPLE built from things you've mentioned; replace with your own and remove `draft`.
+    id: "san-francisco",
+    section: "destinations",
+    homeBase: true,
+    stamp: "⌂ HOME BASE",
+    index: "01.00",
+    date: "",
+    place: "San Francisco",
+    title: "San Francisco",
+    dek: "Tourist in my own city.",
+    body: [
+      "* The café loop: Saint Frank, Spro, and Blue Bottle. Oat latte or oat cappuccino, depending on the day.\n* Cooking my way through the farmers market.\n* Coming up: the Symphony, a community dinner, and Bar Crenn.",
+    ].join("\n\n"),
+    tags: [],
+    draft: true,
+  },
+  {
     id: "mendocino",
     section: "destinations",
     index: "01.04",
