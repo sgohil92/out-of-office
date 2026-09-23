@@ -279,6 +279,17 @@ export const ENTRIES: Entry[] = [
   placeholder("mood-log-04", "mood", "04.04", "09.22.2026"),
 
   {
+    id: "spanish-lessons",
+    section: "next",
+    index: "05.05",
+    date: "",
+    title: "Spanish lessons",
+    dek: "",
+    body: "",
+    tags: [],
+    done: true,
+  },
+  {
     id: "painting-classes",
     section: "next",
     index: "05.01",
