@@ -6,7 +6,7 @@ import "./sections.css";
 const HOBBIES: { key: Hobby; label: string; tilt: number }[] = [
   { key: "dance", label: "DANCE", tilt: -5 },
   { key: "painting", label: "PAINTING", tilt: 4 },
-  { key: "cooking", label: "COOKING", tilt: 2.5 },
+  { key: "market", label: "FARMER'S MARKET", tilt: 2.5 },
   { key: "writing", label: "WRITING", tilt: -3 },
 ];
 
@@ -251,7 +251,7 @@ function objectFor(hobby: Hobby, index: string): ReactNode {
       return <Record45 index={index} />;
     case "painting":
       return <InkWash index={index} />;
-    case "cooking":
+    case "market":
       return <Cookbook index={index} />;
     case "writing":
       return <TypedPage index={index} />;

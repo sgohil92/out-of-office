@@ -259,7 +259,7 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
 
-  { ...placeholder("botanical-field", "play", "02.03", "09.14.2026"), hobby: "cooking" },
+  { ...placeholder("farmers-market", "play", "02.03", "09.14.2026"), hobby: "market" },
   { ...placeholder("contact-sheet", "play", "02.04", "09.18.2026"), hobby: "writing" },
 
   placeholder("plato-republic", "bookshelf", "03.01", "09.05.2026"),

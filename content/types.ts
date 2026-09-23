@@ -8,8 +8,8 @@ export type SectionId =
 
 export type PhotoAspect = "landscape" | "portrait";
 
-/** Which object a Play entry sits on: the record, the ink wash, the cookbook, or the typed page. */
-export type Hobby = "dance" | "painting" | "cooking" | "writing";
+/** Which object a Play entry sits on: the record, the ink wash, the "Feed Me" cookbook (farmer's market), or the typed page. */
+export type Hobby = "dance" | "painting" | "market" | "writing";
 
 /** How the dog gets to a stop on the Destinations map. */
 export type Travel = "drive" | "paddle" | "fly";

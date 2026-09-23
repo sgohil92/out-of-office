@@ -55,7 +55,7 @@ Each entry in `content/invites.ts` shows as a ticket at the top of the main page
 
 ## Play
 
-Each `section: "play"` entry sits on one object on the table. Set `hobby` to `"dance"`, `"painting"`, `"cooking"`, or `"writing"` to choose which. Change `title` and `body` to write about it.
+Each `section: "play"` entry sits on one object on the table. Set `hobby` to `"dance"`, `"painting"`, `"market"` (farmer's market), or `"writing"` to choose which. Change `title` and `body` to write about it.
 
 ### Painting: the studio wall
 
