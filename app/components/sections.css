@@ -1,0 +1,330 @@
+/* Section components: destinations route, play table, wish list, mood log, recommend slip. */
+
+.ooo-photo-empty {
+  border: 1px dashed rgba(234, 229, 217, 0.16);
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(234, 229, 217, 0.02) 0 6px,
+    transparent 6px 12px
+  );
+}
+
+.ooo-paper {
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(255, 255, 255, 0.18), transparent 60%),
+    radial-gradient(ellipse at 90% 100%, rgba(120, 90, 50, 0.16), transparent 55%),
+    #e4dcc8;
+  box-shadow:
+    inset 0 0 0 1px rgba(60, 45, 30, 0.12),
+    inset 0 0 18px rgba(120, 90, 50, 0.12);
+}
+
+/* ——— Destinations ——— */
+
+.ooo-map {
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 50%, rgba(160, 126, 85, 0.05), transparent 70%),
+    #0e0d0c;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.55);
+}
+
+.ooo-stop {
+  position: relative;
+}
+
+.ooo-stop::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.ooo-stop-pin {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  border: 1.5px solid #a07e55;
+  background: #0c0b0a;
+  box-shadow: 0 0 0 3px rgba(12, 11, 10, 0.9);
+  transition:
+    background-color 400ms ease,
+    transform 400ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.ooo-stop:hover .ooo-stop-pin,
+.ooo-stop:focus-visible .ooo-stop-pin,
+.ooo-stop[aria-current] .ooo-stop-pin {
+  background: #a07e55;
+}
+
+.ooo-stop:hover .ooo-stop-pin,
+.ooo-stop:focus-visible .ooo-stop-pin {
+  transform: scale(1.2);
+}
+
+.ooo-stop-label {
+  opacity: 0;
+  transform: translateY(-2px);
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.ooo-stop:hover .ooo-stop-label,
+.ooo-stop:focus-visible .ooo-stop-label {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .ooo-stop[aria-current] .ooo-stop-label {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ooo-lab-f,
+.ooo-lab-sit {
+  opacity: 0;
+}
+
+.ooo-lab.is-still .ooo-lab-sit {
+  opacity: 1;
+}
+
+.ooo-lab[data-pose="0"] .ooo-lab-f0,
+.ooo-lab[data-pose="1"] .ooo-lab-f1,
+.ooo-lab[data-pose="2"] .ooo-lab-f2,
+.ooo-lab[data-pose="3"] .ooo-lab-f3 {
+  opacity: 1;
+}
+
+.ooo-lab.is-still .ooo-lab-f {
+  opacity: 0;
+}
+
+.ooo-lab-bounce {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.ooo-lab.is-trotting .ooo-lab-bounce {
+  animation: ooo-lab-bound 0.52s ease-in-out infinite;
+}
+
+.ooo-lab.is-running .ooo-lab-bounce {
+  animation: ooo-lab-bound 0.28s ease-in-out infinite;
+}
+
+@keyframes ooo-lab-bound {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+}
+
+@keyframes ooo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ——— Play ——— */
+
+.ooo-table {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(160, 126, 85, 0.1), transparent 75%),
+    repeating-linear-gradient(
+      91deg,
+      rgba(0, 0, 0, 0.12) 0 1px,
+      transparent 1px 9px,
+      rgba(160, 126, 85, 0.05) 9px 11px,
+      transparent 11px 23px
+    ),
+    linear-gradient(180deg, #1f1811, #17120d);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+.ooo-object-body {
+  transform: rotate(var(--tilt, 0deg));
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.55));
+  transition:
+    transform 500ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    filter 500ms ease;
+}
+
+.ooo-object:hover .ooo-object-body,
+.ooo-object:focus-visible .ooo-object-body {
+  transform: translateY(-8px) rotate(0deg);
+  filter: drop-shadow(0 16px 14px rgba(0, 0, 0, 0.6));
+}
+
+.ooo-tag {
+  color: #eae5d9;
+  opacity: 0.75;
+  transition: opacity 400ms ease;
+}
+
+.ooo-object:hover .ooo-tag,
+.ooo-object:focus-visible .ooo-tag {
+  opacity: 1;
+}
+
+.ooo-reel {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.ooo-object:hover .ooo-reel,
+.ooo-object:focus-visible .ooo-reel {
+  animation: ooo-spin 3s linear infinite;
+}
+
+.ooo-recipe {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 11px,
+      rgba(125, 138, 153, 0.35) 11px 12px
+    ),
+    radial-gradient(ellipse at 20% 10%, rgba(255, 255, 255, 0.18), transparent 60%),
+    #e8e0cc;
+  background-position: 0 30px, 0 0, 0 0;
+  background-repeat: repeat-y, no-repeat, no-repeat;
+}
+
+.ooo-stain {
+  position: absolute;
+  right: -14px;
+  bottom: -18px;
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    transparent 52%,
+    rgba(120, 82, 40, 0.28) 56%,
+    rgba(120, 82, 40, 0.1) 62%,
+    transparent 68%
+  );
+}
+
+/* ——— What's next ——— */
+
+
+/* ——— Recommend slip ——— */
+
+.ooo-request-card {
+  transform: rotate(-4deg);
+  transform-origin: 50% 100%;
+  box-shadow:
+    inset 0 0 10px rgba(120, 90, 50, 0.18),
+    2px 3px 6px rgba(0, 0, 0, 0.5);
+  transition:
+    transform 400ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 400ms ease;
+}
+
+.ooo-request-card:hover,
+.ooo-request-card:focus-visible {
+  transform: translateY(-6px) rotate(-1deg);
+  box-shadow:
+    inset 0 0 10px rgba(120, 90, 50, 0.18),
+    4px 10px 14px rgba(0, 0, 0, 0.55);
+}
+
+.ooo-slip {
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(255, 255, 255, 0.2), transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(120, 90, 50, 0.18), transparent 60%),
+    #e4dcc8;
+  box-shadow:
+    inset 0 0 22px rgba(120, 90, 50, 0.16),
+    0 12px 28px rgba(0, 0, 0, 0.5);
+  transform: rotate(-0.4deg);
+}
+
+.ooo-slip-input {
+  border-bottom: 1px solid rgba(58, 51, 43, 0.45);
+  transition: border-color 300ms ease;
+}
+
+.ooo-slip-input:focus {
+  border-bottom-color: #1e1a16;
+}
+
+.ooo-slip-lines {
+  border-bottom: 0;
+  line-height: 26px;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0 25px,
+    rgba(58, 51, 43, 0.45) 25px 26px
+  );
+  background-attachment: local;
+}
+
+.ooo-received {
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  border: 3px double #6b5236;
+  color: #6b5236;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  transform: rotate(-7deg);
+  opacity: 0.85;
+  animation: ooo-stamp 450ms cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+
+@keyframes ooo-stamp {
+  from {
+    opacity: 0;
+    transform: rotate(-7deg) scale(1.6);
+  }
+  to {
+    opacity: 0.85;
+    transform: rotate(-7deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ooo-lab-f,
+  .ooo-lab-bounce,
+  .ooo-lab.is-trotting .ooo-lab-f,
+  .ooo-lab.is-running .ooo-lab-f,
+  .ooo-lab.is-trotting .ooo-lab-bounce,
+  .ooo-lab.is-running .ooo-lab-bounce,
+  .ooo-object:hover .ooo-reel,
+  .ooo-object:focus-visible .ooo-reel,
+  .ooo-received {
+    animation: none;
+  }
+
+  .ooo-lab-f {
+    opacity: 0;
+  }
+
+  .ooo-lab-sit {
+    opacity: 1;
+  }
+
+  .ooo-object-body,
+  .ooo-stop-pin,
+  .ooo-stop-label,
+  .ooo-request-card {
+    transition: none;
+  }
+
+  .ooo-object:hover .ooo-object-body,
+  .ooo-object:focus-visible .ooo-object-body {
+    transform: rotate(0deg);
+  }
+}
