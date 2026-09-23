@@ -726,9 +726,6 @@ export default function Archive({
         <p className="font-serif text-[17px] italic text-[#B8B2A6]">
           Truffles approves this message.
         </p>
-        <p className="font-mono text-[9px] tracking-[0.3em] text-[#6B6760]">
-          OTHERWISE ENGAGED · SABBATICAL 2026 · VOL. 1
-        </p>
       </footer>
 
       {active && (
