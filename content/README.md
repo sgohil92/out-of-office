@@ -40,6 +40,7 @@ The road atlas draws itself from your stops and zooms to fit them, so a stop any
 },
 ```
 
+- **Home base** (San Francisco) is the entry with `homeBase: true`. It isn't a numbered stop: it opens from the house on the map (SF) and the "Home base" line under it. Add local outings to its `body` as `* ` lines, newest first.
 - `pin` is where it sits on the map: `[latitude, longitude]`. In Google Maps, right-click the spot; the numbers at the top of the menu are the pin. Click them to copy.
 - `arrive` is how Truffles gets there from the stop before it in time (the one listed just below it): `"drive"` (roadster), `"paddle"` (paddleboard) or `"fly"` (biplane).
 - `dek` shows in pencil next to the place name on the map.
@@ -48,7 +49,7 @@ The road atlas draws itself from your stops and zooms to fit them, so a stop any
 - `featured` (optional) shows a photo big and pinned, between the story and the rest, with an optional red stamp: `featured: [{ src: "/destinations/colombia/colombia-08.jpg" }]`. Add `stamp: "SOME WORDS"` if you ever want one.
 - Photos go in `public/destinations/lisbon/`. `portrait` is taller (you in the frame). `landscape` is wider (a view).
 
-The map's title, jokes, home pin and doodles (bone, ball, nap zone, ocean label) live in `content/atlas.ts`. Put your dog's name in `dogName` there.
+The map's title, jokes, home pin and optional doodles (bone, ball, nap zone, ocean label) live in `content/atlas.ts`. Put your dog's name in `dogName` there.
 
 ## Invites
 

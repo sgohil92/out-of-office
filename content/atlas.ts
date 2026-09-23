@@ -10,8 +10,8 @@ export const ATLAS = {
   dogName: "Truffles",
   edition: "Sabbatical Edition · 2026",
   tagline: "Revised at every snack stop.",
-  /** The pencil note trailing off the newest stop. */
-  next: "next: ? (ask Truffles)",
+  /** A pencil note trailing off the newest stop, like "next: ? (ask Truffles)". "" hides it. */
+  next: "",
   /** Where the trip starts. `label` is optional pencil text by the house; "" hides it. */
   home: { label: "", pin: [37.7749, -122.4194] as Pin },
 
@@ -22,8 +22,5 @@ export const ATLAS = {
    */
   doodles: [
     { kind: "label", text: "PACIFIC OCEAN", note: "(one very large bath)", pin: [9, -141] },
-    { kind: "bone", pin: [41.2, -120.2] },
-    { kind: "ball", pin: [25.5, -151.5] },
-    { kind: "nap", pin: [27.5, -105] },
   ] as { kind: "bone" | "ball" | "nap" | "label"; pin: Pin; text?: string; note?: string }[],
 };

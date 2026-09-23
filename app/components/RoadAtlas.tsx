@@ -496,6 +496,7 @@ export default function RoadAtlas<E extends ArchiveEntry>({
 
   const last = stops[stops.length - 1];
   const pct = (p: Point) => ({ left: `${(p.x / W) * 100}%`, top: `${(p.y / H) * 100}%` });
+  const homeMark = { x: Math.max(24, home.x - 40), y: Math.min(H - 30, home.y + 30) };
 
   return (
     <div>
@@ -596,7 +597,7 @@ export default function RoadAtlas<E extends ArchiveEntry>({
               </g>
             ))}
 
-            {last ? (
+            {last && words.next ? (
               <path
                 d={`M ${last.x} ${last.y} Q ${(last.x + drawing.next.x) / 2 + 14} ${(last.y + drawing.next.y) / 2 - 10} ${drawing.next.x} ${drawing.next.y}`}
                 fill="none"
@@ -607,8 +608,17 @@ export default function RoadAtlas<E extends ArchiveEntry>({
               />
             ) : null}
 
-            <g transform={`translate(${home.x} ${home.y})`}>
-              <path d="M -5.5 1 V -5 L 0 -9.5 L 5.5 -5 V 1 Z" fill="#F3EAD6" stroke={INK} strokeWidth="0.9" />
+            {/* home: nudged out into the ocean with a dotted line back to SF, so it isn't hidden under nearby pins */}
+            <path
+              d={`M ${home.x} ${home.y} L ${homeMark.x} ${homeMark.y - 6}`}
+              stroke={INK}
+              strokeWidth="0.8"
+              strokeDasharray="1.5 2"
+              opacity="0.7"
+            />
+            <circle cx={home.x} cy={home.y} r="2" fill={INK} />
+            <g transform={`translate(${homeMark.x} ${homeMark.y}) scale(1.5)`}>
+              <path d="M -5.5 1 V -5 L 0 -9.5 L 5.5 -5 V 1 Z" fill="#F3EAD6" stroke={INK} strokeWidth="0.8" />
               <rect x="-1.4" y="-3.4" width="2.8" height="4.4" fill={INK} />
             </g>
 
@@ -663,6 +673,23 @@ export default function RoadAtlas<E extends ArchiveEntry>({
               </p>
             ))}
 
+          <p
+            aria-hidden
+            className="pointer-events-none absolute -translate-x-1/2 pt-1 font-serif text-[11px] italic leading-none text-[#6B5E4E] sm:text-[12px]"
+            style={pct({ x: homeMark.x, y: homeMark.y + 3 })}
+          >
+            SF
+          </p>
+          {homeEntry ? (
+            <button
+              type="button"
+              onClick={goHome}
+              aria-label="Home base: San Francisco. Open"
+              className="absolute h-11 w-11 -translate-x-1/2 -translate-y-[70%] focus-visible:outline-1 focus-visible:outline-[#9A3A28]"
+              style={pct(homeMark)}
+            />
+          ) : null}
+
           {home.label ? (
             <p
               aria-hidden
@@ -673,7 +700,7 @@ export default function RoadAtlas<E extends ArchiveEntry>({
             </p>
           ) : null}
 
-          {last ? (
+          {last && words.next ? (
             <p
               aria-hidden
               className="pointer-events-none absolute hidden -translate-x-1/2 -translate-y-[130%] whitespace-nowrap font-serif text-[12px] italic text-[#6B5E4E] sm:block"
