@@ -12,6 +12,7 @@ Save the file, and the local site refreshes. Photos go in `public/`, then you po
 | Section titles and the sentence under them | `content/sections.ts` |
 | A trip, a mood note, a wish, a book | `content/entries.ts` |
 | The road atlas title, jokes, and dog's name | `content/atlas.ts` |
+| An invite on the main page | `content/invites.ts` |
 | Photos | `public/` — see below |
 
 ## Add a trip (Destinations)
@@ -43,6 +44,10 @@ The road atlas draws itself from your stops and zooms to fit them, so a stop any
 - Photos go in `public/destinations/lisbon/`. `portrait` is taller (you in the frame). `landscape` is wider (a view).
 
 The map's title, jokes, map key, home pin and doodles (bone, ball, nap zone, ocean label) live in `content/atlas.ts`. Put your dog's name in `dogName` there.
+
+## Invites
+
+Each entry in `content/invites.ts` shows as a ticket at the top of the main page, with an RSVP button that opens an email to you. Set `until` to the last day it should show (`MM.DD.YYYY`); it disappears on its own the day after. To use a link instead of email (Partiful, a group chat), set `rsvpLink`. No invites = no ticket strip.
 
 ## Play
 

@@ -461,3 +461,71 @@
     transform: rotate(0deg);
   }
 }
+
+/* Invite ticket */
+.ooo-ticket {
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(255, 255, 255, 0.35), transparent 55%),
+    radial-gradient(ellipse at 90% 110%, rgba(120, 90, 50, 0.14), transparent 60%),
+    #efe5cf;
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+.ooo-ticket-stub {
+  position: relative;
+  border-top: 2px dashed rgba(107, 82, 54, 0.45);
+}
+
+.ooo-ticket-stub::before,
+.ooo-ticket-stub::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #0c0b0a;
+  top: -10px;
+}
+
+.ooo-ticket-stub::before {
+  left: -9px;
+}
+
+.ooo-ticket-stub::after {
+  right: -9px;
+}
+
+@media (min-width: 640px) {
+  .ooo-ticket-stub {
+    border-top: 0;
+    border-left: 2px dashed rgba(107, 82, 54, 0.45);
+  }
+
+  .ooo-ticket-stub::before,
+  .ooo-ticket-stub::after {
+    left: -10px;
+    right: auto;
+  }
+
+  .ooo-ticket-stub::before {
+    top: -9px;
+  }
+
+  .ooo-ticket-stub::after {
+    top: auto;
+    bottom: -9px;
+  }
+}
+
+.ooo-rubber-stamp {
+  color: #9a3a28;
+  border: 2px solid currentColor;
+  outline: 1px solid currentColor;
+  outline-offset: 2px;
+  padding: 0.3em 0.6em;
+  transform: rotate(6deg);
+  opacity: 0.8;
+  mix-blend-mode: multiply;
+}

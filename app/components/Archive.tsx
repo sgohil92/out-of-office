@@ -6,7 +6,9 @@ import { useEffect, useMemo, useState } from "react";
 import type { Entry, PhotoAspect, SectionId, Video } from "../../content/types";
 import type { AtlasDrawing } from "../../lib/atlas";
 import type { AtlasWords } from "./RoadAtlas";
+import type { Invite } from "../../content/invites";
 import BookRecommendSlip from "./BookRecommendSlip";
+import InviteTicket from "./InviteTicket";
 import MoodPortrait from "./MoodPortrait";
 import WishList from "./WishList";
 
@@ -340,11 +342,13 @@ export default function Archive({
   entries,
   sections,
   atlas,
+  invites,
 }: {
   about: Entry;
   entries: Entry[];
   sections: SectionInfo[];
   atlas: { drawing: AtlasDrawing; words: AtlasWords };
+  invites: { list: Invite[]; email: string };
 }) {
   const [active, setActive] = useState<Entry | null>(null);
 
@@ -414,6 +418,8 @@ export default function Archive({
           </div>
         </div>
       </header>
+
+      <InviteTicket invites={invites.list} email={invites.email} />
 
       <main className="relative z-10 grid grid-cols-1 md:grid-cols-2">
         {bySection.map((section, i) => {

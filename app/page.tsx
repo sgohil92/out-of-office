@@ -1,6 +1,7 @@
 import { ATLAS } from "../content/atlas";
 import { ABOUT } from "../content/about";
 import { ENTRIES } from "../content/entries";
+import { INVITES, RSVP_EMAIL } from "../content/invites";
 import { SECTIONS } from "../content/sections";
 import { drawAtlas } from "../lib/atlas";
 import Archive from "./components/Archive";
@@ -22,6 +23,10 @@ export default function Home() {
       entries={entries}
       sections={SECTIONS}
       atlas={{ drawing, words }}
+      invites={{
+        list: showDrafts ? INVITES : INVITES.filter((invite) => !invite.draft),
+        email: RSVP_EMAIL,
+      }}
     />
   );
 }
