@@ -1,47 +1,30 @@
 import type { ArchiveEntry } from "./types";
 import "./sections.css";
 
-const PLACEHOLDER_BODY = "[ Entry forthcoming. ]";
-
-function firstSentence(text: string) {
-  const line = text.split(/\n+/)[0]?.trim() ?? "";
-  const match = line.match(/^.+?[.!?](?=\s|$)/);
-  return (match?.[0] ?? line).trim();
-}
-
-function moodMark(entry?: ArchiveEntry) {
-  if (!entry) return null;
-  const body = entry.body?.trim() ?? "";
-  if (body && body !== PLACEHOLDER_BODY) {
-    const sentence = firstSentence(body);
-    if (sentence) return sentence;
-  }
-  const title = entry.title.trim();
-  if (title && !/^Untitled — Entry /.test(title)) return title;
-  return null;
-}
-
 export default function MoodPortrait<E extends ArchiveEntry>({
+  mood,
   entries,
   onOpen,
 }: {
+  /** This week's line, from content/mood.ts. */
+  mood: { week: string; text: string };
   entries: E[];
   onOpen: (entry: E) => void;
 }) {
   const latest = entries[entries.length - 1];
   const log = [...entries].reverse();
-  const mark = moodMark(latest);
 
   return (
     <div>
+      {mood.week ? (
+        <p className="mb-3 font-mono text-[10px] tracking-[0.28em] text-[#A07E55]">{mood.week.toUpperCase()}</p>
+      ) : null}
       <p
-        className={`font-serif italic text-[1.85rem] leading-[1.2] tracking-[-0.02em] sm:text-4xl ${
-          mark
-            ? "text-[#EAE5D9] -rotate-[0.7deg]"
-            : "text-[#8E8E93]/35"
+        className={`font-serif italic text-[1.6rem] leading-[1.25] tracking-[-0.01em] sm:text-[2rem] ${
+          mood.text ? "text-[#EAE5D9] -rotate-[0.5deg]" : "text-[#8E8E93]/35"
         }`}
       >
-        {mark ?? "—"}
+        {mood.text || "—"}
       </p>
 
       <div className="mt-8">

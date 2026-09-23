@@ -441,6 +441,7 @@ export default function Archive({
   atlas,
   invites,
   studio,
+  mood,
 }: {
   about: Entry;
   entries: Entry[];
@@ -448,6 +449,7 @@ export default function Archive({
   atlas: { drawing: AtlasDrawing; words: AtlasWords };
   invites: { list: Invite[]; email: string };
   studio: { paintings: Painting[]; notes: StudioNote[] };
+  mood: { week: string; text: string };
 }) {
   // The first line of the About note doubles as the welcome under the title.
   const intro = about.body.split("\n\n")[0];
@@ -634,7 +636,7 @@ export default function Archive({
               ) : section.id === "next" ? (
                 <WishList entries={section.entries} onOpen={setActive} />
               ) : section.id === "mood" ? (
-                <MoodPortrait entries={section.entries} onOpen={setActive} />
+                <MoodPortrait mood={mood} entries={section.entries} onOpen={setActive} />
               ) : section.id === "bookshelf" ? (
                 <Bookshelf entries={section.entries} onOpen={setActive} />
               ) : (
