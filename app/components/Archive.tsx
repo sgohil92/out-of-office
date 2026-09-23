@@ -235,27 +235,17 @@ function Postmark({ place, date }: { place: string; date: string }) {
 function ReelFrame({ video }: { video: Video }) {
   const portrait = video.aspect === "portrait";
   return (
-    <figure
-      className={`relative border border-[#242220] bg-[#100F0E] p-3 shadow-[0_10px_30px_rgba(0,0,0,0.45)] ${
-        portrait ? "mx-auto w-full max-w-sm" : ""
-      }`}
-    >
-      <span
-        aria-hidden
-        className="tape absolute -left-3 -top-2 z-10 h-5 w-14 -rotate-[38deg]"
+    <figure className={portrait ? "mx-auto w-full max-w-sm" : ""}>
+      <video
+        src={video.src}
+        poster={video.poster}
+        controls
+        playsInline
+        preload="metadata"
+        className={`block w-full border-[5px] border-[#E4DCC8] bg-black object-cover shadow-[0_12px_30px_rgba(0,0,0,0.5)] ${
+          portrait ? "aspect-[9/16]" : "aspect-video"
+        }`}
       />
-      <div className="deckle bg-[#E4DCC8] p-[7px]">
-        <video
-          src={video.src}
-          poster={video.poster}
-          controls
-          playsInline
-          preload="metadata"
-          className={`block w-full bg-black object-cover ${
-            portrait ? "aspect-[9/16]" : "aspect-video"
-          }`}
-        />
-      </div>
       {video.caption && (
         <figcaption className="mt-3 text-center font-mono text-[10px] tracking-[0.18em] text-[#8E8E93]">
           {video.caption}
@@ -508,7 +498,7 @@ export default function Archive({
 
 
   // Destinations lead with the story; a big set of photos becomes a scrapbook grid.
-  const storyFirst = active?.section === "destinations" || Boolean(active?.videos?.length);
+  const storyFirst = active?.section === "destinations";
   const story = active?.body ? (
     <div
       className={`mt-8 space-y-5 font-serif text-[17px] ${
