@@ -277,6 +277,24 @@ export const ENTRIES: Entry[] = [
   placeholder("mood-log-02", "mood", "04.02", "09.13.2026"),
   placeholder("mood-log-03", "mood", "04.03", "09.18.2026"),
   placeholder("mood-log-04", "mood", "04.04", "09.22.2026"),
+  {
+    id: "ritual-of-coffee",
+    section: "mood",
+    index: "04.05",
+    date: "08.28.2026",
+    title: "The Ritual of Coffee",
+    dek: "",
+    body: [
+      "That first sip feels like relief. The warming layers, the smoothness, such a delicate balance of flavors, and the immediate signal to my brain that it's go time.",
+      "That's the power of a ritual. It's different from a habit or doing something for the sake of the function. It's a bit more sacred, almost spiritual, and always intentional. It becomes so essential and ingrained in your life, at the chosen intervals, that any removal feels deeply unsettling and borderline disturbing.",
+      "The question is: is it the ritual itself, or the object? Is it the impact of the stimulant on the nervous system, or, if you believe in this stuff, the soul? If I had to wager, it's the deeper meaning, often related to pleasure, even in a quiet, subtle way. Rather than a brain dopamine hit, it's the gentle steadiness of a morning walk with your pup, or a slow skincare routine. This is the magic of coffee for me.",
+      "From the second I wake up, it doesn't matter where in the world I am, what yesterday looked like, or what today holds. I know this is my me time. What I find once I'm there may be a delightful surprise, whether it's the location, the café, or an interaction. When I walk into a café, it feels like a common thread that connects people across cultures. I could be in India, in Paris, in Colombia, and immediately feel like I belong, like I have a space to settle if I so desire, free to dive into conversation or stay a wallflower sipping my cup.",
+      "And it doesn't have to be somewhere far away. The cafés I cycle between are all within a five-minute walk, and they feel just as sacred. Close to home, it's a mix of flavor, pleasure, familiarity, and groundedness, and these days very little about utility. I feel like I'm part of a community.",
+      "Here's the contradiction: I call it the magic of coffee, yet it's not really about the coffee at all. It has to be palatable, sure. I know good beans, enough to be competent without being a snob, but it doesn't even matter how good the drink is. And still, nothing else will do. I'm not as satisfied or grounded when I have chai. I have a relationship with coffee that can't be replaced, at least if we're staying in the realm of ritual and keeping utility at arm's length.",
+      "So now I'm curious about yours. What's the small thing you do that feels sacred instead of routine? A morning walk, a crossword, the way you make your tea? When did it become a ritual, and what happens when you skip it? Tell me. I'd love to understand what ritual means to you.",
+    ].join("\n\n"),
+    tags: [],
+  },
 
   {
     id: "spanish-lessons",
