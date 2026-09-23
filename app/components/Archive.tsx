@@ -152,19 +152,23 @@ const MONTH_NAMES = [
 /** A paw-print postmark for Destinations, like the stop was stamped by the dog. */
 function Postmark({ place, date }: { place: string; date: string }) {
   const parts = date.split(".");
-  // "06.2026" (month only) reads "JUNE · 2026"; "06.14.2026" reads "06·14·2026".
+  const monthName = (m: string) => MONTH_NAMES[Number(m) - 1] ?? m;
+  // "06.14.2026" → "06·14·2026"; "06.2026" → "JUNE · 2026"; "07-08.2026" → "JUL–AUG · 2026".
+  const [from, to] = (parts[0] ?? "").split("-");
   const when =
     parts.length === 3
       ? parts.join("·")
-      : parts.length === 2
-        ? `${MONTH_NAMES[Number(parts[0]) - 1] ?? parts[0]} · ${parts[1]}`
-        : "· 2026 ·";
+      : parts.length === 2 && to
+        ? `${monthName(from).slice(0, 3)}–${monthName(to).slice(0, 3)} · ${parts[1]}`
+        : parts.length === 2
+          ? `${monthName(from)} · ${parts[1]}`
+          : "· 2026 ·";
   return (
     <svg
       viewBox="0 0 220 104"
       className="mt-6 block w-[200px] -rotate-[7deg] text-[#A07E55]"
       role="img"
-      aria-label={`Postmarked ${place}${date ? `, ${when.replaceAll("·", " ").trim()}` : ""}`}
+      aria-label={`Postmarked ${place}${date ? `, ${when.replaceAll("·", " ").replace(/\s+/g, " ").trim()}` : ""}`}
     >
       <defs>
         <path id="ooo-pm-top" d="M 16 52 A 36 36 0 0 1 88 52" />
