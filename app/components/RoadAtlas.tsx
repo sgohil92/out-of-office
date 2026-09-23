@@ -131,15 +131,15 @@ function Roadster() {
         </g>
         <path
           d="M -24 -8 C -24 -13 -20 -15 -14 -15 L -5 -15 C -4 -11.5 3 -11.5 4 -15 L 12 -15 C 18 -15 23 -13 24 -9 L 24 -6 L -24 -6 Z"
-          fill="#3F6B5E"
-          stroke="#1E2F29"
+          fill="#1F3D2B"
+          stroke="#0E1F15"
           strokeWidth="0.7"
         />
         <path d="M -21 -11 H 20" stroke="#EAE0CA" strokeWidth="0.8" opacity="0.8" />
         <path d="M 8 -15 L 10.5 -20.5" stroke="#9FB4B8" strokeWidth="1.5" strokeLinecap="round" />
         <rect x="22" y="-13" width="2.6" height="6" rx="0.8" fill="#C9A66B" />
         <circle cx="24.6" cy="-11" r="1.6" fill="#F2D98B" stroke="#6B5236" strokeWidth="0.4" />
-        <path d="M -20.5 -6 A 7.5 7.5 0 0 1 -5.5 -6 M 5.5 -6 A 7.5 7.5 0 0 1 20.5 -6" fill="none" stroke="#2F5247" strokeWidth="2.4" />
+        <path d="M -20.5 -6 A 7.5 7.5 0 0 1 -5.5 -6 M 5.5 -6 A 7.5 7.5 0 0 1 20.5 -6" fill="none" stroke="#16301F" strokeWidth="2.4" />
       </g>
       <Wheel x={-13} />
       <Wheel x={13} />
