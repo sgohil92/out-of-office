@@ -118,9 +118,9 @@ Ponderings, the longer entries listed underneath, are the `section: "mood"` entr
 
 ## What's next
 
-Each `section: "next"` entry is one typed index card in the card-catalog drawer. `title` is the line (keep it short, it's one line). `body` is what opens when someone taps it; leave it `""` and the line just sits on the pad (not tappable). Add `done: true` when you've done it: the card gets a red CHECKED OUT stamp, and the count on the drawer goes up.
+Each `section: "next"` entry is one line in the journal. `title` is the line (keep it short, it's one line). `body` is what opens when someone taps it; leave it `""` and the line just sits in the journal (not tappable). Add `done: true` when you've done it: it gets a pencil check mark and a strike-through, and the "done" count goes up. Long lines wrap onto the next ruled line.
 
-The blank card at the back of the drawer lets friends "suggest something for me to try". Suggestions are emailed to you the same way as book recommendations (needs the same `RESEND_API_KEY`).
+The last line of the journal lets friends "suggest something for me to try". Suggestions are emailed to you the same way as book recommendations (needs the same `RESEND_API_KEY`).
 
 ## Drafts
 
