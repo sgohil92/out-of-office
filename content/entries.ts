@@ -120,7 +120,7 @@ export const ENTRIES: Entry[] = [
     title: "Colombia",
     dek: "Where I learned to salsa.",
     body: "[ Entry forthcoming. ]",
-    pin: [4.6, -74.1],
+    pin: [6.2442, -75.5812],
     arrive: "fly",
     images: [
       "/destinations/colombia/colombia-01.jpg",
@@ -154,6 +154,7 @@ export const ENTRIES: Entry[] = [
     ],
     // Where each photo was taken. Leave "" for no caption.
     imageCaptions: ["", "", "", "", "", "", "", ""],
+    featured: [{ src: "/destinations/colombia/colombia-08.jpg", stamp: "PERMANENT RECORD" }],
     tags: [],
   },
   {

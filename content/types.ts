@@ -54,6 +54,11 @@ export type Entry = {
   imageAspects?: PhotoAspect[];
   /** A short line under each photo, like where it was taken. Same order as `images`. */
   imageCaptions?: string[];
+  /**
+   * Photos to show big, between the story and the rest (by path from `images`).
+   * `stamp` puts a red rubber stamp on it, like "PERMANENT RECORD".
+   */
+  featured?: { src: string; stamp?: string }[];
   /** Videos shown in the drawer, above the text. */
   videos?: Video[];
   tags: string[];

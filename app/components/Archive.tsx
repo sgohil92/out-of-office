@@ -86,10 +86,16 @@ function PrintFrame({
   className = "",
   focus = "center",
   caption,
+  featured = false,
+  stamp,
 }: {
   src: string;
   alt: string;
   caption?: string;
+  /** Bigger, pinned instead of taped. */
+  featured?: boolean;
+  /** Red rubber-stamp text over the corner. */
+  stamp?: string;
   aspect?: PhotoAspect;
   className?: string;
   focus?: "center" | "face";
@@ -98,17 +104,35 @@ function PrintFrame({
   return (
     <figure
       className={`print-tilt group relative -rotate-[0.6deg] border border-[#242220] bg-[#100F0E] p-3 shadow-[0_10px_30px_rgba(0,0,0,0.45)] transition duration-700 ease-out hover:rotate-0 ${
-        portrait ? "mx-auto w-full max-w-sm" : ""
+        portrait ? `mx-auto w-full ${featured ? "max-w-md" : "max-w-sm"}` : ""
       } ${className}`}
     >
-      <span
-        aria-hidden
-        className="tape absolute -left-3 -top-2 z-10 h-5 w-14 -rotate-[38deg]"
-      />
-      <span
-        aria-hidden
-        className="tape absolute -right-3 -top-2 z-10 h-5 w-14 rotate-[38deg]"
-      />
+      {featured ? (
+        <svg viewBox="0 0 20 20" className="absolute -top-3 left-1/2 z-10 h-7 w-7 -translate-x-1/2" aria-hidden>
+          <circle cx="10" cy="9" r="6.5" fill="#9A3A28" />
+          <circle cx="8" cy="7" r="2.2" fill="#F3EAD6" opacity="0.55" />
+          <path d="M 10 15.5 L 10 19.5" stroke="#5E2418" strokeWidth="1.2" strokeLinecap="round" />
+        </svg>
+      ) : (
+        <>
+          <span
+            aria-hidden
+            className="tape absolute -left-3 -top-2 z-10 h-5 w-14 -rotate-[38deg]"
+          />
+          <span
+            aria-hidden
+            className="tape absolute -right-3 -top-2 z-10 h-5 w-14 rotate-[38deg]"
+          />
+        </>
+      )}
+      {stamp ? (
+        <span
+          aria-hidden
+          className="ooo-rubber-stamp ooo-feature-stamp absolute -right-2 bottom-12 z-10 bg-[#F3EAD6]/85 font-mono text-[10px] font-bold tracking-[0.2em] sm:-right-4 sm:text-[11px]"
+        >
+          {stamp}
+        </span>
+      ) : null}
       <div className="deckle bg-[#E4DCC8] p-[7px]">
         <div
           className={`relative w-full ${
@@ -128,7 +152,13 @@ function PrintFrame({
         </div>
       </div>
       {caption ? (
-        <figcaption className="mt-3 text-center font-serif text-[14px] italic text-[#8E8E93]">{caption}</figcaption>
+        <figcaption
+          className={`mt-3 text-center font-serif italic ${
+            featured ? "text-[16px] text-[#C9C2B4]" : "text-[14px] text-[#8E8E93]"
+          }`}
+        >
+          {caption}
+        </figcaption>
       ) : null}
     </figure>
   );
@@ -503,23 +533,48 @@ export default function Archive({
       )}
     </div>
   ) : null;
-  const photos =
-    prints.length === 0 ? null : prints.length >= 3 ? (
-      <ScrapbookGrid prints={prints} />
-    ) : (
-      <div className={`mt-8 ${prints.length > 1 ? "flex flex-col gap-7" : ""}`}>
-        {prints.map((print) => (
-          <PrintFrame
-            key={print.src}
-            src={print.src}
-            alt={print.alt}
-            aspect={print.aspect}
-            focus={print.focus}
-            caption={print.caption}
-          />
-        ))}
-      </div>
-    );
+  const featuredSrcs = new Set(active?.featured?.map((f) => f.src) ?? []);
+  const featuredPrints = (active?.featured ?? []).flatMap((f) => {
+    const print = prints.find((p) => p.src === f.src);
+    return print ? [{ ...print, stamp: f.stamp }] : [];
+  });
+  const rest = prints.filter((p) => !featuredSrcs.has(p.src));
+  const photos = (
+    <>
+      {featuredPrints.length > 0 ? (
+        <div className="mt-10 flex flex-col gap-10">
+          {featuredPrints.map((print) => (
+            <PrintFrame
+              key={print.src}
+              src={print.src}
+              alt={print.alt}
+              aspect={print.aspect}
+              focus={print.focus}
+              caption={print.caption}
+              featured
+              stamp={print.stamp}
+            />
+          ))}
+        </div>
+      ) : null}
+      {rest.length === 0 ? null : rest.length >= 3 ? (
+        <ScrapbookGrid prints={rest} />
+      ) : (
+        <div className={`mt-8 ${rest.length > 1 ? "flex flex-col gap-7" : ""}`}>
+          {rest.map((print) => (
+            <PrintFrame
+              key={print.src}
+              src={print.src}
+              alt={print.alt}
+              aspect={print.aspect}
+              focus={print.focus}
+              caption={print.caption}
+            />
+          ))}
+        </div>
+      )}
+    </>
+  );
 
   return (
     <div className="relative min-h-full bg-[#0C0B0A] text-[#EAE5D9]">
