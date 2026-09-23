@@ -11,6 +11,12 @@ export type PhotoAspect = "landscape" | "portrait";
 /** Which object a Play entry sits on: the record, the ink wash, the cookbook, or the typed page. */
 export type Hobby = "dance" | "painting" | "cooking" | "writing";
 
+/** How the dog gets to a stop on the Destinations map. */
+export type Travel = "drive" | "paddle" | "fly";
+
+/** A place on the map: [latitude, longitude]. In Google Maps, right-click a spot and click the numbers to copy them. */
+export type Pin = [number, number];
+
 export type Video = {
   /** Path under /public, like "/play/dance-01.mp4". */
   src: string;
@@ -50,6 +56,10 @@ export type Entry = {
   videos?: Video[];
   tags: string[];
   stamp?: string;
+  /** Destinations only: where the stop sits on the map. */
+  pin?: Pin;
+  /** Destinations only: how the dog arrives here from the previous stop. Defaults to "drive". */
+  arrive?: Travel;
   /** Play only: which object on the table this entry belongs to. */
   hobby?: Hobby;
   /** Bookshelf only: a short title for the spine. Falls back to `title`. */

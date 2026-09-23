@@ -11,30 +11,38 @@ Save the file, and the local site refreshes. Photos go in `public/`, then you po
 | About drawer (the three paragraphs) | `content/about.ts` |
 | Section titles and the sentence under them | `content/sections.ts` |
 | A trip, a mood note, a wish, a book | `content/entries.ts` |
+| The road atlas title, jokes, and dog's name | `content/atlas.ts` |
 | Photos | `public/` — see below |
 
 ## Add a trip (Destinations)
 
-Stops appear left to right in the order they appear in `entries.ts`. Copy a block, give it a new `id`, and put it with the other `section: "destinations"` entries.
+The road atlas draws itself from your stops and zooms to fit them, so a stop anywhere in the world works. The dog travels the stops in the order they appear in `entries.ts`, starting from home. Copy a block, give it a new `id`, and put it after the other `section: "destinations"` entries.
 
 ```ts
 {
-  id: "mexico",
+  id: "lisbon",
   section: "destinations",
   index: "01.05",
   date: "10.02.2026",
-  place: "Oaxaca",
-  title: "Oaxaca",
-  dek: "",
+  place: "Lisbon",
+  title: "Lisbon",
+  dek: "Tiles and custard tarts.",
   body: "A short note.\n\nA second paragraph after a blank line.",
-  images: ["/destinations/mexico/01.jpg", "/destinations/mexico/02.jpg"],
-  imageAlts: ["Market stall", "Courtyard"],
+  pin: [38.7223, -9.1393],
+  arrive: "fly",
+  images: ["/destinations/lisbon/01.jpg", "/destinations/lisbon/02.jpg"],
+  imageAlts: ["Tram on a hill", "Courtyard"],
   imageAspects: ["landscape", "portrait"],
   tags: [],
 },
 ```
 
-Drop the files in `public/destinations/mexico/`. `portrait` is taller (you in the frame). `landscape` is wider (a view).
+- `pin` is where it sits on the map: `[latitude, longitude]`. In Google Maps, right-click the spot; the numbers at the top of the menu are the pin. Click them to copy.
+- `arrive` is how the dog gets there from the previous stop: `"drive"` (roadster), `"paddle"` (paddleboard) or `"fly"` (biplane).
+- `dek` shows in pencil next to the place name on the map.
+- Photos go in `public/destinations/lisbon/`. `portrait` is taller (you in the frame). `landscape` is wider (a view).
+
+The map's title, jokes, map key, home pin and doodles (bone, ball, nap zone, ocean label) live in `content/atlas.ts`. Put your dog's name in `dogName` there.
 
 ## Play
 

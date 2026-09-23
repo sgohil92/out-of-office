@@ -4,11 +4,13 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import type { Entry, PhotoAspect, SectionId, Video } from "../../content/types";
+import type { AtlasDrawing } from "../../lib/atlas";
+import type { AtlasWords } from "./RoadAtlas";
 import BookRecommendSlip from "./BookRecommendSlip";
 import MoodPortrait from "./MoodPortrait";
 import WishList from "./WishList";
 
-const DestinationsRoute = dynamic(() => import("./DestinationsRoute"));
+const RoadAtlas = dynamic(() => import("./RoadAtlas"));
 const PlayTable = dynamic(() => import("./PlayTable"));
 
 export type SectionInfo = { id: SectionId; title: string; rubric: string };
@@ -118,6 +120,49 @@ function PrintFrame({
         </div>
       </div>
     </figure>
+  );
+}
+
+/** A paw-print postmark for Destinations, like the stop was stamped by the dog. */
+function Postmark({ place, date }: { place: string; date: string }) {
+  const [m, d, y] = date.split(".");
+  const when = date ? `${m}·${d}·${y}` : "SABBATICAL · 2026";
+  return (
+    <svg
+      viewBox="0 0 220 104"
+      className="mt-6 block w-[200px] -rotate-[7deg] text-[#A07E55]"
+      role="img"
+      aria-label={`Postmarked ${place}${date ? `, ${date}` : ""}`}
+    >
+      <defs>
+        <path id="ooo-pm-top" d="M 16 52 A 36 36 0 0 1 88 52" />
+        <path id="ooo-pm-bottom" d="M 12 52 A 40 40 0 0 0 92 52" />
+      </defs>
+      <circle cx="52" cy="52" r="46" fill="none" stroke="currentColor" strokeWidth="2" />
+      <circle cx="52" cy="52" r="26" fill="none" stroke="currentColor" strokeWidth="1" />
+      <text className="font-mono" fontSize="10" letterSpacing="2" fill="currentColor">
+        <textPath href="#ooo-pm-top" startOffset="50%" textAnchor="middle">
+          {place.toUpperCase()}
+        </textPath>
+      </text>
+      <text className="font-mono" fontSize="8.5" letterSpacing="1.5" fill="currentColor">
+        <textPath href="#ooo-pm-bottom" startOffset="50%" textAnchor="middle" dominantBaseline="hanging">
+          {when}
+        </textPath>
+      </text>
+      <g transform="translate(52 55)" fill="currentColor">
+        <ellipse cx="0" cy="4" rx="8" ry="6.5" />
+        <ellipse cx="-9" cy="-5" rx="3" ry="4" transform="rotate(-20 -9 -5)" />
+        <ellipse cx="-3.5" cy="-10" rx="3" ry="4" />
+        <ellipse cx="3.5" cy="-10" rx="3" ry="4" />
+        <ellipse cx="9" cy="-5" rx="3" ry="4" transform="rotate(20 9 -5)" />
+      </g>
+      <g fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+        {[30, 44, 58, 72].map((yy) => (
+          <path key={yy} d={`M 106 ${yy} q 9 -6 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0`} />
+        ))}
+      </g>
+    </svg>
   );
 }
 
@@ -294,10 +339,12 @@ export default function Archive({
   about,
   entries,
   sections,
+  atlas,
 }: {
   about: Entry;
   entries: Entry[];
   sections: SectionInfo[];
+  atlas: { drawing: AtlasDrawing; words: AtlasWords };
 }) {
   const [active, setActive] = useState<Entry | null>(null);
 
@@ -392,7 +439,12 @@ export default function Archive({
                   [ FIRST ENTRY FORTHCOMING ]
                 </p>
               ) : section.id === "destinations" ? (
-                <DestinationsRoute entries={section.entries} onOpen={setActive} />
+                <RoadAtlas
+                  drawing={atlas.drawing}
+                  words={atlas.words}
+                  entries={section.entries}
+                  onOpen={setActive}
+                />
               ) : section.id === "play" ? (
                 <PlayTable entries={section.entries} onOpen={setActive} />
               ) : section.id === "next" ? (
@@ -490,7 +542,9 @@ export default function Archive({
                   {active.place}
                 </p>
               )}
-              {active.date ? (
+              {active.section === "destinations" ? (
+                <Postmark place={active.place ?? active.title} date={active.date} />
+              ) : active.date ? (
                 <div className="mt-6">
                   <time className="date-stamp font-mono text-[11px] font-bold tracking-[0.22em]">
                     {active.date}
