@@ -18,7 +18,7 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
     <button
       type="button"
       onClick={onOpen}
-      aria-label="Open the iPod: podcasts I'm listening to"
+      aria-label="Open the iPod: podcasts I'm obsessed with"
       className="ooo-ipod-mini group relative block w-[112px] shrink-0 transition-transform duration-500 hover:-translate-y-1 focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55] sm:w-[124px]"
     >
       <svg viewBox="0 0 124 104" className="block w-full overflow-visible" aria-hidden>
@@ -67,7 +67,7 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
         </text>
       </svg>
       <span className="mt-1 block text-center font-mono text-[8px] tracking-[0.24em] text-[#8E8E93] group-hover:text-[#EAE5D9]">
-        PODCASTS
+        OBSESSED
       </span>
     </button>
   );
@@ -183,7 +183,7 @@ export function IpodPlayer({ podcasts, onClose }: { podcasts: Entry[]; onClose: 
 
   const current = podcasts[playing];
   const note = current && current.body && current.body !== PLACEHOLDER_BODY ? current.body : "";
-  const title = view === "podcasts" ? "Podcasts" : "Now Playing";
+  const title = view === "podcasts" ? "Obsessed" : "Now Playing";
 
   return createPortal(
     <div role="dialog" aria-modal="true" aria-label="iPod" className="fixed inset-0 z-[70] flex flex-col bg-[#0C0B0A]/92 backdrop-blur-sm">
