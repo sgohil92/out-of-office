@@ -281,7 +281,7 @@ export const ENTRIES: Entry[] = [
     section: "mood",
     index: "04.04",
     date: "",
-    title: "“I think, therefore I am” and “I am because we are”",
+    title: "Can you hold both at once?",
     dek: "Work in progress.",
     body: "How to hold both of these at once, “I think, therefore I am” and “I am because we are”, and what they mean to me.",
     tags: [],
