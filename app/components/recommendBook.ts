@@ -74,7 +74,7 @@ async function sendToInbox(subject: string, text: string): Promise<RecommendResu
       method: "POST",
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        from: "Otherwise Occupied <onboarding@resend.dev>",
+        from: "Otherwise Engaged <onboarding@resend.dev>",
         to: [CONTACT_EMAIL],
         subject,
         text,

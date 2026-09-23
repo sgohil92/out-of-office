@@ -589,7 +589,7 @@ export default function Archive({
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div className="min-w-0">
             <h1 className="max-w-[11ch] font-serif text-[clamp(2.35rem,8.5vw,4.5rem)] leading-[0.9] tracking-[-0.03em]">
-              Otherwise Occupied
+              Otherwise Engaged
             </h1>
             <p className="mt-5 max-w-md font-serif text-[18px] italic leading-snug text-[#B8B2A6] sm:text-[20px]">
               {intro}
@@ -740,7 +740,7 @@ export default function Archive({
           Truffles approves this message.
         </p>
         <p className="font-mono text-[9px] tracking-[0.3em] text-[#6B6760]">
-          OTHERWISE OCCUPIED · SABBATICAL 2026 · VOL. 1
+          OTHERWISE ENGAGED · SABBATICAL 2026 · VOL. 1
         </p>
       </footer>
 

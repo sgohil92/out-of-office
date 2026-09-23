@@ -31,12 +31,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Otherwise Occupied — Sabbatical 2026 / Vol. 1",
+  title: "Otherwise Engaged — Sabbatical 2026 / Vol. 1",
   description:
     "An archival digital studio: destinations, play, bookshelf, and next.",
   robots: { index: false, follow: false },
   openGraph: {
-    title: "Otherwise Occupied",
+    title: "Otherwise Engaged",
     description: "Sabbatical 2026 / Vol. 1 — a private reading room.",
     type: "website",
   },

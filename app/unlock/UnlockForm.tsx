@@ -12,7 +12,7 @@ export default function UnlockForm() {
       className="w-full max-w-md border-[3px] border-double border-[#34302B] bg-[#141312] p-6 sm:p-8"
     >
       <h1 className="font-serif text-3xl leading-tight tracking-tight">
-        Otherwise Occupied
+        Otherwise Engaged
       </h1>
       <p className="mt-3 font-mono text-[11px] leading-relaxed tracking-[0.14em] text-[#8E8E93] sm:tracking-[0.18em]">
         RESTRICTED READING ROOM — ENTER PASSPHRASE

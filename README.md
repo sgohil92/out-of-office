@@ -1,4 +1,4 @@
-# Otherwise Occupied
+# Otherwise Engaged
 
 A private sabbatical site. Built with Next.js.
 
