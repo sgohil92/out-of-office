@@ -6,5 +6,5 @@
 export const CURRENT_MOOD = {
   /** Small label above the line. */
   week: "Week of 9/21",
-  text: "Feeling a bit indulgent and excited for the Symphony, community dinner, and a new cocktail bar (Bar Crenn).",
+  text: "Feeling a bit indulgent and excited for the Symphony, community dinner, and a new cocktail bar (Bar Crenn). SF has to have a swankier side, right?",
 };
