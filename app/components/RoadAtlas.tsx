@@ -685,7 +685,7 @@ export default function RoadAtlas<E extends ArchiveEntry>({
               type="button"
               onClick={goHome}
               aria-label="Home base: San Francisco. Open"
-              className="absolute h-11 w-11 -translate-x-1/2 -translate-y-[70%] focus-visible:outline-1 focus-visible:outline-[#9A3A28]"
+              className="absolute z-10 h-11 w-11 -translate-x-1/2 -translate-y-[70%] cursor-pointer rounded-full transition-colors hover:bg-[#F3EAD6]/25 focus-visible:outline-1 focus-visible:outline-[#9A3A28]"
               style={pct(homeMark)}
             />
           ) : null}
@@ -710,13 +710,14 @@ export default function RoadAtlas<E extends ArchiveEntry>({
             </p>
           ) : null}
 
-          <ol className="absolute inset-0">
+          {/* Clicks pass through the empty map to what's underneath (like the SF house); only the pins catch them. */}
+          <ol className="pointer-events-none absolute inset-0">
             {stops.map((stop, k) => {
               const entry = byId.get(stop.id);
               if (!entry) return null;
               const side = sides[k] ?? "right";
               return (
-                <li key={stop.id} className="absolute" style={pct(stop)}>
+                <li key={stop.id} className="pointer-events-auto absolute" style={pct(stop)}>
                   <button
                     type="button"
                     onClick={() => visit(k)}
