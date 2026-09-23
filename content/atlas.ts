@@ -6,8 +6,8 @@ import type { Pin } from "./types";
  * entries.ts. The map zooms to fit all of them, so a stop anywhere works.
  */
 export const ATLAS = {
-  /** Shows in the title as "<dogName>'s Official Road Atlas". */
-  dogName: "Truffles",
+  /** The map's name, in the cream band across the top. */
+  title: "Following the Whim",
   /** A pencil note trailing off the newest stop, like "next: ? (ask Truffles)". "" hides it. */
   next: "",
   /** Where the trip starts. `label` is optional pencil text by the house; "" hides it. */

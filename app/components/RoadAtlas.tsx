@@ -7,7 +7,7 @@ import type { ArchiveEntry } from "./types";
 import "./sections.css";
 
 export type AtlasWords = {
-  dogName: string;
+  title: string;
   next: string;
 };
 
@@ -241,7 +241,7 @@ export default function RoadAtlas<E extends ArchiveEntry>({
         <div className="ooo-atlas-band flex items-center justify-between gap-3 px-3 py-2 sm:px-4">
           <div className="min-w-0 flex-1">
             <p className="font-sc text-[13px] leading-tight text-[#2A2520] sm:text-[17px]">
-              {words.dogName}&rsquo;s Official Road Atlas
+              {words.title}
             </p>
           </div>
         </div>

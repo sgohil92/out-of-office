@@ -49,7 +49,7 @@ The road atlas draws itself from your stops and zooms to fit them, so a stop any
 - `featured` (optional) shows a photo big and pinned, between the story and the rest, with an optional red stamp: `featured: [{ src: "/destinations/colombia/colombia-08.jpg" }]`. Add `stamp: "SOME WORDS"` if you ever want one.
 - Photos go in `public/destinations/lisbon/`. `portrait` is taller (you in the frame). `landscape` is wider (a view).
 
-The map's title, jokes, home pin and optional doodles (bone, ball, nap zone, ocean label) live in `content/atlas.ts`. Put your dog's name in `dogName` there.
+The map's title, home pin and optional doodles (bone, ball, nap zone, ocean label) live in `content/atlas.ts`. Change the map's name with `title` there.
 
 ## Invites
 
