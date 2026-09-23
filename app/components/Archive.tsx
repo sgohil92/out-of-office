@@ -8,6 +8,7 @@ import type { AtlasDrawing } from "../../lib/atlas";
 import type { AtlasWords } from "./RoadAtlas";
 import type { Invite } from "../../content/invites";
 import BookRecommendSlip from "./BookRecommendSlip";
+import { IpodOnShelf, IpodPlayer } from "./Ipod";
 import InviteTicket from "./InviteTicket";
 import Lightbox from "./Lightbox";
 import SleepingTruffles from "./SleepingTruffles";
@@ -373,63 +374,6 @@ function BookSpine({
   );
 }
 
-const TAPES = [
-  { shell: "#1E1C1A", label: "#EAE0CA", stripe: "#9A3A28", ink: "#2A2520" },
-  { shell: "#CFC4AA", label: "#F3EAD6", stripe: "#3F6479", ink: "#2A2520" },
-  { shell: "#3B4654", label: "#E9DFC6", stripe: "#C9A66B", ink: "#2A2520" },
-  { shell: "#6B5236", label: "#F0E6CF", stripe: "#2E3E34", ink: "#2A2520" },
-];
-const TAPE_TILTS = [-7, 4, -3, 6];
-
-/** A podcast, as a cassette tape leaning on the shelf. */
-function Cassette({ entry, index, onOpen }: { entry: Entry; index: number; onOpen: (entry: Entry) => void }) {
-  const tape = TAPES[index % TAPES.length];
-  return (
-    <li className={index > 0 ? "-ml-5" : ""}>
-      <button
-        type="button"
-        onClick={() => onOpen(entry)}
-        aria-label={`${entry.title} (podcast) — open`}
-        title={entry.title}
-        className="ooo-cassette relative block w-[78px] origin-bottom rotate-(--tilt) transition-[rotate,translate] duration-500 hover:-translate-y-2 hover:rotate-0 focus-visible:outline-1 focus-visible:outline-offset-3 focus-visible:outline-[#A07E55] sm:w-[84px]"
-        style={{ "--tilt": `${TAPE_TILTS[index % TAPE_TILTS.length]}deg` } as CSSProperties}
-      >
-        <svg viewBox="0 0 100 64" className="block w-full drop-shadow-[0_4px_6px_rgba(0,0,0,0.55)]" aria-hidden>
-          <rect x="0.5" y="0.5" width="99" height="63" rx="4" fill={tape.shell} stroke="#000" strokeOpacity="0.35" />
-          {[
-            [5, 5],
-            [95, 5],
-            [5, 59],
-            [95, 59],
-          ].map(([cx, cy]) => (
-            <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="1.3" fill="#000" opacity="0.35" />
-          ))}
-          <rect x="8" y="6" width="84" height="36" rx="2" fill={tape.label} />
-          <rect x="8" y="6" width="84" height="5" fill={tape.stripe} />
-          <rect x="26" y="25" width="48" height="13" rx="6.5" fill="#1A1714" opacity="0.85" />
-          {[38, 62].map((cx) => (
-            <g key={cx}>
-              <circle cx={cx} cy="31.5" r="5" fill={tape.label} />
-              <path
-                d={`M ${cx - 3} 31.5 H ${cx + 3} M ${cx} 28.5 V 34.5`}
-                stroke={tape.ink}
-                strokeWidth="1"
-                opacity="0.6"
-              />
-            </g>
-          ))}
-          <path d="M 20 64 L 26 50 L 74 50 L 80 64 Z" fill="#000" opacity="0.25" />
-          <circle cx="36" cy="57" r="1.6" fill="#000" opacity="0.4" />
-          <circle cx="64" cy="57" r="1.6" fill="#000" opacity="0.4" />
-        </svg>
-        <span className="absolute left-[11%] right-[11%] top-[19%] truncate text-center font-serif text-[9px] italic leading-none text-[#2A2520] sm:text-[10px]">
-          {entry.spine ?? entry.title}
-        </span>
-      </button>
-    </li>
-  );
-}
-
 function Bookshelf({
   entries,
   onOpen,
@@ -437,10 +381,12 @@ function Bookshelf({
   entries: Entry[];
   onOpen: (entry: Entry) => void;
 }) {
-  // Books stand on the top shelf; podcasts are cassettes on the bottom one.
+  // Books stand on the top shelf; podcasts live on the iPod on the bottom one.
   const books = entries.filter((e) => e.format !== "podcast");
   const podcasts = entries.filter((e) => e.format === "podcast");
   const spineFor = (i: number) => SPINES[i % SPINES.length];
+  const [ipodOpen, setIpodOpen] = useState(false);
+  const [slipOpen, setSlipOpen] = useState(false);
 
   return (
     <div className="bookcase w-full min-w-0 border border-[#242220] px-2 pt-2 sm:px-3">
@@ -468,13 +414,16 @@ function Bookshelf({
       </div>
       <div className="shelf-row mt-2">
         <div className="shelf-back flex items-end gap-4 overflow-x-auto overflow-y-hidden px-2 pb-1 pt-6 sm:px-3">
-          <BookRecommendSlip />
-          {podcasts.length > 0 ? (
-            <ul className="ml-auto flex shrink-0 items-end pl-2 pr-3" aria-label="Podcasts">
-              {podcasts.map((entry, i) => (
-                <Cassette key={entry.id} entry={entry} index={i} onOpen={onOpen} />
-              ))}
-            </ul>
+          <BookRecommendSlip open={slipOpen} onOpenChange={setSlipOpen} />
+          <div className="ml-auto pr-2">
+            <IpodOnShelf podcasts={podcasts} onOpen={() => setIpodOpen(true)} />
+          </div>
+          {ipodOpen ? (
+            <IpodPlayer
+              podcasts={podcasts}
+              onClose={() => setIpodOpen(false)}
+              onRecommend={() => setSlipOpen(true)}
+            />
           ) : null}
         </div>
         <div aria-hidden className="shelf-plank" />

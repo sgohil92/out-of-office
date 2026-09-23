@@ -78,11 +78,28 @@ videos: [
 
 They play in the drawer when someone clicks the record. Use `"portrait"` for phone videos filmed upright. Keep each file under about 10 MB (see Photos and videos below).
 
-## Bookshelf
+## Shelf (books + podcasts)
 
-Every `section: "bookshelf"` entry is a spine, top shelf first, then the bottom shelf. The spine shows `title`, or `spine` if you set it; use `spine` for a shorter version when the title is long.
+Every `section: "bookshelf"` entry is a book spine on the top shelf. The spine shows `title`, or `spine` if you set it (use it for a shorter version).
 
-### "Recommend a book" slip
+Add `format: "podcast"` and it goes on the iPod instead (bottom shelf). Tapping the iPod opens it: Podcasts lists them, and picking one shows "Now Playing" with your `body` as a note and a LISTEN → button for `link`:
+
+```ts
+{
+  id: "some-podcast",
+  section: "bookshelf",
+  format: "podcast",
+  index: "03.07",
+  date: "",
+  title: "Episode or show name",
+  dek: "Host name",
+  body: "Why I loved it.",
+  link: "https://…",
+  tags: [],
+},
+```
+
+### "Recommend a book or podcast" slip
 
 Recommendations are emailed to the address in `content/contact.ts` through Resend (resend.com), a free email-sending service. To switch it on:
 

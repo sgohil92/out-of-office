@@ -56,8 +56,17 @@ function Field({
   );
 }
 
-export default function BookRecommendSlip() {
-  const [open, setOpen] = useState(false);
+export default function BookRecommendSlip({
+  open: openProp,
+  onOpenChange,
+}: {
+  /** Optional: control it from outside (the iPod's "Recommend one" opens it too). */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+} = {}) {
+  const [innerOpen, setInnerOpen] = useState(false);
+  const open = openProp ?? innerOpen;
+  const setOpen = onOpenChange ?? setInnerOpen;
 
   useEffect(() => {
     if (!open) return;
@@ -71,7 +80,7 @@ export default function BookRecommendSlip() {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
     };
-  }, [open]);
+  }, [open, setOpen]);
 
   return (
     <>
