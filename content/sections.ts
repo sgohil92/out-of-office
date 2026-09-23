@@ -15,7 +15,7 @@ export const SECTIONS: {
   {
     id: "play",
     title: "PLAY",
-    rubric: "Let my brain wander somewhere new—or forgotten.",
+    rubric: "",
   },
   {
     id: "bookshelf",
@@ -27,6 +27,6 @@ export const SECTIONS: {
     id: "next",
     title: "WHAT'S NEXT",
     rubric:
-      "A living wish-list: places, skills, invitations, and experiments still untried.",
+      "Places, skills, invitations, and experiments still untried.",
   },
 ];

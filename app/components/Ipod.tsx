@@ -67,7 +67,7 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
         </text>
       </svg>
       <span className="mt-1 block text-center font-mono text-[8px] tracking-[0.24em] text-[#8E8E93] group-hover:text-[#EAE5D9]">
-        OBSESSED
+        PODCASTS
       </span>
     </button>
   );

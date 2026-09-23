@@ -2,7 +2,7 @@ import { ATLAS } from "../content/atlas";
 import { ABOUT } from "../content/about";
 import { ENTRIES } from "../content/entries";
 import { INVITES, RSVP_EMAIL } from "../content/invites";
-import { CURRENT_MOOD } from "../content/mood";
+import { MOODS } from "../content/mood";
 import { SECTIONS } from "../content/sections";
 import { PAINTINGS, STUDIO_NOTES } from "../content/studio";
 import { drawAtlas } from "../lib/atlas";
@@ -27,7 +27,7 @@ export default function Home() {
       sections={SECTIONS}
       atlas={{ drawing, words }}
       studio={{ paintings: PAINTINGS, notes: STUDIO_NOTES }}
-      mood={CURRENT_MOOD}
+      moods={MOODS}
       invites={{
         list: showDrafts ? INVITES : INVITES.filter((invite) => !invite.draft),
         email: RSVP_EMAIL,

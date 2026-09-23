@@ -14,6 +14,7 @@ import Lightbox from "./Lightbox";
 import SleepingTruffles from "./SleepingTruffles";
 import { formatDate } from "./types";
 import type { Painting, StudioNote } from "../../content/studio";
+import type { Mood } from "../../content/mood";
 import Ponderings from "./Ponderings";
 import WishList from "./WishList";
 
@@ -417,7 +418,7 @@ export default function Archive({
   atlas,
   invites,
   studio,
-  mood,
+  moods,
 }: {
   about: Entry;
   entries: Entry[];
@@ -425,7 +426,8 @@ export default function Archive({
   atlas: { drawing: AtlasDrawing; words: AtlasWords };
   invites: { list: Invite[]; email: string };
   studio: { paintings: Painting[]; notes: StudioNote[] };
-  mood: { week: string; text: string };
+  /** Weekly moods, newest first; the first shows under the title, all are in the archive. */
+  moods: Mood[];
 }) {
   // The first line of the About note doubles as the welcome under the title.
   const intro = about.body.split("\n\n")[0];
@@ -474,6 +476,20 @@ export default function Archive({
         : []
     : [];
 
+
+  const mood = moods[0];
+  // The mood archive opens in the drawer like a post, listing every week.
+  const moodArchive: Entry = {
+    id: "mood-archive",
+    section: "about",
+    index: "",
+    date: "",
+    title: "Moods, week by week",
+    dek: "",
+    body: "",
+    tags: [],
+    stamp: "[ CURRENT MOOD · ARCHIVE ]",
+  };
 
   // Ponderings (section "mood") open from the typed page on the Play table.
   const ponderings = entries.filter((e) => e.section === "mood");
@@ -590,7 +606,7 @@ export default function Archive({
                 →
               </span>
             </button>
-            {mood.text ? (
+            {mood?.text ? (
               // This week's mood: a quiet note, like something said just to you.
               <div className="mt-8 max-w-md border-l border-[#A07E55]/50 pl-4">
                 {mood.week ? (
@@ -601,6 +617,13 @@ export default function Archive({
                 <p className="mt-2 font-serif text-[16px] italic leading-relaxed text-[#C9C2B4] sm:text-[17px]">
                   {mood.text}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => setActive(moodArchive)}
+                  className="mt-3 font-mono text-[9px] tracking-[0.24em] text-[#8E8E93] underline-offset-4 hover:text-[#A07E55] hover:underline"
+                >
+                  ARCHIVE →
+                </button>
               </div>
             ) : null}
           </div>
@@ -799,6 +822,19 @@ export default function Archive({
               {photos}
               {active.section === "play" && active.hobby === "painting" ? (
                 <StudioWall paintings={studio.paintings} notes={studio.notes} />
+              ) : null}
+              {active.id === moodArchive.id ? (
+                <ol className="mt-8">
+                  {moods.map((m, i) => (
+                    <li key={`${m.week}-${i}`} className="border-b border-[#211F1C] py-5">
+                      <p className="font-mono text-[9px] tracking-[0.28em] text-[#A07E55]">
+                        {m.week.toUpperCase()}
+                        {i === 0 ? <span className="ml-2 text-[#6B6760]">· THIS WEEK</span> : null}
+                      </p>
+                      <p className="mt-2 font-serif text-[17px] italic leading-relaxed text-[#C9C2B4]">{m.text}</p>
+                    </li>
+                  ))}
+                </ol>
               ) : null}
               {active.section === "play" && active.hobby === "writing" ? (
                 <Ponderings entries={ponderings} onOpen={setActive} />

@@ -11,7 +11,7 @@ Save the file, and the local site refreshes. Photos go in `public/`, then you po
 | About drawer, and the welcome line under the title (its first paragraph) | `content/about.ts` |
 | Section titles and the sentence under them | `content/sections.ts` |
 | A trip, a pondering, a wish, a book | `content/entries.ts` |
-| This week's Current Mood line | `content/mood.ts` |
+| This week's Current Mood (and past weeks) | `content/mood.ts` |
 | The road atlas title, jokes, and dog's name | `content/atlas.ts` |
 | An invite on the main page | `content/invites.ts` |
 | A painting or a studio note | `content/studio.ts` |
@@ -112,9 +112,9 @@ Until then, the slip says it couldn't file automatically and offers "Email it" a
 
 ## Current mood
 
-The big line at the top of the section lives in `content/mood.ts`: set `week` (like "Week of 9/28") and `text`. Update it whenever, usually weekly.
+The quiet note under the site title lives in `content/mood.ts`. Add each new week at the **top** of `MOODS` (`week` like "Week of 9/28", and `text`). The newest one shows on the page; all of them, this week included, open from the "ARCHIVE →" link under it.
 
-Ponderings, the longer entries listed underneath, are the `section: "mood"` entries in `entries.ts`, newest last.
+Ponderings, the longer essays, are the `section: "mood"` entries in `entries.ts` (newest last). They open from the typed page on the Play table.
 
 ## What's next
 
