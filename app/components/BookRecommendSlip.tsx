@@ -18,9 +18,9 @@ const EMPTY: Slip = { title: "", author: "", why: "", name: "", website: "" };
 function slipText(slip: Slip) {
   return [
     `Title: ${slip.title}`,
-    `Author: ${slip.author || "—"}`,
+    `Author / host: ${slip.author || "—"}`,
     "",
-    "Why you should read it:",
+    "Why:",
     slip.why || "—",
     "",
     `— ${slip.name || "A visitor to the reading room"}`,
@@ -28,7 +28,7 @@ function slipText(slip: Slip) {
 }
 
 function mailtoFor(slip: Slip) {
-  const subject = `Book recommendation: ${slip.title}`;
+  const subject = `Recommendation: ${slip.title}`;
   return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
     subject,
   )}&body=${encodeURIComponent(slipText(slip))}`;
@@ -44,7 +44,7 @@ function Field({
   children: ReactNode;
 }) {
   return (
-    <div className="grid gap-1 sm:grid-cols-[92px_minmax(0,1fr)] sm:items-end sm:gap-3">
+    <div className="grid gap-1 sm:grid-cols-[112px_minmax(0,1fr)] sm:items-end sm:gap-3">
       <label
         htmlFor={id}
         className="font-mono text-[9px] tracking-[0.22em] text-[#5A5247]"
@@ -84,8 +84,8 @@ export default function BookRecommendSlip() {
         <span className="block border-b border-[#5A5247]/50 pb-1 font-mono text-[6px] leading-tight tracking-[0.18em] text-[#5A5247]">
           REQUEST CARD
         </span>
-        <span className="font-sc block text-[11px] leading-[1.1]">
-          Recommend a book
+        <span className="font-sc block text-[10px] leading-[1.1]">
+          Recommend a book or podcast
         </span>
         <span className="block font-mono text-[6px] tracking-[0.16em] text-[#A07E55]">
           OO / 03
@@ -98,7 +98,7 @@ export default function BookRecommendSlip() {
             className="fixed inset-0 z-[60] flex justify-end"
             role="dialog"
             aria-modal="true"
-            aria-label="Recommend a book"
+            aria-label="Recommend a book or podcast"
           >
             <button
               type="button"
@@ -109,7 +109,7 @@ export default function BookRecommendSlip() {
             <aside className="drawer-panel relative z-10 flex h-full w-full max-w-md min-w-0 flex-col overflow-y-auto overflow-x-hidden border-l border-[#242220] bg-[#141312] p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:p-8">
               <div className="flex items-start justify-between gap-4 border-b-[3px] border-double border-[#34302B] pb-4">
                 <p className="font-mono text-[10px] tracking-[0.28em] text-[#A07E55]">
-                  03 / BOOKSHELF
+                  03 / SHELF
                 </p>
                 <button
                   type="button"
@@ -183,7 +183,7 @@ function SlipForm() {
           OO / 03 / —
         </p>
       </div>
-      <p className="font-sc mt-3 text-xl leading-tight">Recommend a book</p>
+      <p className="font-sc mt-3 text-xl leading-tight">Recommend a book or podcast</p>
 
       {status === "sent" ? (
         <div className="relative py-6" role="status">
@@ -220,7 +220,7 @@ function SlipForm() {
         </div>
       ) : (
         <form onSubmit={submit} className="mt-4 space-y-3">
-          <Field id="rec-title" label="TITLE *">
+          <Field id="rec-title" label="TITLE / SHOW *">
             <input
               id="rec-title"
               required
@@ -229,7 +229,7 @@ function SlipForm() {
               className={inputClass}
             />
           </Field>
-          <Field id="rec-author" label="AUTHOR">
+          <Field id="rec-author" label="AUTHOR / HOST">
             <input
               id="rec-author"
               value={slip.author}
@@ -237,7 +237,7 @@ function SlipForm() {
               className={inputClass}
             />
           </Field>
-          <Field id="rec-why" label="WHY I SHOULD READ IT">
+          <Field id="rec-why" label="WHY I SHOULD READ OR LISTEN">
             <textarea
               id="rec-why"
               rows={3}

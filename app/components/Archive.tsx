@@ -373,6 +373,63 @@ function BookSpine({
   );
 }
 
+const TAPES = [
+  { shell: "#1E1C1A", label: "#EAE0CA", stripe: "#9A3A28", ink: "#2A2520" },
+  { shell: "#CFC4AA", label: "#F3EAD6", stripe: "#3F6479", ink: "#2A2520" },
+  { shell: "#3B4654", label: "#E9DFC6", stripe: "#C9A66B", ink: "#2A2520" },
+  { shell: "#6B5236", label: "#F0E6CF", stripe: "#2E3E34", ink: "#2A2520" },
+];
+const TAPE_TILTS = [-7, 4, -3, 6];
+
+/** A podcast, as a cassette tape leaning on the shelf. */
+function Cassette({ entry, index, onOpen }: { entry: Entry; index: number; onOpen: (entry: Entry) => void }) {
+  const tape = TAPES[index % TAPES.length];
+  return (
+    <li className={index > 0 ? "-ml-5" : ""}>
+      <button
+        type="button"
+        onClick={() => onOpen(entry)}
+        aria-label={`${entry.title} (podcast) — open`}
+        title={entry.title}
+        className="ooo-cassette relative block w-[78px] origin-bottom rotate-(--tilt) transition-[rotate,translate] duration-500 hover:-translate-y-2 hover:rotate-0 focus-visible:outline-1 focus-visible:outline-offset-3 focus-visible:outline-[#A07E55] sm:w-[84px]"
+        style={{ "--tilt": `${TAPE_TILTS[index % TAPE_TILTS.length]}deg` } as CSSProperties}
+      >
+        <svg viewBox="0 0 100 64" className="block w-full drop-shadow-[0_4px_6px_rgba(0,0,0,0.55)]" aria-hidden>
+          <rect x="0.5" y="0.5" width="99" height="63" rx="4" fill={tape.shell} stroke="#000" strokeOpacity="0.35" />
+          {[
+            [5, 5],
+            [95, 5],
+            [5, 59],
+            [95, 59],
+          ].map(([cx, cy]) => (
+            <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="1.3" fill="#000" opacity="0.35" />
+          ))}
+          <rect x="8" y="6" width="84" height="36" rx="2" fill={tape.label} />
+          <rect x="8" y="6" width="84" height="5" fill={tape.stripe} />
+          <rect x="26" y="25" width="48" height="13" rx="6.5" fill="#1A1714" opacity="0.85" />
+          {[38, 62].map((cx) => (
+            <g key={cx}>
+              <circle cx={cx} cy="31.5" r="5" fill={tape.label} />
+              <path
+                d={`M ${cx - 3} 31.5 H ${cx + 3} M ${cx} 28.5 V 34.5`}
+                stroke={tape.ink}
+                strokeWidth="1"
+                opacity="0.6"
+              />
+            </g>
+          ))}
+          <path d="M 20 64 L 26 50 L 74 50 L 80 64 Z" fill="#000" opacity="0.25" />
+          <circle cx="36" cy="57" r="1.6" fill="#000" opacity="0.4" />
+          <circle cx="64" cy="57" r="1.6" fill="#000" opacity="0.4" />
+        </svg>
+        <span className="absolute left-[11%] right-[11%] top-[19%] truncate text-center font-serif text-[9px] italic leading-none text-[#2A2520] sm:text-[10px]">
+          {entry.spine ?? entry.title}
+        </span>
+      </button>
+    </li>
+  );
+}
+
 function Bookshelf({
   entries,
   onOpen,
@@ -380,9 +437,9 @@ function Bookshelf({
   entries: Entry[];
   onOpen: (entry: Entry) => void;
 }) {
-  const half = Math.ceil(entries.length / 2);
-  const top = entries.slice(0, half);
-  const bottom = entries.slice(half);
+  // Books stand on the top shelf; podcasts are cassettes on the bottom one.
+  const books = entries.filter((e) => e.format !== "podcast");
+  const podcasts = entries.filter((e) => e.format === "podcast");
   const spineFor = (i: number) => SPINES[i % SPINES.length];
 
   return (
@@ -390,12 +447,13 @@ function Bookshelf({
       <div className="shelf-row">
         <div className="shelf-back flex items-end gap-3 overflow-x-auto overflow-y-hidden px-2 pt-6 sm:px-3">
           <span aria-hidden className="bookend shrink-0" />
-          <ul className="flex shrink-0 items-end gap-[2px]">
-            {top.map((entry, i) => (
+          <ul className="flex shrink-0 items-end gap-[2px]" aria-label="Books">
+            {books.map((entry, i) => (
               <BookSpine
                 key={entry.id}
                 entry={entry}
                 spine={spineFor(i)}
+                lean={i === books.length - 1 && books.length > 2}
                 onOpen={onOpen}
               />
             ))}
@@ -409,20 +467,15 @@ function Bookshelf({
         <div aria-hidden className="shelf-plank" />
       </div>
       <div className="shelf-row mt-2">
-        <div className="shelf-back flex items-end overflow-x-auto overflow-y-hidden px-2 pt-6 sm:px-3">
+        <div className="shelf-back flex items-end gap-4 overflow-x-auto overflow-y-hidden px-2 pb-1 pt-6 sm:px-3">
           <BookRecommendSlip />
-          <ul className="ml-auto flex shrink-0 items-end gap-[2px]">
-            {bottom.map((entry, i) => (
-              <BookSpine
-                key={entry.id}
-                entry={entry}
-                spine={spineFor(half + i)}
-                lean={i === 0}
-                onOpen={onOpen}
-              />
-            ))}
-          </ul>
-          <span aria-hidden className="bookend ml-[2px] shrink-0" />
+          {podcasts.length > 0 ? (
+            <ul className="ml-auto flex shrink-0 items-end pl-2 pr-3" aria-label="Podcasts">
+              {podcasts.map((entry, i) => (
+                <Cassette key={entry.id} entry={entry} index={i} onOpen={onOpen} />
+              ))}
+            </ul>
+          ) : null}
         </div>
         <div aria-hidden className="shelf-plank" />
       </div>
@@ -501,13 +554,13 @@ export default function Archive({
 
   // Destinations lead with the story; a big set of photos becomes a scrapbook grid.
   const storyFirst = active?.section === "destinations";
-  const story = active?.body ? (
+  const story = active?.body || active?.link ? (
     <div
       className={`mt-8 space-y-5 font-serif text-[17px] ${
         active.stamp ? "leading-relaxed text-[#EAE5D9]" : "leading-[1.7]"
       }`}
     >
-      {active.body.split("\n\n").map((para, idx) =>
+      {active.body.split("\n\n").filter(Boolean).map((para, idx) =>
         para.startsWith("* ") ? (
           <ul key={para.slice(0, 24)} className="space-y-4 pl-1">
             {para.split(/\n(?=\* )/).map((item) => (
@@ -523,6 +576,18 @@ export default function Archive({
           </p>
         ),
       )}
+      {active.link ? (
+        <p>
+          <a
+            href={active.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block border border-[#A07E55] px-4 py-2 font-mono text-[10px] not-italic tracking-[0.28em] text-[#A07E55] transition hover:bg-[#A07E55] hover:text-[#0C0B0A]"
+          >
+            {active.format === "podcast" ? "LISTEN →" : "MORE →"}
+          </a>
+        </p>
+      ) : null}
     </div>
   ) : null;
   const featuredSrcs = new Set(active?.featured?.map((f) => f.src) ?? []);
@@ -617,9 +682,11 @@ export default function Archive({
                   {titleCase(section.title)}
                 </h2>
               </div>
-              <p className="mb-8 max-w-sm text-left font-serif text-[15px] leading-relaxed text-[#8E8E93]">
-                {section.rubric}
-              </p>
+              {section.rubric ? (
+                <p className="mb-8 max-w-sm text-left font-serif text-[15px] leading-relaxed text-[#8E8E93]">
+                  {section.rubric}
+                </p>
+              ) : null}
               {section.entries.length === 0 ? (
                 <p className="font-mono text-[10px] tracking-[0.24em] text-[#6B6760]">
                   [ FIRST ENTRY FORTHCOMING ]
@@ -721,7 +788,7 @@ export default function Archive({
               <div className="flex items-start justify-between gap-4 border-b-[3px] border-double border-[#34302B] pb-4">
                 <p className="font-mono text-[10px] tracking-[0.28em] text-[#A07E55]">
                   {active.stamp ??
-                    `${active.index} / ${active.section.toUpperCase()}`}
+                    `${active.index} / ${sections.find((x) => x.id === active.section)?.title ?? active.section.toUpperCase()}`}
                 </p>
                 <button
                   type="button"

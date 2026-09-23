@@ -19,14 +19,14 @@ export const SECTIONS: {
   },
   {
     id: "bookshelf",
-    title: "BOOKSHELF",
+    title: "SHELF",
     rubric:
-      "Seeing where each conversation with friends and strangers takes me. Tell me what to read next.",
+      "Seeing where each conversation with friends and strangers takes me. Tell me what to read or listen to next.",
   },
   {
     id: "mood",
     title: "CURRENT MOOD",
-    rubric: "How I'm feeling, and how that's changing.",
+    rubric: "",
   },
   {
     id: "next",

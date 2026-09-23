@@ -14,7 +14,7 @@ export type RecommendResult =
 const LIMITS = { title: 200, author: 200, why: 2000, name: 100 };
 
 /**
- * Emails a book recommendation to CONTACT_EMAIL through Resend (resend.com).
+ * Emails a book or podcast recommendation to CONTACT_EMAIL through Resend (resend.com).
  * Needs RESEND_API_KEY in .env.local on your computer and in the host's settings.
  * suggestSomething (below) does the same for "What's Next" ideas.
  */
@@ -35,14 +35,14 @@ export async function recommendBook(slip: Slip): Promise<RecommendResult> {
 
   const text = [
     `Title: ${title}`,
-    `Author: ${author || "—"}`,
+    `Author / host: ${author || "—"}`,
     "",
-    "Why you should read it:",
+    "Why:",
     why || "—",
     "",
     `— ${name || "A visitor to the reading room"}`,
   ].join("\n");
-  return sendToInbox(`Book recommendation: ${title}`, text);
+  return sendToInbox(`Recommendation: ${title}`, text);
 }
 
 export type Suggestion = { idea: string; why: string; name: string; website?: string };
