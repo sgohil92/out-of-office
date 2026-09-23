@@ -233,7 +233,7 @@ function TypedPage({ index, contents }: { index: string; contents?: string[] }) 
         />
       </svg>
       <span className="block text-right tracking-[0.14em]">{index}</span>
-      <span className="mt-1 block text-[8px] font-bold tracking-[0.22em]">PONDERINGS</span>
+      <span className="mt-1 block text-[7.5px] font-bold leading-[1.35] tracking-[0.12em]">THE CONTEMPLATIVE LIFE</span>
       <span aria-hidden className="mt-[3px] block h-px w-full bg-[#2A2520]/40" />
       {titles.length ? (
         <span className="mt-[5px] block space-y-[3px]">
