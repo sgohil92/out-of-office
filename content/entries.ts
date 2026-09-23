@@ -97,7 +97,7 @@ export const ENTRIES: Entry[] = [
     date: "09.04.2026",
     place: "Mendocino",
     title: "Mendocino",
-    dek: "Nature and movement.",
+    dek: "Oddly felt like home.",
     body: "Waking up without an agenda. Staying at a vegan eco-friendly inn. Getting to know the locals at both Fort Bragg and Mendocino Village. Solo hikes (when Truffles was too tired) in the redwood forest. Secluded beaches for sunset. Oh and hanging out with horses, donkeys, llamas... I mean I never wanted to come back. Oddly felt like home",
     pin: [39.3077, -123.7995],
     arrive: "drive",

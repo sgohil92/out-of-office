@@ -2,13 +2,14 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import type { Entry, PhotoAspect, SectionId, Video } from "../../content/types";
 import type { AtlasDrawing } from "../../lib/atlas";
 import type { AtlasWords } from "./RoadAtlas";
 import type { Invite } from "../../content/invites";
 import BookRecommendSlip from "./BookRecommendSlip";
 import InviteTicket from "./InviteTicket";
+import Lightbox from "./Lightbox";
 import SleepingTruffles from "./SleepingTruffles";
 import type { Painting, StudioNote } from "../../content/studio";
 import MoodPortrait from "./MoodPortrait";
@@ -201,6 +202,39 @@ function ReelFrame({ video }: { video: Video }) {
         </figcaption>
       )}
     </figure>
+  );
+}
+
+const GRID_TILTS = [-1.4, 1.1, -0.7, 1.6, -1.1, 0.8];
+
+/** Three or more photos: a two-column scrapbook, each opens full-screen. */
+function ScrapbookGrid({ prints }: { prints: { src: string; alt: string }[] }) {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <>
+      <ul className="mt-8 columns-2 gap-4 px-1 pt-2 sm:gap-6">
+        {prints.map((print, i) => (
+          <li key={print.src} className="mb-5 break-inside-avoid sm:mb-6">
+            <button
+              type="button"
+              onClick={() => setOpen(i)}
+              aria-label={`${print.alt}. Open larger`}
+              className="relative block w-full rotate-(--tilt) transition-[rotate,translate] duration-500 hover:-translate-y-1 hover:rotate-0 focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55]"
+              style={{ "--tilt": `${GRID_TILTS[i % GRID_TILTS.length]}deg` } as CSSProperties}
+            >
+              <span aria-hidden className="tape absolute -top-2 left-1/2 z-10 h-4 w-12 -translate-x-1/2 rotate-[-4deg]" />
+              <span className="block bg-[#E4DCC8] p-[5px] shadow-[0_10px_24px_rgba(0,0,0,0.5)]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={print.src} alt={print.alt} loading="lazy" className="block h-auto w-full" />
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      {open !== null ? (
+        <Lightbox items={prints} index={open} onMove={setOpen} onClose={() => setOpen(null)} />
+      ) : null}
+    </>
   );
 }
 
@@ -401,6 +435,38 @@ export default function Archive({
     : [];
 
 
+  // Destinations lead with the story; a big set of photos becomes a scrapbook grid.
+  const storyFirst = active?.section === "destinations";
+  const story = active?.body ? (
+    <div
+      className={`mt-8 space-y-5 font-serif text-[17px] ${
+        active.stamp ? "leading-relaxed text-[#EAE5D9]" : "leading-[1.7]"
+      }`}
+    >
+      {active.body.split("\n\n").map((para, idx) => (
+        <p key={para.slice(0, 24)} className={idx === 0 && /^[A-Za-z]/.test(para) ? "drop-cap" : ""}>
+          {para}
+        </p>
+      ))}
+    </div>
+  ) : null;
+  const photos =
+    prints.length === 0 ? null : prints.length >= 3 ? (
+      <ScrapbookGrid prints={prints} />
+    ) : (
+      <div className={`mt-8 ${prints.length > 1 ? "flex flex-col gap-7" : ""}`}>
+        {prints.map((print) => (
+          <PrintFrame
+            key={print.src}
+            src={print.src}
+            alt={print.alt}
+            aspect={print.aspect}
+            focus={print.focus}
+          />
+        ))}
+      </div>
+    );
+
   return (
     <div className="relative min-h-full bg-[#0C0B0A] text-[#EAE5D9]">
       <GrainOverlay />
@@ -600,46 +666,12 @@ export default function Archive({
                   ))}
                 </div>
               ) : null}
-              {prints.length > 0 && (
-                <div
-                  className={`mt-8 ${
-                    prints.length > 1 ? "flex flex-col gap-7" : ""
-                  }`}
-                >
-                  {prints.map((print) => (
-                    <PrintFrame
-                      key={print.src}
-                      src={print.src}
-                      alt={print.alt}
-                      aspect={print.aspect}
-                      focus={print.focus}
-                    />
-                  ))}
-                </div>
-              )}
+              {storyFirst ? story : null}
+              {photos}
               {active.section === "play" && active.hobby === "painting" ? (
                 <StudioWall paintings={studio.paintings} notes={studio.notes} />
               ) : null}
-              {active.body ? (
-              <div
-                className={`mt-8 space-y-5 font-serif text-[17px] ${
-                  active.stamp
-                    ? "leading-relaxed text-[#EAE5D9]"
-                    : "leading-[1.7]"
-                }`}
-              >
-                {active.body.split("\n\n").map((para, idx) => (
-                  <p
-                    key={para.slice(0, 24)}
-                    className={
-                      idx === 0 && /^[A-Za-z]/.test(para) ? "drop-cap" : ""
-                    }
-                  >
-                    {para}
-                  </p>
-                ))}
-              </div>
-              ) : null}
+              {storyFirst ? null : story}
               <div className="mt-10 flex flex-col items-center gap-2">
                 <span aria-hidden className="h-px w-10 bg-[#A07E55]/50" />
                 {!active.stamp && (
