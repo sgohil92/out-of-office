@@ -283,10 +283,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "“I think, therefore I am” and “I am because we are”",
     dek: "Work in progress.",
-    body: [
-      "[ Work in progress. ]",
-      "How to hold both of these at once, “I think, therefore I am” and “I am because we are”, and what they mean to me.",
-    ].join("\n\n"),
+    body: "How to hold both of these at once, “I think, therefore I am” and “I am because we are”, and what they mean to me.",
     tags: [],
   },
   {
