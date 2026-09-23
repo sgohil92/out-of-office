@@ -578,7 +578,14 @@ export default function Archive({
                   </time>
                 </div>
               ) : null}
-              <h3 className="mt-6 font-serif text-[clamp(2rem,8vw,3rem)] leading-[1.05] tracking-tight sm:text-5xl">
+              {/* When the title just repeats the place (e.g. "Hawaii"), the small place line is enough. */}
+              <h3
+                className={
+                  active.place?.trim().toLowerCase() === active.title.trim().toLowerCase()
+                    ? "sr-only"
+                    : "mt-6 font-serif text-[clamp(2rem,8vw,3rem)] leading-[1.05] tracking-tight sm:text-5xl"
+                }
+              >
                 {active.title}
               </h3>
               {active.dek ? (
