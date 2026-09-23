@@ -26,7 +26,7 @@ function Ticket({ invite, email }: { invite: Invite; email: string }) {
   return (
     <article className="ooo-ticket relative grid sm:grid-cols-[minmax(0,1fr)_auto]">
       <div className="relative px-5 pb-4 pt-5 sm:px-7 sm:pb-5 sm:pt-6">
-        <p aria-hidden className="ooo-rubber-stamp absolute right-4 top-3 font-mono text-[10px] font-bold tracking-[0.2em] sm:right-6 sm:top-4 sm:text-[11px]">
+        <p aria-hidden className="ooo-rubber-stamp absolute right-4 top-4 font-mono text-[7px] font-bold tracking-[0.18em] sm:right-6 sm:top-5 sm:text-[8px]">
           YOU&rsquo;RE INVITED
         </p>
         <p className="font-mono text-[9px] tracking-[0.3em] text-[#8C7D63]">COME ALONG</p>

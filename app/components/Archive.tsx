@@ -10,7 +10,6 @@ import type { Invite } from "../../content/invites";
 import BookRecommendSlip from "./BookRecommendSlip";
 import InviteTicket from "./InviteTicket";
 import SleepingTruffles from "./SleepingTruffles";
-import { postmark } from "./types";
 import MoodPortrait from "./MoodPortrait";
 import WishList from "./WishList";
 
@@ -345,17 +344,13 @@ export default function Archive({
   sections,
   atlas,
   invites,
-  updated,
 }: {
   about: Entry;
   entries: Entry[];
   sections: SectionInfo[];
   atlas: { drawing: AtlasDrawing; words: AtlasWords };
   invites: { list: Invite[]; email: string };
-  /** When the site was last published, MM.DD.YYYY. */
-  updated: string;
 }) {
-  const stamp = postmark(updated);
   // The first line of the About note doubles as the welcome under the title.
   const intro = about.body.split("\n\n")[0];
   const [active, setActive] = useState<Entry | null>(null);
@@ -430,16 +425,6 @@ export default function Archive({
               </span>
             </button>
           </div>
-          <p
-            className="ooo-updated-stamp shrink-0 self-start font-mono md:mb-2 md:self-end"
-            aria-label={`Last updated ${stamp.month} ${stamp.day}, ${stamp.year}`}
-          >
-            <span className="block text-[8px] tracking-[0.3em]">LAST UPDATED</span>
-            <span className="mt-1 block text-[15px] font-bold tracking-[0.18em]">
-              {stamp.month} · {stamp.day}
-            </span>
-            <span className="block text-[8px] tracking-[0.3em]">{stamp.year}</span>
-          </p>
         </div>
       </header>
 
