@@ -77,95 +77,101 @@ function Record45({ index }: { index: string }) {
   );
 }
 
+/** A loose watercolor-and-ink sketch of the Ferry Building. */
 function InkWash({ index }: { index: string }) {
   return (
     <span className="ooo-paper relative block overflow-hidden">
       <svg viewBox="0 0 160 116" className="block w-full" aria-hidden>
         <defs>
           <filter id="ooo-wash" x="-25%" y="-25%" width="150%" height="150%">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.04"
-              numOctaves="2"
-              seed="4"
-              result="n"
-            />
-            <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="4" result="n" />
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" />
           </filter>
         </defs>
-        <ellipse cx="40" cy="26" rx="54" ry="24" fill="#8FA4B2" fillOpacity="0.38" />
-        <ellipse cx="122" cy="20" rx="48" ry="20" fill="#3B4654" fillOpacity="0.2" />
-        <ellipse cx="80" cy="42" rx="72" ry="18" fill="#C9B79A" fillOpacity="0.4" />
-        <ellipse cx="80" cy="48" rx="58" ry="12" fill="#EAE5D9" fillOpacity="0.35" />
-        <ellipse cx="30" cy="88" rx="50" ry="22" fill="#5E6B55" fillOpacity="0.32" />
-        <ellipse cx="128" cy="90" rx="44" ry="20" fill="#3B4654" fillOpacity="0.26" />
-        <ellipse cx="80" cy="96" rx="80" ry="16" fill="#6B7A86" fillOpacity="0.3" />
 
-        <g filter="url(#ooo-wash)" fill="#A07E55" fillOpacity="0.28">
-          <rect x="24" y="28" width="12" height="36" />
-          <rect x="122" y="30" width="12" height="36" />
-          <rect x="21" y="24" width="18" height="8" />
-          <rect x="119" y="26" width="18" height="8" />
-        </g>
-        <g fill="none" stroke="#6B5236" strokeLinecap="round">
-          <path d="M 30 64 V 36 H 24 V 26 H 36 V 36 H 32 V 64" strokeWidth="1.6" strokeOpacity="0.75" />
-          <path d="M 24 30 H 36 M 26 34 H 34" strokeWidth="0.7" strokeOpacity="0.55" />
-          <path d="M 128 66 V 38 H 122 V 28 H 134 V 38 H 130 V 66" strokeWidth="1.6" strokeOpacity="0.75" />
-          <path d="M 122 32 H 134 M 124 36 H 132" strokeWidth="0.7" strokeOpacity="0.55" />
-          <path d="M 32 28 Q 80 6 128 30" strokeWidth="1.4" strokeOpacity="0.55" />
-          <path d="M 32 64 Q 80 80 128 66" strokeWidth="1.2" strokeOpacity="0.4" />
-          <path d="M 36 42 L 124 44" strokeWidth="0.5" strokeOpacity="0.28" />
-        </g>
-
+        {/* washes: sky, a warm glow, the bay */}
         <g filter="url(#ooo-wash)">
-          <ellipse cx="78" cy="86" rx="24" ry="15" fill="#3A332B" fillOpacity="0.82" />
-          <ellipse cx="98" cy="73" rx="14" ry="12" fill="#3A332B" fillOpacity="0.88" />
-          <ellipse cx="108" cy="76" rx="8.5" ry="5.8" fill="#2A2520" fillOpacity="0.8" />
-          <path
-            d="M 58 90 Q 48 98 44 86"
-            fill="none"
-            stroke="#2A2520"
-            strokeWidth="4"
-            strokeLinecap="round"
-            strokeOpacity="0.75"
-          />
-          <path
-            d="M 88 98 Q 94 110 78 112"
-            fill="none"
-            stroke="#2A2520"
-            strokeWidth="3.6"
-            strokeLinecap="round"
-            strokeOpacity="0.7"
-          />
+          <ellipse cx="44" cy="20" rx="60" ry="22" fill="#8FA4B2" fillOpacity="0.38" />
+          <ellipse cx="128" cy="26" rx="48" ry="20" fill="#E3B98A" fillOpacity="0.28" />
+          <ellipse cx="80" cy="52" rx="80" ry="12" fill="#EAE5D9" fillOpacity="0.35" />
+          <rect x="-4" y="86" width="168" height="34" fill="#3B6478" fillOpacity="0.34" />
+          <ellipse cx="60" cy="100" rx="60" ry="8" fill="#8FA4B2" fillOpacity="0.3" />
+          <ellipse cx="120" cy="108" rx="44" ry="6" fill="#2E4D5E" fillOpacity="0.25" />
+          {/* the building, in sandstone washes */}
+          <rect x="19" y="61" width="122" height="24" fill="#D8C3A0" fillOpacity="0.7" />
+          <rect x="72" y="20" width="16" height="42" fill="#D8C3A0" fillOpacity="0.8" />
+          <rect x="75" y="12" width="10" height="9" fill="#C9B08A" fillOpacity="0.8" />
+          <rect x="19" y="76" width="122" height="9" fill="#A07E55" fillOpacity="0.28" />
+          <rect x="84" y="20" width="4" height="42" fill="#A07E55" fillOpacity="0.25" />
         </g>
+
+        {/* the Bay Bridge, faint in the distance */}
+        <g fill="none" stroke="#2A2520" strokeOpacity="0.28" strokeWidth="0.6">
+          <path d="M 112 58 H 160" />
+          <path d="M 118 58 V 44 M 146 58 V 44" />
+          <path d="M 104 58 Q 118 42 118 44 Q 132 56 146 44 Q 154 50 160 52" />
+        </g>
+
+        {/* ink */}
         <g fill="none" stroke="#1E1A16" strokeLinecap="round" strokeLinejoin="round">
-          <path
-            d="M 56 88 C 58 72 72 68 84 70 C 94 61 108 62 114 74 C 120 76 116 86 108 88 C 100 100 68 102 56 88 Z"
-            strokeWidth="1.25"
-            strokeOpacity="0.88"
-          />
-          <path d="M 108 76 Q 118 74 116 82" strokeWidth="1" strokeOpacity="0.75" />
-          <path d="M 56 90 Q 46 100 42 84" strokeWidth="1.15" strokeOpacity="0.8" />
-          <path d="M 90 99 Q 96 112 76 113" strokeWidth="1.05" strokeOpacity="0.75" />
-          <circle cx="104" cy="70" r="1.3" fill="#1E1A16" stroke="none" />
-          <circle cx="104.45" cy="69.55" r="0.4" fill="#E4DCC8" stroke="none" />
-          <path d="M 112 76 Q 120 74 124 76" strokeWidth="0.5" strokeOpacity="0.5" />
-          <path d="M 112 78.5 Q 121 77 126 81" strokeWidth="0.45" strokeOpacity="0.45" />
-          <path d="M 111 81 Q 118 82 122 86" strokeWidth="0.45" strokeOpacity="0.4" />
+          <path d="M 19 85 V 62 H 72 M 88 62 H 141 V 85" strokeWidth="1.1" strokeOpacity="0.85" />
+          <path d="M 17 62 H 72 M 88 62 H 143" strokeWidth="0.7" strokeOpacity="0.6" />
+          <path d="M 19 74.5 H 141" strokeWidth="0.5" strokeOpacity="0.5" />
+          {/* clock tower */}
+          <path d="M 72 85 V 20 H 88 V 85" strokeWidth="1.2" strokeOpacity="0.9" />
+          <path d="M 70.5 20 H 89.5 M 71.5 37 H 88.5" strokeWidth="0.7" strokeOpacity="0.7" />
+          <path d="M 75 20 V 12 H 85 V 20" strokeWidth="1" strokeOpacity="0.85" />
+          <path d="M 75 12 Q 80 6 85 12" strokeWidth="0.9" strokeOpacity="0.85" />
+          <path d="M 80 7.5 V 1" strokeWidth="0.6" />
+          <path d="M 80 1.5 L 84 2.6 L 80 3.8" strokeWidth="0.5" fill="#9A3A28" fillOpacity="0.7" />
+          <circle cx="80" cy="28.5" r="3.6" strokeWidth="0.8" fill="#F3EAD6" fillOpacity="0.8" />
+          <path d="M 80 28.5 V 26.2 M 80 28.5 L 81.8 29.4" strokeWidth="0.5" />
+          <path d="M 76 43 V 52 M 80 43 V 52 M 84 43 V 52" strokeWidth="0.5" strokeOpacity="0.7" />
+          <path d="M 76.5 58 V 85 a 3.5 3.5 0 0 1 7 0" strokeWidth="0.7" strokeOpacity="0.75" />
+          {/* arcades and windows */}
+          <g strokeWidth="0.55" strokeOpacity="0.7">
+          <path d="M 23 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          <path d="M 31 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          <path d="M 39 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          <path d="M 47 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          <path d="M 55 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          <path d="M 63 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          <path d="M 87 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          <path d="M 95 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          <path d="M 103 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          <path d="M 111 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          <path d="M 119 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          <path d="M 127 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          <path d="M 135 84 V 78.5 a 2.6 2.6 0 0 1 5.2 0 V 84" />
+          </g>
+          <g strokeWidth="0.5" strokeOpacity="0.55">
+          <path d="M 25.6 67 V 71" />
+          <path d="M 33.6 67 V 71" />
+          <path d="M 41.6 67 V 71" />
+          <path d="M 49.6 67 V 71" />
+          <path d="M 57.6 67 V 71" />
+          <path d="M 65.6 67 V 71" />
+          <path d="M 89.6 67 V 71" />
+          <path d="M 97.6 67 V 71" />
+          <path d="M 105.6 67 V 71" />
+          <path d="M 113.6 67 V 71" />
+          <path d="M 121.6 67 V 71" />
+          <path d="M 129.6 67 V 71" />
+          <path d="M 137.6 67 V 71" />
+          </g>
+          {/* Embarcadero palms */}
+          <g strokeOpacity="0.85">
+            <path d="M 10 86 C 11 76 9 68 12 60" strokeWidth="0.9" />
+            <path d="M 12 60 q -7 -1 -10 4 M 12 60 q 7 -2 10 3 M 12 60 q -4 -5 -9 -5 M 12 60 q 3 -6 9 -6 M 12 60 q 0 -6 -1 -8" strokeWidth="0.7" />
+            <path d="M 150 86 C 149 77 151 70 148 63" strokeWidth="0.9" />
+            <path d="M 148 63 q -7 -1 -10 4 M 148 63 q 7 -2 10 3 M 148 63 q -4 -5 -9 -5 M 148 63 q 3 -6 9 -6" strokeWidth="0.7" />
+          </g>
+          {/* the water */}
+          <path d="M 6 92 q 6 -2 12 0 t 12 0 M 44 96 q 6 -2 12 0 t 12 0 t 12 0 M 100 92 q 6 -2 12 0 t 12 0 M 20 104 q 6 -2 12 0 t 12 0 M 96 106 q 6 -2 12 0 t 12 0 t 12 0" strokeWidth="0.5" strokeOpacity="0.45" />
         </g>
-        <circle cx="22" cy="68" r="2.2" fill="#6B5236" fillOpacity="0.35" />
-        <circle cx="140" cy="52" r="2.6" fill="#A07E55" fillOpacity="0.32" />
-        <circle cx="42" cy="104" r="1.6" fill="#3B4654" fillOpacity="0.28" />
-        <text
-          x="152"
-          y="110"
-          textAnchor="end"
-          className="font-mono"
-          fontSize="5"
-          letterSpacing="0.8"
-          fill="#2A2520"
-          fillOpacity="0.45"
-        >
+        <circle cx="30" cy="40" r="1.6" fill="#6B5236" fillOpacity="0.3" />
+        <circle cx="142" cy="96" r="2.2" fill="#3B4654" fillOpacity="0.3" />
+        <text x="152" y="112" textAnchor="end" className="font-mono" fontSize="5" letterSpacing="0.8" fill="#2A2520" fillOpacity="0.45">
           {index}
         </text>
       </svg>
