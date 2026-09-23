@@ -32,26 +32,29 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
       <svg viewBox="0 0 124 104" className="block w-full overflow-visible" aria-hidden>
         <defs>
           <linearGradient id="ooo-ipod-body" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0" stopColor="#FFFFFF" />
-            <stop offset="1" stopColor="#E4E1DB" />
+            <stop offset="0" stopColor="#8A6647" />
+            <stop offset="1" stopColor="#4E3826" />
+          </linearGradient>
+          <linearGradient id="ooo-ipod-wheel" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stopColor="#F1E7D4" />
+            <stop offset="1" stopColor="#D8C6A6" />
           </linearGradient>
           <clipPath id="ooo-ipod-screen">
             <rect x="11" y="11" width="40" height="30" rx="2" />
           </clipPath>
         </defs>
-        {/* the earbuds cord, looping off to the right and resting on the shelf */}
-        <g className="ooo-earbuds" fill="none" stroke="#EDEBE6" strokeWidth="1.3" strokeLinecap="round">
-          <path d="M 45 6 C 48 -4 70 -6 80 12 C 88 28 80 52 92 70 C 98 80 100 90 98 96" />
-          <path d="M 98 96 C 104 92 110 94 112 98" />
-        </g>
-        <g className="ooo-earbuds">
-          <ellipse cx="97" cy="98" rx="5" ry="4" fill="#F4F2EE" stroke="#BDB8AF" strokeWidth="0.6" />
-          <ellipse cx="114" cy="99" rx="5" ry="4" fill="#F4F2EE" stroke="#BDB8AF" strokeWidth="0.6" />
-          <circle cx="97" cy="98" r="1.6" fill="#8E8A84" />
-          <circle cx="114" cy="99" r="1.6" fill="#8E8A84" />
-        </g>
+        {/* the earbuds cord, looping off to the right toward the shelf's edge */}
+        <path
+          className="ooo-earbuds"
+          d="M 45 6 C 48 -4 72 -6 84 10 C 96 26 92 60 106 84 C 112 94 118 100 122 104"
+          fill="none"
+          stroke="#EDEBE6"
+          strokeWidth="1.3"
+          strokeLinecap="round"
+        />
         {/* the iPod */}
-        <rect x="4" y="4" width="54" height="96" rx="8" fill="url(#ooo-ipod-body)" stroke="#C9C4BB" strokeWidth="0.8" />
+        <rect x="4" y="4" width="54" height="96" rx="8" fill="url(#ooo-ipod-body)" stroke="#3A2A1C" strokeWidth="0.8" />
+        <path d="M 9 8 Q 31 5 53 8" fill="none" stroke="#B08A66" strokeWidth="0.6" opacity="0.6" />
         <rect x="10" y="10" width="42" height="32" rx="2.5" fill="#2A2A2A" />
         <rect x="11" y="11" width="40" height="30" rx="2" fill="#DCE6EC" />
         <g clipPath="url(#ooo-ipod-screen)" fontFamily="Helvetica Neue, Arial, sans-serif">
@@ -65,9 +68,9 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
           <rect x="13" y="33" width="36" height="2.2" rx="1.1" fill="#9FB0BC" />
           <rect x="13" y="33" width="13" height="2.2" rx="1.1" fill="#3875D7" />
         </g>
-        <circle cx="31" cy="72" r="18" fill="#FFFFFF" stroke="#D9D5CE" strokeWidth="0.8" />
-        <circle cx="31" cy="72" r="6.5" fill="url(#ooo-ipod-body)" stroke="#D9D5CE" strokeWidth="0.6" />
-        <text x="31" y="59" textAnchor="middle" fontSize="3.4" fontWeight="700" fill="#A8A39A" fontFamily="Helvetica Neue, Arial, sans-serif">
+        <circle cx="31" cy="72" r="18" fill="url(#ooo-ipod-wheel)" stroke="#3A2A1C" strokeWidth="0.6" />
+        <circle cx="31" cy="72" r="6.5" fill="url(#ooo-ipod-body)" stroke="#3A2A1C" strokeWidth="0.5" />
+        <text x="31" y="59" textAnchor="middle" fontSize="3.4" fontWeight="700" fill="#8C6A45" fontFamily="Helvetica Neue, Arial, sans-serif">
           MENU
         </text>
       </svg>
@@ -75,6 +78,28 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
         PODCASTS
       </span>
     </button>
+  );
+}
+
+/** The earbuds hanging over the front of the shelf, swaying a little. Sits inside the shelf plank. */
+export function DanglingEarbuds({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 -20 40 98" className={`ooo-dangle pointer-events-none absolute -top-[20px] z-10 h-[98px] w-[40px] ${className}`} aria-hidden>
+      <g fill="none" stroke="#EDEBE6" strokeWidth="1.3" strokeLinecap="round">
+        <path d="M 18 -20 C 19 -10 20 -4 20 0 C 21 8 20 16 20 26 C 20 34 19 40 20 46" />
+        <path d="M 20 46 C 16 52 12 58 11 66" />
+        <path d="M 20 46 C 24 54 27 60 29 70" />
+      </g>
+      <rect x="18.2" y="42" width="3.6" height="5" rx="1" fill="#EDEBE6" />
+      <g>
+        <ellipse cx="11" cy="69" rx="4.5" ry="5.5" fill="#F4F2EE" stroke="#BDB8AF" strokeWidth="0.6" />
+        <circle cx="11" cy="70" r="1.6" fill="#8E8A84" />
+      </g>
+      <g>
+        <ellipse cx="29" cy="72" rx="4.5" ry="5.5" fill="#F4F2EE" stroke="#BDB8AF" strokeWidth="0.6" />
+        <circle cx="29" cy="73" r="1.6" fill="#8E8A84" />
+      </g>
+    </svg>
   );
 }
 
@@ -200,7 +225,7 @@ export function IpodPlayer({
           type="button"
           onClick={onClose}
           autoFocus
-          className="min-h-11 px-2 font-mono text-[10px] tracking-[0.24em] text-[#8E8E93] hover:text-[#EAE5D9]"
+          className="min-h-11 px-2 font-mono text-[10px] tracking-[0.24em] text-[#8E8E93] outline-none hover:text-[#EAE5D9] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#A07E55]"
         >
           CLOSE
         </button>
@@ -272,7 +297,7 @@ export function IpodPlayer({
 
           {/* click wheel */}
           <div
-            className="relative mx-auto mt-[12%] aspect-square w-[78%] touch-none select-none rounded-full bg-white shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)]"
+            className="relative mx-auto mt-[12%] aspect-square w-[78%] touch-none select-none rounded-full bg-gradient-to-br from-[#F1E7D4] to-[#D8C6A6] shadow-[inset_0_1px_3px_rgba(0,0,0,0.18)]"
             onPointerDown={onWheelDown}
             onPointerMove={onWheelMove}
             onPointerUp={onWheelUp}
@@ -286,7 +311,7 @@ export function IpodPlayer({
               type="button"
               aria-label="Select"
               onClick={() => select()}
-              className="absolute left-1/2 top-1/2 h-[36%] w-[36%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#E4E1DB] bg-gradient-to-br from-white to-[#E9E6E0] shadow-[0_1px_2px_rgba(0,0,0,0.12)] active:from-[#EEE] active:to-[#DDD]"
+              className="absolute left-1/2 top-1/2 h-[36%] w-[36%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#3A2A1C]/60 bg-gradient-to-br from-[#8A6647] to-[#4E3826] shadow-[0_1px_2px_rgba(0,0,0,0.25)] active:from-[#7A5A3E] active:to-[#40301F]"
             />
           </div>
         </div>
@@ -346,7 +371,7 @@ function WheelButton({
       type="button"
       aria-label={label}
       onClick={onClick}
-      className={`absolute flex min-h-8 min-w-8 items-center justify-center px-1 font-sans text-[10px] font-bold tracking-[0.08em] text-[#A8A39A] hover:text-[#6B6760] ${className}`}
+      className={`absolute flex min-h-8 min-w-8 items-center justify-center px-1 font-sans text-[10px] font-bold tracking-[0.08em] text-[#8C6A45] hover:text-[#4E3826] ${className}`}
     >
       {icon ? (
         <svg viewBox="0 0 30 16" className="h-[10px] w-[19px]" aria-hidden>

@@ -8,7 +8,7 @@ import type { AtlasDrawing } from "../../lib/atlas";
 import type { AtlasWords } from "./RoadAtlas";
 import type { Invite } from "../../content/invites";
 import BookRecommendSlip from "./BookRecommendSlip";
-import { IpodOnShelf, IpodPlayer } from "./Ipod";
+import { DanglingEarbuds, IpodOnShelf, IpodPlayer } from "./Ipod";
 import InviteTicket from "./InviteTicket";
 import Lightbox from "./Lightbox";
 import SleepingTruffles from "./SleepingTruffles";
@@ -426,7 +426,9 @@ function Bookshelf({
             />
           ) : null}
         </div>
-        <div aria-hidden className="shelf-plank" />
+        <div aria-hidden className="shelf-plank">
+          <DanglingEarbuds className="-right-1 sm:right-0" />
+        </div>
       </div>
     </div>
   );
