@@ -1,8 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import type { Invite } from "../../content/invites";
 import "./sections.css";
+
+/** When this page was opened in the reader's browser. */
+const openedAt = Date.now();
+const noChanges = () => () => {};
 
 /** "09.27.2026" → the first moment it should stop showing (the next day). */
 function hidesAt(until: string) {
@@ -59,8 +63,11 @@ function Ticket({ invite, email }: { invite: Invite; email: string }) {
 
 export default function InviteTicket({ invites, email }: { invites: Invite[]; email: string }) {
   // Checked in the reader's browser, so past invites vanish without rebuilding the site.
-  const [now, setNow] = useState<number | null>(null);
-  useEffect(() => setNow(Date.now()), []);
+  const now = useSyncExternalStore(
+    noChanges,
+    () => openedAt,
+    () => null,
+  );
   const current = invites.filter((invite) => now === null || now < hidesAt(invite.until));
   if (current.length === 0) return null;
 
