@@ -302,8 +302,7 @@ body,
     animation: none;
   }
 
-  .print-tilt,
-  .print-tilt img {
+  .print-tilt {
     transition: none;
   }
 

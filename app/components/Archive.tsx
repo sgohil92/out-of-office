@@ -118,7 +118,7 @@ function PrintFrame({
             quality={75}
             className={`${
               focus === "face" ? "object-[center_30%]" : "object-center"
-            } object-cover sepia-[0.45] contrast-[1.08] brightness-[0.94] transition duration-1000 ease-out group-hover:sepia-0 group-hover:contrast-100 group-hover:brightness-100`}
+            } object-cover`}
           />
         </div>
       </div>
