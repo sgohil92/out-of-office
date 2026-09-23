@@ -18,14 +18,14 @@ Save the file, and the local site refreshes. Photos go in `public/`, then you po
 
 ## Add a trip (Destinations)
 
-The road atlas draws itself from your stops and zooms to fit them, so a stop anywhere in the world works. Stops are listed **newest first**: the newest is 01 on the map. Truffles still travels them oldest to newest, starting from home. Copy a block, give it a new `id`, and put it **at the top** of the `section: "destinations"` entries. Then bump the other stops' `index` numbers down by one.
+The road atlas draws itself from your stops and zooms to fit them, so a stop anywhere in the world works. Stops are listed **newest at the top**. On the map they're numbered in the order you traveled (your first trip is 01), and Truffles travels them in that order, starting from home. Copy a block, give it a new `id`, put it **at the top** of the `section: "destinations"` entries, and give it the next `index` number (after 01.04 comes 01.05).
 
 ```ts
 {
   id: "lisbon",
   section: "destinations",
-  index: "01.01",
-  date: "10.02.2026",
+  index: "01.05",
+  date: "10.2026",
   place: "Lisbon",
   title: "Lisbon",
   dek: "Tiles and custard tarts.",
