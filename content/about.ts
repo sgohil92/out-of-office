@@ -6,9 +6,10 @@ export const ABOUT: Entry = {
   section: "about",
   index: "00",
   date: "",
-  title: "00 / MONOGRAPH",
+  title: "Why I'm doing this",
   dek: "",
   // One paragraph per line, in quotes, each ending with a comma.
+  // The first one is the welcome line under the site title; the About drawer starts from the second.
   body: [
     "On pause from standard orbits to focus on reflection, curiosity, and creative flow.",
     "Y'all know I quit my job end of June-ish and turned down another one in July because something just felt misaligned. I went from degree to degree, climbed the ladder, did everything “right”… and one day I didn't recognize myself.",

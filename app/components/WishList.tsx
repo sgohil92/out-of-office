@@ -3,7 +3,7 @@
 import { useState, useTransition, type FormEvent } from "react";
 import { CONTACT_EMAIL } from "../../content/contact";
 import { suggestSomething } from "./recommendBook";
-import type { ArchiveEntry } from "./types";
+import { formatDate, type ArchiveEntry } from "./types";
 import "./sections.css";
 
 /** A pencil tick for wishes that came true. */
@@ -70,7 +70,7 @@ export default function WishList<E extends ArchiveEntry>({
                 </span>
                 {entry.date ? (
                   <time className="mt-[12px] shrink-0 font-mono text-[8px] leading-none tracking-[0.14em] text-[#8C7D63]">
-                    {entry.date}
+                    {formatDate(entry.date)}
                   </time>
                 ) : null}
                 </button>
@@ -90,7 +90,7 @@ export default function WishList<E extends ArchiveEntry>({
                 </span>
                 {entry.date ? (
                   <time className="mt-[12px] shrink-0 font-mono text-[8px] leading-none tracking-[0.14em] text-[#8C7D63]">
-                    {entry.date}
+                    {formatDate(entry.date)}
                   </time>
                 ) : null}
                 </div>

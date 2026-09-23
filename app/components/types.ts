@@ -1,22 +1,33 @@
 export type { Entry as ArchiveEntry } from "../../content/types";
 
 const MONTHS = [
-  "JAN",
-  "FEB",
-  "MAR",
-  "APR",
+  "JANUARY",
+  "FEBRUARY",
+  "MARCH",
+  "APRIL",
   "MAY",
-  "JUN",
-  "JUL",
-  "AUG",
-  "SEP",
-  "OCT",
-  "NOV",
-  "DEC",
+  "JUNE",
+  "JULY",
+  "AUGUST",
+  "SEPTEMBER",
+  "OCTOBER",
+  "NOVEMBER",
+  "DECEMBER",
 ];
 
-/** Splits an `MM.DD.YYYY` entry date into postmark parts. */
-export function postmark(date: string) {
-  const [m = "", d = "", y = ""] = date.split(".");
-  return { month: MONTHS[Number(m) - 1] ?? m, day: d, year: y };
+/**
+ * One way to show a date everywhere.
+ * "08.28.2026" → "08.28.2026" (postmark: "08·28·2026")
+ * "06.2026"    → "JUNE 2026"  (postmark: "JUNE · 2026")
+ * "07-08.2026" → "JUL–AUG 2026"
+ */
+export function formatDate(date: string, style: "stamp" | "postmark" = "stamp") {
+  if (!date) return "";
+  const parts = date.split(".");
+  const month = (m: string) => MONTHS[Number(m) - 1] ?? m;
+  const year = style === "postmark" ? ` · ${parts[parts.length - 1]}` : ` ${parts[parts.length - 1]}`;
+  if (parts.length === 3) return style === "postmark" ? parts.join("·") : date;
+  if (parts.length !== 2) return date;
+  const [from, to] = parts[0].split("-");
+  return to ? `${month(from).slice(0, 3)}–${month(to).slice(0, 3)}${year}` : `${month(from)}${year}`;
 }

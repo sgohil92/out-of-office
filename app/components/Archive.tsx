@@ -12,6 +12,7 @@ import { DanglingEarbuds, IpodOnShelf, IpodPlayer } from "./Ipod";
 import InviteTicket from "./InviteTicket";
 import Lightbox from "./Lightbox";
 import SleepingTruffles from "./SleepingTruffles";
+import { formatDate } from "./types";
 import type { Painting, StudioNote } from "../../content/studio";
 import Ponderings from "./Ponderings";
 import WishList from "./WishList";
@@ -165,35 +166,10 @@ function PrintFrame({
   );
 }
 
-const MONTH_NAMES = [
-  "JANUARY",
-  "FEBRUARY",
-  "MARCH",
-  "APRIL",
-  "MAY",
-  "JUNE",
-  "JULY",
-  "AUGUST",
-  "SEPTEMBER",
-  "OCTOBER",
-  "NOVEMBER",
-  "DECEMBER",
-];
 
 /** A paw-print postmark for Destinations, like the stop was stamped by the dog. */
 function Postmark({ place, date }: { place: string; date: string }) {
-  const parts = date.split(".");
-  const monthName = (m: string) => MONTH_NAMES[Number(m) - 1] ?? m;
-  // "06.14.2026" → "06·14·2026"; "06.2026" → "JUNE · 2026"; "07-08.2026" → "JUL–AUG · 2026".
-  const [from, to] = (parts[0] ?? "").split("-");
-  const when =
-    parts.length === 3
-      ? parts.join("·")
-      : parts.length === 2 && to
-        ? `${monthName(from).slice(0, 3)}–${monthName(to).slice(0, 3)} · ${parts[1]}`
-        : parts.length === 2
-          ? `${monthName(from)} · ${parts[1]}`
-          : "· 2026 ·";
+  const when = formatDate(date, "postmark") || "· 2026 ·";
   return (
     <svg
       viewBox="0 0 220 104"
@@ -505,13 +481,16 @@ export default function Archive({
 
   // Destinations lead with the story; a big set of photos becomes a scrapbook grid.
   const storyFirst = active?.section === "destinations";
-  const story = active?.body || active?.link ? (
+  // The About note's first line already greets people under the title, so the drawer starts after it.
+  const storyBody =
+    active?.id === about.id ? active.body.split("\n\n").slice(1).join("\n\n") : (active?.body ?? "");
+  const story = active && (storyBody || active.link) ? (
     <div
       className={`mt-8 space-y-5 font-serif text-[17px] ${
         active.stamp ? "leading-relaxed text-[#EAE5D9]" : "leading-[1.7]"
       }`}
     >
-      {active.body.split("\n\n").filter(Boolean).map((para, idx) =>
+      {storyBody.split("\n\n").filter(Boolean).map((para, idx) =>
         para.startsWith("* ") ? (
           <ul key={para.slice(0, 24)} className="space-y-4 pl-1">
             {para.split(/\n(?=\* )/).map((item) => (
@@ -522,7 +501,7 @@ export default function Archive({
             ))}
           </ul>
         ) : (
-          <p key={para.slice(0, 24)} className={idx === 0 && /^[A-Za-z]/.test(para) ? "drop-cap" : ""}>
+          <p key={para.slice(0, 24)} className={idx === 0 && /^[A-Za-z](?!['’])/.test(para) ? "drop-cap" : ""}>
             {para}
           </p>
         ),
@@ -699,7 +678,7 @@ export default function Archive({
                             {entry.title}
                           </span>
                           <time className="font-mono text-[10px] tracking-[0.18em] text-[#8E8E93]">
-                            {entry.date}
+                            {formatDate(entry.date)}
                           </time>
                         </span>
                         {entry.place && (
@@ -784,7 +763,7 @@ export default function Archive({
               ) : active.date ? (
                 <div className="mt-6">
                   <time className="date-stamp font-mono text-[11px] font-bold tracking-[0.22em]">
-                    {active.date}
+                    {formatDate(active.date)}
                   </time>
                 </div>
               ) : null}
