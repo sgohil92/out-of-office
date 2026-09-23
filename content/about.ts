@@ -6,7 +6,6 @@ export const ABOUT: Entry = {
   section: "about",
   index: "00",
   date: "",
-  place: "SAN FRANCISCO — 37.7749° N, 122.4194° W",
   title: "00 / MONOGRAPH",
   dek: "",
   // One paragraph per line, in quotes, each ending with a comma.
