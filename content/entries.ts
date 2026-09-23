@@ -315,6 +315,16 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
   {
+    id: "solitude-vs-loneliness",
+    section: "mood",
+    index: "04.06",
+    date: "",
+    title: "Solitude vs. loneliness",
+    dek: "Work in progress.",
+    body: "",
+    tags: [],
+  },
+  {
     id: "ritual-of-coffee",
     section: "mood",
     index: "04.05",
