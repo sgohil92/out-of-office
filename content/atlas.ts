@@ -8,8 +8,6 @@ import type { Pin } from "./types";
 export const ATLAS = {
   /** Shows in the title as "<dogName>'s Official Road Atlas". */
   dogName: "Truffles",
-  edition: "Sabbatical Edition · 2026",
-  tagline: "Revised at every snack stop.",
   /** A pencil note trailing off the newest stop, like "next: ? (ask Truffles)". "" hides it. */
   next: "",
   /** Where the trip starts. `label` is optional pencil text by the house; "" hides it. */

@@ -532,17 +532,17 @@
 
 /* What's Next: an open vintage journal */
 .ooo-journal-cover {
-  padding: 10px 24px 10px 16px;
+  padding: 6px 18px 6px 10px;
   border-radius: 4px 6px 6px 4px;
   background:
     radial-gradient(ellipse at 20% 10%, rgba(255, 220, 180, 0.12), transparent 50%),
     repeating-linear-gradient(35deg, rgba(0, 0, 0, 0.05) 0 2px, transparent 2px 5px),
     linear-gradient(135deg, #6b4a32, #4e3524 60%, #3e2a1c);
   box-shadow:
-    0 16px 34px rgba(0, 0, 0, 0.55),
-    inset 3px 0 6px rgba(0, 0, 0, 0.35),
+    0 8px 18px rgba(0, 0, 0, 0.4),
+    inset 2px 0 4px rgba(0, 0, 0, 0.3),
     inset 0 0 0 1px rgba(255, 220, 180, 0.08);
-  transform: rotate(-0.4deg);
+  transform: rotate(-0.6deg);
 }
 
 .ooo-notepad {
@@ -562,13 +562,13 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 46px;
-  border-left: 1px solid rgba(150, 70, 50, 0.35);
+  left: 34px;
+  border-left: 1px solid rgba(150, 70, 50, 0.32);
 }
 
 @media (min-width: 640px) {
   .ooo-notepad::before {
-    left: 60px;
+    left: 46px;
   }
 }
 
@@ -580,18 +580,18 @@
 .ooo-notepad-lines {
   background: repeating-linear-gradient(
     180deg,
-    transparent 0 39px,
-    rgba(120, 90, 60, 0.26) 39px 40px
+    transparent 0 29px,
+    rgba(120, 90, 60, 0.24) 29px 30px
   );
 }
 
 /* the ribbon bookmark: just its tail, peeking out below the page */
 .ooo-journal-ribbon {
   position: absolute;
-  bottom: -34px;
+  bottom: -26px;
   right: 18%;
-  width: 11px;
-  height: 36px;
+  width: 8px;
+  height: 28px;
   background: linear-gradient(90deg, #7a2a1f, #9a3a28 50%, #7a2a1f);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 7px), 0 100%);
   z-index: -1;
@@ -601,10 +601,10 @@
 /* the elastic band, running down the leather edge */
 .ooo-journal-band {
   position: absolute;
-  top: -10px;
-  bottom: -10px;
-  right: -17px;
-  width: 7px;
+  top: -6px;
+  bottom: -6px;
+  right: -13px;
+  width: 5px;
   background: linear-gradient(90deg, #1e160f, #33251a 50%, #1e160f);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
   pointer-events: none;

@@ -9,7 +9,7 @@ import "./sections.css";
 /** A pencil tick for wishes that came true. */
 function PencilCheck() {
   return (
-    <svg viewBox="0 0 20 20" className="absolute -left-0.5 -top-1.5 h-6 w-6" aria-hidden>
+    <svg viewBox="0 0 20 20" className="absolute -left-0.5 -top-1 h-[18px] w-[18px]" aria-hidden>
       <path
         d="M 3 11 C 5 12.5 6.5 14.5 7.5 17 C 10 10 13.5 5.5 18.5 2"
         fill="none"
@@ -34,14 +34,14 @@ export default function WishList<E extends ArchiveEntry>({
   const doneCount = entries.filter((e) => e.done).length;
   return (
     // An open leather journal: aged paper, a ribbon bookmark, an elastic band.
-    <div className="ooo-journal-cover">
+    <div className="ooo-journal-cover mx-auto max-w-[400px]">
     <div className="ooo-notepad relative">
       <span aria-hidden className="ooo-journal-ribbon" />
       <span aria-hidden className="ooo-journal-band" />
-      <div className="px-4 pb-5 pt-6 sm:px-6">
-        <p className="ooo-notepad-head flex items-baseline justify-between gap-3 pl-9 font-mono text-[9px] tracking-[0.24em] text-[#8C6A45] sm:pl-11">
+      <div className="px-3 pb-3 pt-4 sm:px-4">
+        <p className="ooo-notepad-head flex items-baseline justify-between gap-3 pl-8 font-mono text-[8px] tracking-[0.24em] text-[#8C6A45] sm:pl-10">
           <span>THINGS TO TRY</span>
-          <span className="font-serif text-[13px] italic tracking-normal text-[#6B5E4E]">
+          <span className="font-serif text-[12px] italic tracking-normal text-[#6B5E4E]">
             {doneCount} of {entries.length} done
           </span>
         </p>
@@ -56,11 +56,11 @@ export default function WishList<E extends ArchiveEntry>({
                   aria-label={`${entry.title}${entry.done ? " (done)" : ""}. Open`}
                   className={`group ${row} text-left focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#9A3A28]`}
                 >
-                <span aria-hidden className="relative ml-1 mt-[17px] h-4 w-4 shrink-0 border-[1.5px] border-[#6B5E4E]/70 sm:ml-2">
+                <span aria-hidden className="relative ml-1 mt-[11px] h-3 w-3 shrink-0 border border-[#6B5E4E]/70 sm:ml-2">
                   {entry.done ? <PencilCheck /> : null}
                 </span>
                 <span
-                  className={`relative top-[5px] min-w-0 flex-1 pl-3 font-serif text-[19px] italic leading-[40px] text-pretty transition-colors duration-300 sm:pl-4 ${
+                  className={`relative top-[3px] min-w-0 flex-1 pl-3 font-serif text-[15px] italic leading-[30px] text-pretty transition-colors duration-300 sm:pl-4 ${
                     entry.done
                       ? "text-[#6B5E4E] line-through decoration-[#4A4540]/70 decoration-[1.5px]"
                       : "text-[#1E1A16] group-hover:text-[#9A3A28]"
@@ -69,18 +69,18 @@ export default function WishList<E extends ArchiveEntry>({
                   {entry.title}
                 </span>
                 {entry.date ? (
-                  <time className="mt-[22px] shrink-0 font-mono text-[9px] leading-none tracking-[0.14em] text-[#8C7D63]">
+                  <time className="mt-[12px] shrink-0 font-mono text-[8px] leading-none tracking-[0.14em] text-[#8C7D63]">
                     {entry.date}
                   </time>
                 ) : null}
                 </button>
               ) : (
                 <div className={row}>
-                <span aria-hidden className="relative ml-1 mt-[17px] h-4 w-4 shrink-0 border-[1.5px] border-[#6B5E4E]/70 sm:ml-2">
+                <span aria-hidden className="relative ml-1 mt-[11px] h-3 w-3 shrink-0 border border-[#6B5E4E]/70 sm:ml-2">
                   {entry.done ? <PencilCheck /> : null}
                 </span>
                 <span
-                  className={`relative top-[5px] min-w-0 flex-1 pl-3 font-serif text-[19px] italic leading-[40px] text-pretty transition-colors duration-300 sm:pl-4 ${
+                  className={`relative top-[3px] min-w-0 flex-1 pl-3 font-serif text-[15px] italic leading-[30px] text-pretty transition-colors duration-300 sm:pl-4 ${
                     entry.done
                       ? "text-[#6B5E4E] line-through decoration-[#4A4540]/70 decoration-[1.5px]"
                       : "text-[#1E1A16] group-hover:text-[#9A3A28]"
@@ -89,7 +89,7 @@ export default function WishList<E extends ArchiveEntry>({
                   {entry.title}
                 </span>
                 {entry.date ? (
-                  <time className="mt-[22px] shrink-0 font-mono text-[9px] leading-none tracking-[0.14em] text-[#8C7D63]">
+                  <time className="mt-[12px] shrink-0 font-mono text-[8px] leading-none tracking-[0.14em] text-[#8C7D63]">
                     {entry.date}
                   </time>
                 ) : null}
@@ -106,7 +106,7 @@ export default function WishList<E extends ArchiveEntry>({
 }
 
 const lineInput =
-  "h-10 w-full bg-transparent pb-[7px] pt-3 font-serif text-[18px] italic leading-none text-[#1E1A16] outline-none placeholder:text-[#8C7D63]/80";
+  "h-[30px] w-full bg-transparent pb-[5px] pt-2 font-serif text-[15px] italic leading-none text-[#1E1A16] outline-none placeholder:text-[#8C7D63]/80";
 const padButton =
   "font-mono text-[9px] tracking-[0.24em] text-[#9A3A28] underline-offset-4 hover:underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#9A3A28]";
 
@@ -139,9 +139,9 @@ function SuggestLine() {
     setMode("open");
   }
 
-  const suggestRow = "flex min-h-10 items-end gap-3 pl-1 sm:gap-5";
+  const suggestRow = "flex min-h-[30px] items-end gap-3 pl-1 sm:gap-5";
   const plus = (
-    <span aria-hidden className="mb-[9px] ml-1 w-4 shrink-0 text-center font-serif text-[18px] leading-none text-[#9A3A28] sm:ml-2">
+    <span aria-hidden className="mb-[6px] ml-1 w-3 shrink-0 text-center font-serif text-[14px] leading-none text-[#9A3A28] sm:ml-2">
       +
     </span>
   );
@@ -149,10 +149,10 @@ function SuggestLine() {
   if (mode === "closed") {
     return (
       <button type="button" onClick={() => setMode("open")} className="group flex w-full items-start gap-3 pl-1 text-left sm:gap-5">
-        <span aria-hidden className="ml-1 mt-[11px] w-4 shrink-0 text-center font-serif text-[18px] leading-none text-[#9A3A28] sm:ml-2">
+        <span aria-hidden className="ml-1 mt-[8px] w-3 shrink-0 text-center font-serif text-[14px] leading-none text-[#9A3A28] sm:ml-2">
           +
         </span>
-        <span className="relative top-[5px] pl-3 font-serif text-[17px] italic leading-[40px] text-balance text-[#6B5E4E] group-hover:text-[#9A3A28] sm:pl-4">
+        <span className="relative top-[3px] pl-3 font-serif text-[14px] italic leading-[30px] text-balance text-[#6B5E4E] group-hover:text-[#9A3A28] sm:pl-4">
           suggest something for me to try. I trust you!
         </span>
       </button>
@@ -164,7 +164,7 @@ function SuggestLine() {
       <div role="status" className="pb-2">
         <div className={suggestRow}>
           {plus}
-          <p className="pb-[7px] pl-3 font-serif text-[17px] italic leading-none text-[#1E1A16] sm:pl-4">
+          <p className="pb-[5px] pl-3 font-serif text-[14px] italic leading-none text-[#1E1A16] sm:pl-4">
             {mode === "sent" ? "Noted! Thank you, it's in my inbox." : "Couldn't send it automatically."}
           </p>
         </div>
@@ -247,7 +247,7 @@ function SuggestLine() {
           onChange={(e) => setTip((t) => ({ ...t, website: e.target.value }))}
           className="absolute -left-[9999px] h-0 w-0 opacity-0"
         />
-        <div className="flex h-10 items-end justify-between gap-4 pb-[7px]">
+        <div className="flex h-[30px] items-end justify-between gap-4 pb-[5px]">
           <button type="button" onClick={() => setMode("closed")} className={`${padButton} text-[#6B5E4E]`}>
             NEVER MIND
           </button>

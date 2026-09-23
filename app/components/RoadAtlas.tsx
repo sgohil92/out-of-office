@@ -8,8 +8,6 @@ import "./sections.css";
 
 export type AtlasWords = {
   dogName: string;
-  edition: string;
-  tagline: string;
   next: string;
 };
 
@@ -505,13 +503,6 @@ export default function RoadAtlas<E extends ArchiveEntry>({
           <div className="min-w-0 flex-1">
             <p className="font-sc text-[13px] leading-tight text-[#2A2520] sm:text-[17px]">
               {words.dogName}&rsquo;s Official Road Atlas
-            </p>
-            <p className="mt-1 font-mono text-[8px] tracking-[0.14em] text-[#6B5E4E] sm:text-[9px]">
-              {words.edition.toUpperCase()}
-              <span className="hidden font-serif text-[11px] normal-case italic tracking-normal sm:inline">
-                {" "}
-                — {words.tagline}
-              </span>
             </p>
           </div>
           <button
