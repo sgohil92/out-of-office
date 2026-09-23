@@ -508,7 +508,7 @@ export default function Archive({
 
 
   // Destinations lead with the story; a big set of photos becomes a scrapbook grid.
-  const storyFirst = active?.section === "destinations";
+  const storyFirst = active?.section === "destinations" || Boolean(active?.videos?.length);
   const story = active?.body ? (
     <div
       className={`mt-8 space-y-5 font-serif text-[17px] ${
@@ -768,14 +768,20 @@ export default function Archive({
                   {active.dek}
                 </p>
               ) : null}
+              {storyFirst ? story : null}
               {active.videos?.length ? (
-                <div className="mt-8 flex flex-col gap-7">
+                <div
+                  className={`mt-8 grid gap-7 ${
+                    active.videos.length > 1 && active.videos.every((v) => v.aspect === "portrait")
+                      ? "sm:grid-cols-2"
+                      : ""
+                  }`}
+                >
                   {active.videos.map((video) => (
                     <ReelFrame key={video.src} video={video} />
                   ))}
                 </div>
               ) : null}
-              {storyFirst ? story : null}
               {photos}
               {active.section === "play" && active.hobby === "painting" ? (
                 <StudioWall paintings={studio.paintings} notes={studio.notes} />

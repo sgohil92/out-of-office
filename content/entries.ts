@@ -223,7 +223,31 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
 
-  { ...placeholder("ink-study-01", "play", "02.01", "09.06.2026"), hobby: "dance" },
+  {
+    id: "salsa-week-one",
+    section: "play",
+    hobby: "dance",
+    index: "02.01",
+    date: "06.2026",
+    title: "Salsa, week one",
+    dek: "",
+    body: "My first week learning salsa, actually me in brown might even be my second day... and it taught me a lot. It allowed me to stop thinking so much and just be in my body. It was a flow state very different from what I've experienced when working (that cerebral flow). This was back in June and I've grown so much as a salsera since then ..... but one thing I'm still trying to overcome, the need for perfection before dancing with someone new. Come dance with me at Cigar bar in SF? We can make mistakes together :)",
+    videos: [
+      {
+        src: "/play/salsa-01.mp4",
+        poster: "/play/salsa-01.jpg",
+        caption: "Medellín · June 17 (me in brown)",
+        aspect: "portrait",
+      },
+      {
+        src: "/play/salsa-02.mp4",
+        poster: "/play/salsa-02.jpg",
+        caption: "Medellín · June 18",
+        aspect: "portrait",
+      },
+    ],
+    tags: [],
+  },
   {
     // Opens the studio wall. Add paintings and notes in content/studio.ts.
     id: "studio",
