@@ -572,11 +572,6 @@
   }
 }
 
-.ooo-notepad-head {
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(120, 90, 60, 0.4);
-}
-
 .ooo-notepad-lines {
   background: repeating-linear-gradient(
     180deg,

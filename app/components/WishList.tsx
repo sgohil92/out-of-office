@@ -31,7 +31,6 @@ export default function WishList<E extends ArchiveEntry>({
   entries: E[];
   onOpen: (entry: E) => void;
 }) {
-  const doneCount = entries.filter((e) => e.done).length;
   return (
     // An open leather journal: aged paper, a ribbon bookmark, an elastic band.
     <div className="ooo-journal-cover mx-auto max-w-[400px]">
@@ -39,12 +38,6 @@ export default function WishList<E extends ArchiveEntry>({
       <span aria-hidden className="ooo-journal-ribbon" />
       <span aria-hidden className="ooo-journal-band" />
       <div className="px-3 pb-3 pt-4 sm:px-4">
-        <p className="ooo-notepad-head flex items-baseline justify-between gap-3 pl-8 font-mono text-[8px] tracking-[0.24em] text-[#8C6A45] sm:pl-10">
-          <span>THINGS TO TRY</span>
-          <span className="font-serif text-[12px] italic tracking-normal text-[#6B5E4E]">
-            {doneCount} of {entries.length} done
-          </span>
-        </p>
         <ol className="ooo-notepad-lines">
           {entries.map((entry) => (
             <li key={entry.id}>
