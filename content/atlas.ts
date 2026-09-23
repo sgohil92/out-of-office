@@ -7,14 +7,14 @@ import type { Pin } from "./types";
  */
 export const ATLAS = {
   /** Shows in the title as "<dogName>'s Official Road Atlas". */
-  dogName: "The Lab",
+  dogName: "Truffles",
   edition: "Sabbatical Edition · 2026",
   tagline: "Revised at every snack stop.",
   finePrint: "Not to scale. Not even close.",
   scale: "1 in. = 3 naps",
   compass: { n: "naps", e: "eats", s: "snacks", w: "walkies" },
   /** The pencil note trailing off the newest stop. */
-  next: "next: ? (ask the dog)",
+  next: "next: ? (ask Truffles)",
   /** Where the trip starts. */
   home: { label: "home", pin: [37.7749, -122.4194] as Pin },
 
