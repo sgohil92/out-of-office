@@ -81,9 +81,9 @@ export const ENTRIES: Entry[] = [
     imageCaptions: [
       "",
       "Don Nino gelateria",
+      "Café Rosetta",
       "",
-      "",
-      "",
+      "Panadería Rosetta",
       "",
       "Tout Chocolat",
       "",
