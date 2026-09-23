@@ -130,6 +130,11 @@ body,
   scrollbar-color: #34302b transparent;
 }
 
+/* The bottom shelf only holds the request card and the iPod, so it sits lower */
+.shelf-back.shelf-back-low {
+  min-height: 150px;
+}
+
 .shelf-plank {
   position: relative;
   height: 14px;

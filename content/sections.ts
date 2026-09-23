@@ -19,13 +19,11 @@ export const SECTIONS: {
   {
     id: "bookshelf",
     title: "SHELF",
-    rubric:
-      "Tell me what to read or listen to next.",
+    rubric: "",
   },
   {
     id: "next",
     title: "WHAT'S NEXT",
-    rubric:
-      "Places, skills, invitations, and experiments still untried.",
+    rubric: "",
   },
 ];

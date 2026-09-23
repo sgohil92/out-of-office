@@ -90,7 +90,7 @@ export default function BookRecommendSlip({
         aria-haspopup="dialog"
         className="ooo-request-card mb-0 mr-4 flex h-[112px] w-[94px] shrink-0 flex-col justify-between bg-[#E4DCC8] px-2 py-2.5 text-left text-[#1E1A16] focus-visible:outline-1 focus-visible:outline-offset-3 focus-visible:outline-[#A07E55]"
       >
-        <span className="block border-b border-[#5A5247]/50 pb-1 font-mono text-[7px] leading-tight tracking-[0.18em] text-[#5A5247]">
+        <span className="block border-b border-[#5A5247]/50 pb-1 font-mono text-[8px] leading-tight tracking-[0.16em] text-[#5A5247]">
           REQUEST CARD
         </span>
         <span className="font-sc block text-[12px] leading-[1.1]">

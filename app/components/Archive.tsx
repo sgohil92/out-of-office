@@ -386,7 +386,7 @@ function Bookshelf({
         <div aria-hidden className="shelf-plank" />
       </div>
       <div className="shelf-row mt-2">
-        <div className="shelf-back flex items-end gap-4 overflow-x-auto overflow-y-hidden px-2 pb-1 pt-6 sm:px-3">
+        <div className="shelf-back shelf-back-low flex items-end gap-4 overflow-x-auto overflow-y-hidden px-2 pb-1 pt-6 sm:px-3">
           <BookRecommendSlip open={slipOpen} onOpenChange={setSlipOpen} />
           <div className="ml-auto pr-2">
             <IpodOnShelf podcasts={podcasts} onOpen={() => setIpodOpen(true)} />
@@ -606,7 +606,7 @@ export default function Archive({
               // This week's mood: a quiet note, like something said just to you.
               <div className="mt-8 max-w-md border-l border-[#A07E55]/50 pl-4">
                 {mood.week ? (
-                  <p className="font-mono text-[9px] tracking-[0.28em] text-[#A07E55]/80">
+                  <p className="font-mono text-[10px] tracking-[0.24em] text-[#A07E55]/80">
                     CURRENT MOOD · {mood.week.toUpperCase()}
                   </p>
                 ) : null}
@@ -616,7 +616,7 @@ export default function Archive({
                 <button
                   type="button"
                   onClick={() => setActive(moodArchive)}
-                  className="mt-3 font-mono text-[9px] tracking-[0.24em] text-[#8E8E93] underline-offset-4 hover:text-[#A07E55] hover:underline"
+                  className="mt-3 font-mono text-[10px] tracking-[0.22em] text-[#8E8E93] underline-offset-4 hover:text-[#A07E55] hover:underline"
                 >
                   ARCHIVE →
                 </button>

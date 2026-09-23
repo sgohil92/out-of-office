@@ -288,7 +288,7 @@ export default function PlayTable<E extends ArchiveEntry>({
                 >
                   {objectFor(hobby.key, ponderings)}
                 </span>
-                <span className="ooo-tag font-mono text-[9px] tracking-[0.28em]">
+                <span className="ooo-tag font-mono text-[10px] tracking-[0.24em]">
                   {hobby.label}
                 </span>
               </button>

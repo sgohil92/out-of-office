@@ -29,7 +29,7 @@ function Ticket({ invite, email }: { invite: Invite; email: string }) {
         <p aria-hidden className="ooo-rubber-stamp absolute right-4 top-4 font-mono text-[7px] font-bold tracking-[0.18em] sm:right-6 sm:top-5 sm:text-[8px]">
           YOU&rsquo;RE INVITED
         </p>
-        <p className="font-mono text-[9px] tracking-[0.3em] text-[#8C7D63]">COME ALONG</p>
+        <p className="font-mono text-[10px] tracking-[0.26em] text-[#8C7D63]">COME ALONG</p>
         <h2 className="mt-2 max-w-[20ch] font-serif text-[26px] leading-[1.05] tracking-tight text-[#1E1A16] sm:max-w-none sm:text-[32px]">
           {invite.title}
         </h2>
@@ -43,7 +43,7 @@ function Ticket({ invite, email }: { invite: Invite; email: string }) {
         ) : null}
       </div>
       <div className="ooo-ticket-stub flex items-center justify-between gap-4 px-5 py-4 sm:flex-col sm:justify-center sm:px-6">
-        <p className="font-mono text-[8px] leading-relaxed tracking-[0.24em] text-[#8C7D63] sm:text-center">
+        <p className="font-mono text-[9px] leading-relaxed tracking-[0.22em] text-[#8C7D63] sm:text-center">
           ADMIT ONE
           <br />
           (+ TRUFFLES)

@@ -101,7 +101,7 @@ export default function WishList<E extends ArchiveEntry>({
 const lineInput =
   "h-[30px] w-full bg-transparent pb-[5px] pt-2 font-serif text-[15px] italic leading-none text-[#1E1A16] outline-none placeholder:text-[#8C7D63]/80";
 const padButton =
-  "font-mono text-[9px] tracking-[0.24em] text-[#9A3A28] underline-offset-4 hover:underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#9A3A28]";
+  "font-mono text-[10px] tracking-[0.22em] text-[#9A3A28] underline-offset-4 hover:underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#9A3A28]";
 
 /** A pencil line at the bottom of the pad where friends can suggest something to try. */
 function SuggestLine() {

@@ -83,7 +83,7 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
           MENU
         </text>
       </svg>
-      <span className="mt-1 block text-center font-mono text-[8px] tracking-[0.24em] text-[#8E8E93] group-hover:text-[#EAE5D9]">
+      <span className="mt-1 block text-center font-mono text-[10px] tracking-[0.22em] text-[#8E8E93] group-hover:text-[#EAE5D9]">
         PODCASTS
       </span>
     </button>
