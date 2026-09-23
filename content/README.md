@@ -97,7 +97,7 @@ The newest `section: "mood"` entry (last one in the list) is the handwritten lin
 
 ## What's next
 
-Each `section: "next"` entry is one line on the yellow notepad. `title` is the line (keep it short, it's one line). `body` is what opens in the drawer. Add `done: true` when you've done it: it gets a pencil check mark and a strike-through, and the "done" count goes up. Long lines wrap onto the next ruled line.
+Each `section: "next"` entry is one line on the yellow notepad. `title` is the line (keep it short, it's one line). `body` is what opens when someone taps it; leave it `""` and the line just sits on the pad (not tappable). Add `done: true` when you've done it: it gets a pencil check mark and a strike-through, and the "done" count goes up. Long lines wrap onto the next ruled line.
 
 At the bottom of the pad, friends can "suggest something for me to try". Suggestions are emailed to you the same way as book recommendations (needs the same `RESEND_API_KEY`).
 

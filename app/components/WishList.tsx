@@ -22,6 +22,8 @@ function PencilCheck() {
   );
 }
 
+const row = "flex w-full items-start gap-3 sm:gap-5";
+
 export default function WishList<E extends ArchiveEntry>({
   entries,
   onOpen,
@@ -43,17 +45,19 @@ export default function WishList<E extends ArchiveEntry>({
         <ol className="ooo-notepad-lines">
           {entries.map((entry) => (
             <li key={entry.id}>
-              <button
-                type="button"
-                onClick={() => onOpen(entry)}
-                aria-label={`${entry.title}${entry.done ? " (done)" : ""}. Open`}
-                className="group flex w-full items-start gap-3 text-left focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#9A3A28] sm:gap-5"
-              >
+              {/* Only wishes with a note open; the rest are just lines on the pad. */}
+              {entry.body ? (
+                <button
+                  type="button"
+                  onClick={() => onOpen(entry)}
+                  aria-label={`${entry.title}${entry.done ? " (done)" : ""}. Open`}
+                  className={`group ${row} text-left focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#9A3A28]`}
+                >
                 <span aria-hidden className="relative ml-1 mt-[17px] h-4 w-4 shrink-0 border-[1.5px] border-[#6B5E4E]/70 sm:ml-2">
                   {entry.done ? <PencilCheck /> : null}
                 </span>
                 <span
-                  className={`relative top-[5px] min-w-0 flex-1 pl-3 font-serif text-[19px] italic leading-[40px] transition-colors duration-300 sm:pl-4 ${
+                  className={`relative top-[5px] min-w-0 flex-1 pl-3 font-serif text-[19px] italic leading-[40px] text-pretty transition-colors duration-300 sm:pl-4 ${
                     entry.done
                       ? "text-[#6B5E4E] line-through decoration-[#4A4540]/70 decoration-[1.5px]"
                       : "text-[#1E1A16] group-hover:text-[#9A3A28]"
@@ -66,7 +70,28 @@ export default function WishList<E extends ArchiveEntry>({
                     {entry.date}
                   </time>
                 ) : null}
-              </button>
+                </button>
+              ) : (
+                <div className={row}>
+                <span aria-hidden className="relative ml-1 mt-[17px] h-4 w-4 shrink-0 border-[1.5px] border-[#6B5E4E]/70 sm:ml-2">
+                  {entry.done ? <PencilCheck /> : null}
+                </span>
+                <span
+                  className={`relative top-[5px] min-w-0 flex-1 pl-3 font-serif text-[19px] italic leading-[40px] text-pretty transition-colors duration-300 sm:pl-4 ${
+                    entry.done
+                      ? "text-[#6B5E4E] line-through decoration-[#4A4540]/70 decoration-[1.5px]"
+                      : "text-[#1E1A16] group-hover:text-[#9A3A28]"
+                  }`}
+                >
+                  {entry.title}
+                </span>
+                {entry.date ? (
+                  <time className="mt-[22px] shrink-0 font-mono text-[9px] leading-none tracking-[0.14em] text-[#8C7D63]">
+                    {entry.date}
+                  </time>
+                ) : null}
+                </div>
+              )}
             </li>
           ))}
         </ol>
@@ -110,7 +135,7 @@ function SuggestLine() {
     setMode("open");
   }
 
-  const row = "flex min-h-10 items-end gap-3 pl-1 sm:gap-5";
+  const suggestRow = "flex min-h-10 items-end gap-3 pl-1 sm:gap-5";
   const plus = (
     <span aria-hidden className="mb-[9px] ml-1 w-4 shrink-0 text-center font-serif text-[18px] leading-none text-[#9A3A28] sm:ml-2">
       +
@@ -123,7 +148,7 @@ function SuggestLine() {
         <span aria-hidden className="ml-1 mt-[11px] w-4 shrink-0 text-center font-serif text-[18px] leading-none text-[#9A3A28] sm:ml-2">
           +
         </span>
-        <span className="relative top-[5px] pl-3 font-serif text-[17px] italic leading-[40px] text-[#6B5E4E] group-hover:text-[#9A3A28] sm:pl-4">
+        <span className="relative top-[5px] pl-3 font-serif text-[17px] italic leading-[40px] text-balance text-[#6B5E4E] group-hover:text-[#9A3A28] sm:pl-4">
           suggest something for me to try. I trust you!
         </span>
       </button>
@@ -133,7 +158,7 @@ function SuggestLine() {
   if (mode === "sent" || mode === "fallback") {
     return (
       <div role="status" className="pb-2">
-        <div className={row}>
+        <div className={suggestRow}>
           {plus}
           <p className="pb-[7px] pl-3 font-serif text-[17px] italic leading-none text-[#1E1A16] sm:pl-4">
             {mode === "sent" ? "Noted! Thank you, it's in my inbox." : "Couldn't send it automatically."}
@@ -169,7 +194,7 @@ function SuggestLine() {
 
   return (
     <form onSubmit={submit} className="pb-2">
-      <div className={row}>
+      <div className={suggestRow}>
         {plus}
         <label htmlFor="wish-idea" className="sr-only">
           What should I try?
