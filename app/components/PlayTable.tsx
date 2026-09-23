@@ -1,8 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
+import type { Hobby } from "../../content/types";
 import type { ArchiveEntry } from "./types";
 import "./sections.css";
-
-type Hobby = "dance" | "painting" | "cooking" | "writing";
 
 const HOBBIES: { key: Hobby; label: string; tilt: number }[] = [
   { key: "dance", label: "DANCE", tilt: -5 },
@@ -270,7 +269,8 @@ export default function PlayTable<E extends ArchiveEntry>({
     <div className="ooo-table w-full min-w-0 border border-[#242220] px-3 py-8 sm:px-6">
       <ul className="grid grid-cols-2 items-end gap-x-5 gap-y-10 sm:gap-x-8">
         {entries.map((entry, i) => {
-          const hobby = HOBBIES[i % HOBBIES.length];
+          const hobby =
+            HOBBIES.find((h) => h.key === entry.hobby) ?? HOBBIES[i % HOBBIES.length];
           return (
             <li key={entry.id} className="flex justify-center">
               <button

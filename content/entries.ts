@@ -18,9 +18,11 @@ function placeholder(
     index,
     date,
     title: `Untitled — Entry ${index}`,
+    spine: "Untitled",
     dek: "Awaiting dispatch.",
     body: "[ Entry forthcoming. ]",
-    tags: ["placeholder"],
+    tags: [],
+    draft: true,
   };
 }
 
@@ -64,10 +66,10 @@ export const ENTRIES: Entry[] = [
   },
   placeholder("colombia-altitude", "destinations", "01.04", "09.20.2026"),
 
-  placeholder("ink-study-01", "play", "02.01", "09.06.2026"),
-  placeholder("vine-continuous", "play", "02.02", "09.09.2026"),
-  placeholder("botanical-field", "play", "02.03", "09.14.2026"),
-  placeholder("contact-sheet", "play", "02.04", "09.18.2026"),
+  { ...placeholder("ink-study-01", "play", "02.01", "09.06.2026"), hobby: "dance" },
+  { ...placeholder("vine-continuous", "play", "02.02", "09.09.2026"), hobby: "painting" },
+  { ...placeholder("botanical-field", "play", "02.03", "09.14.2026"), hobby: "cooking" },
+  { ...placeholder("contact-sheet", "play", "02.04", "09.18.2026"), hobby: "writing" },
 
   placeholder("plato-republic", "bookshelf", "03.01", "09.05.2026"),
   placeholder("socratic-method", "bookshelf", "03.02", "09.10.2026"),

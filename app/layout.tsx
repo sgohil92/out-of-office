@@ -34,6 +34,12 @@ export const metadata: Metadata = {
   title: "Otherwise Occupied — Sabbatical 2026 / Vol. 1",
   description:
     "An archival digital studio: destinations, play, bookshelf, and next.",
+  robots: { index: false, follow: false },
+  openGraph: {
+    title: "Otherwise Occupied",
+    description: "Sabbatical 2026 / Vol. 1 — a private reading room.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
