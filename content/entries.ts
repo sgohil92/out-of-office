@@ -63,7 +63,7 @@ export const ENTRIES: Entry[] = [
       "A Tout Chocolat takeaway cup on a wooden tray",
       "A chalkboard sign on the sidewalk: a soccer ball melting into chocolate",
       "A place setting with a pink Masala & Maíz menu and a denim napkin",
-      "A dark mole sprinkled with sesame on a spotted ceramic plate",
+      "Mole sprinkled with sesame on a spotted ceramic plate at Pujol",
     ],
     imageAspects: [
       "portrait",
@@ -88,7 +88,7 @@ export const ENTRIES: Entry[] = [
       "Tout Chocolat",
       "",
       "Masala & Maíz",
-      "",
+      "Pujol",
     ],
     tags: [],
   },
