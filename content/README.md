@@ -42,6 +42,8 @@ The road atlas draws itself from your stops and zooms to fit them, so a stop any
 - `pin` is where it sits on the map: `[latitude, longitude]`. In Google Maps, right-click the spot; the numbers at the top of the menu are the pin. Click them to copy.
 - `arrive` is how Truffles gets there from the stop before it in time (the one listed just below it): `"drive"` (roadster), `"paddle"` (paddleboard) or `"fly"` (biplane).
 - `dek` shows in pencil next to the place name on the map.
+- `imageCaptions` (optional) puts a short line under each photo, like where it was taken. Same order as `images`; use `""` to skip one.
+- In `body`, a paragraph whose lines start with `* ` becomes a bulleted list.
 - Photos go in `public/destinations/lisbon/`. `portrait` is taller (you in the frame). `landscape` is wider (a view).
 
 The map's title, jokes, home pin and doodles (bone, ball, nap zone, ocean label) live in `content/atlas.ts`. Put your dog's name in `dogName` there.

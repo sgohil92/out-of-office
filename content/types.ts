@@ -44,7 +44,7 @@ export type Entry = {
   title: string;
   /** One-line subtitle. Leave "" to hide it. */
   dek: string;
-  /** Paragraphs separated by a blank line. */
+  /** Paragraphs separated by a blank line. Lines starting with "* " become a bulleted list. */
   body: string;
   image?: string;
   images?: string[];
@@ -52,6 +52,8 @@ export type Entry = {
   imageAlts?: string[];
   imageAspect?: PhotoAspect;
   imageAspects?: PhotoAspect[];
+  /** A short line under each photo, like where it was taken. Same order as `images`. */
+  imageCaptions?: string[];
   /** Videos shown in the drawer, above the text. */
   videos?: Video[];
   tags: string[];

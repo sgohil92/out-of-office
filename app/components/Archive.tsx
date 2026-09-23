@@ -85,9 +85,11 @@ function PrintFrame({
   aspect = "landscape",
   className = "",
   focus = "center",
+  caption,
 }: {
   src: string;
   alt: string;
+  caption?: string;
   aspect?: PhotoAspect;
   className?: string;
   focus?: "center" | "face";
@@ -125,6 +127,9 @@ function PrintFrame({
           />
         </div>
       </div>
+      {caption ? (
+        <figcaption className="mt-3 text-center font-serif text-[14px] italic text-[#8E8E93]">{caption}</figcaption>
+      ) : null}
     </figure>
   );
 }
@@ -132,7 +137,7 @@ function PrintFrame({
 /** A paw-print postmark for Destinations, like the stop was stamped by the dog. */
 function Postmark({ place, date }: { place: string; date: string }) {
   const [m, d, y] = date.split(".");
-  const when = date ? `${m}·${d}·${y}` : "SABBATICAL · 2026";
+  const when = date ? `${m}·${d}·${y}` : "· 2026 ·";
   return (
     <svg
       viewBox="0 0 220 104"
@@ -208,7 +213,7 @@ function ReelFrame({ video }: { video: Video }) {
 const GRID_TILTS = [-1.4, 1.1, -0.7, 1.6, -1.1, 0.8];
 
 /** Three or more photos: a two-column scrapbook, each opens full-screen. */
-function ScrapbookGrid({ prints }: { prints: { src: string; alt: string }[] }) {
+function ScrapbookGrid({ prints }: { prints: { src: string; alt: string; caption?: string }[] }) {
   const [open, setOpen] = useState<number | null>(null);
   return (
     <>
@@ -227,12 +232,22 @@ function ScrapbookGrid({ prints }: { prints: { src: string; alt: string }[] }) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={print.src} alt={print.alt} loading="lazy" className="block h-auto w-full" />
               </span>
+              {print.caption ? (
+                <span className="mt-2 block text-center font-serif text-[13px] italic leading-snug text-[#8E8E93]">
+                  {print.caption}
+                </span>
+              ) : null}
             </button>
           </li>
         ))}
       </ul>
       {open !== null ? (
-        <Lightbox items={prints} index={open} onMove={setOpen} onClose={() => setOpen(null)} />
+        <Lightbox
+          items={prints.map((p) => ({ src: p.src, alt: p.alt, meta: p.caption }))}
+          index={open}
+          onMove={setOpen}
+          onClose={() => setOpen(null)}
+        />
       ) : null}
     </>
   );
@@ -419,6 +434,7 @@ export default function Archive({
       ? active.images.map((src, i) => ({
           src,
           alt: active.imageAlts?.[i] ?? `${active.title} ${i + 1}`,
+          caption: active.imageCaptions?.[i],
           aspect: active.imageAspects?.[i] ?? ("landscape" as const),
           focus: "center" as const,
         }))
@@ -427,6 +443,7 @@ export default function Archive({
             {
               src: active.image,
               alt: active.imageAlt ?? active.title,
+              caption: undefined as string | undefined,
               aspect: active.imageAspect,
               focus: "face" as const,
             },
@@ -443,11 +460,22 @@ export default function Archive({
         active.stamp ? "leading-relaxed text-[#EAE5D9]" : "leading-[1.7]"
       }`}
     >
-      {active.body.split("\n\n").map((para, idx) => (
-        <p key={para.slice(0, 24)} className={idx === 0 && /^[A-Za-z]/.test(para) ? "drop-cap" : ""}>
-          {para}
-        </p>
-      ))}
+      {active.body.split("\n\n").map((para, idx) =>
+        para.startsWith("* ") ? (
+          <ul key={para.slice(0, 24)} className="space-y-4 pl-1">
+            {para.split(/\n(?=\* )/).map((item) => (
+              <li key={item.slice(0, 24)} className="relative pl-6">
+                <span aria-hidden className="absolute left-0 top-[0.85em] h-px w-3 bg-[#A07E55]/70" />
+                {item.slice(2)}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p key={para.slice(0, 24)} className={idx === 0 && /^[A-Za-z]/.test(para) ? "drop-cap" : ""}>
+            {para}
+          </p>
+        ),
+      )}
     </div>
   ) : null;
   const photos =
@@ -462,6 +490,7 @@ export default function Archive({
             alt={print.alt}
             aspect={print.aspect}
             focus={print.focus}
+            caption={print.caption}
           />
         ))}
       </div>
