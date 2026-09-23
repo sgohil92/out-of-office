@@ -43,7 +43,7 @@ The road atlas draws itself from your stops and zooms to fit them, so a stop any
 - `dek` shows in pencil next to the place name on the map.
 - Photos go in `public/destinations/lisbon/`. `portrait` is taller (you in the frame). `landscape` is wider (a view).
 
-The map's title, jokes, map key, home pin and doodles (bone, ball, nap zone, ocean label) live in `content/atlas.ts`. Put your dog's name in `dogName` there.
+The map's title, jokes, home pin and doodles (bone, ball, nap zone, ocean label) live in `content/atlas.ts`. Put your dog's name in `dogName` there.
 
 ## Invites
 

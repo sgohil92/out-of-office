@@ -10,11 +10,7 @@ export type AtlasWords = {
   dogName: string;
   edition: string;
   tagline: string;
-  finePrint: string;
-  scale: string;
   next: string;
-  compass: { n: string; e: string; s: string; w: string };
-  key: { kind: Travel | "bone" | "ball" | "nap"; label: string }[];
 };
 
 const COAT = "#1B1917";
@@ -258,36 +254,6 @@ function Doodle({ kind }: { kind: "bone" | "ball" | "nap" }) {
       <text x="6" y="-7" fontSize="12">z</text>
       <text x="14" y="-16" fontSize="16">Z</text>
     </g>
-  );
-}
-
-function KeyGlyph({ kind }: { kind: AtlasWords["key"][number]["kind"] }) {
-  return (
-    <svg viewBox="0 0 32 12" className="h-3 w-8 shrink-0 overflow-visible" aria-hidden>
-      {kind === "drive" ? (
-        <>
-          <path d="M 1 6 H 31" stroke={ROAD} strokeWidth="3" />
-          <path d="M 1 6 H 31" stroke="#F3EAD6" strokeWidth="0.8" strokeDasharray="3 3" />
-        </>
-      ) : kind === "paddle" ? (
-        <path d="M 2 6 H 30" stroke="#7FA2B8" strokeWidth="2.2" strokeDasharray="0.1 4.5" strokeLinecap="round" />
-      ) : kind === "fly" ? (
-        <path d="M 1 6 H 31" stroke="#C9C2B4" strokeWidth="1.1" strokeDasharray="5 3" />
-      ) : kind === "bone" ? (
-        <g transform="translate(16 6) scale(0.5)">
-          <path d={BONE} fill="#F3EAD6" stroke="#A07E55" strokeWidth="1.5" />
-        </g>
-      ) : kind === "ball" ? (
-        <g transform="translate(16 6)">
-          <circle r="4" fill="#C9C24A" />
-          <path d="M -3.2 -2.2 Q 0 0 -3.2 2.2 M 3.2 -2.2 Q 0 0 3.2 2.2" fill="none" stroke="#F3EAD6" strokeWidth="0.7" />
-        </g>
-      ) : (
-        <text x="8" y="10" fontSize="11" fill="#A89F90" fontStyle="italic" className="font-serif">
-          zZ
-        </text>
-      )}
-    </svg>
   );
 }
 
@@ -740,26 +706,11 @@ export default function RoadAtlas<E extends ArchiveEntry>({
         </div>
       </div>
 
-      <div className="mt-5 font-mono text-[10px] leading-relaxed tracking-[0.06em] text-[#8E8E93]">
-        <p className="mb-2 text-[9px] tracking-[0.28em] text-[#6B6760]">MAP KEY</p>
-        <ul className="grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
-          {words.key.map((item) => (
-            <li key={item.kind} className="flex items-center gap-2">
-              <KeyGlyph kind={item.kind} />
-              <span>{item.label}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-3 text-[#6B6760]">
-          COMPASS: N · {words.compass.n} &nbsp;E · {words.compass.e} &nbsp;S · {words.compass.s} &nbsp;W · {words.compass.w}
+      {drawing.unpinned.length > 0 ? (
+        <p className="mt-3 font-mono text-[10px] tracking-[0.06em] text-[#6B6760]">
+          Also visited, somewhere off the map: {drawing.unpinned.join(", ")}.
         </p>
-        <p className="mt-1 text-[#6B6760]">
-          SCALE: {words.scale}. {words.finePrint}
-        </p>
-        {drawing.unpinned.length > 0 ? (
-          <p className="mt-1 text-[#6B6760]">Also visited, somewhere off the map: {drawing.unpinned.join(", ")}.</p>
-        ) : null}
-      </div>
+      ) : null}
     </div>
   );
 }

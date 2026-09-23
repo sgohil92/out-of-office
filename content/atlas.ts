@@ -10,9 +10,6 @@ export const ATLAS = {
   dogName: "Truffles",
   edition: "Sabbatical Edition · 2026",
   tagline: "Revised at every snack stop.",
-  finePrint: "Not to scale. Not even close.",
-  scale: "1 in. = 3 naps",
-  compass: { n: "naps", e: "eats", s: "snacks", w: "walkies" },
   /** The pencil note trailing off the newest stop. */
   next: "next: ? (ask Truffles)",
   /** Where the trip starts. */
@@ -29,14 +26,4 @@ export const ATLAS = {
     { kind: "ball", pin: [25.5, -151.5] },
     { kind: "nap", pin: [27.5, -105] },
   ] as { kind: "bone" | "ball" | "nap" | "label"; pin: Pin; text?: string; note?: string }[],
-
-  /** The map key under the atlas. */
-  key: [
-    { kind: "drive", label: "Drove. Windows down, ears out." },
-    { kind: "paddle", label: "Paddled. Allegedly." },
-    { kind: "fly", label: "Flew. Goggles mandatory." },
-    { kind: "bone", label: "Bone buried. Location classified." },
-    { kind: "ball", label: "Ball lost. Presumed happy." },
-    { kind: "nap", label: "Nap zone." },
-  ] as { kind: "drive" | "paddle" | "fly" | "bone" | "ball" | "nap"; label: string }[],
 };
