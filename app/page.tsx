@@ -3,6 +3,7 @@ import { ABOUT } from "../content/about";
 import { ENTRIES } from "../content/entries";
 import { INVITES, RSVP_EMAIL } from "../content/invites";
 import { SECTIONS } from "../content/sections";
+import { PAINTINGS, STUDIO_NOTES } from "../content/studio";
 import { drawAtlas } from "../lib/atlas";
 import Archive from "./components/Archive";
 
@@ -24,6 +25,7 @@ export default function Home() {
       entries={entries}
       sections={SECTIONS}
       atlas={{ drawing, words }}
+      studio={{ paintings: PAINTINGS, notes: STUDIO_NOTES }}
       invites={{
         list: showDrafts ? INVITES : INVITES.filter((invite) => !invite.draft),
         email: RSVP_EMAIL,

@@ -13,6 +13,7 @@ Save the file, and the local site refreshes. Photos go in `public/`, then you po
 | A trip, a mood note, a wish, a book | `content/entries.ts` |
 | The road atlas title, jokes, and dog's name | `content/atlas.ts` |
 | An invite on the main page | `content/invites.ts` |
+| A painting or a studio note | `content/studio.ts` |
 | Photos | `public/` — see below |
 
 ## Add a trip (Destinations)
@@ -52,6 +53,13 @@ Each entry in `content/invites.ts` shows as a ticket at the top of the main page
 ## Play
 
 Each `section: "play"` entry sits on one object on the table. Set `hobby` to `"dance"`, `"painting"`, `"cooking"`, or `"writing"` to choose which. Change `title` and `body` to write about it.
+
+### Painting: the studio wall
+
+Tapping the painting on the table opens your studio wall, a running portfolio with no dates. In `content/studio.ts`:
+
+- **A painting:** copy a block in `PAINTINGS` and put it at the top. `note` is your caption (shown in pencil when it's opened). `favorite: true` gives it a pin. Photos go in `public/studio/`.
+- **A studio note:** add a `text` to `STUDIO_NOTES`, newest at the top. A note doesn't need to go with a painting; it's your running stream of thoughts. It can have an `image` if you like.
 
 ### Dance videos
 

@@ -10,11 +10,13 @@ import type { Invite } from "../../content/invites";
 import BookRecommendSlip from "./BookRecommendSlip";
 import InviteTicket from "./InviteTicket";
 import SleepingTruffles from "./SleepingTruffles";
+import type { Painting, StudioNote } from "../../content/studio";
 import MoodPortrait from "./MoodPortrait";
 import WishList from "./WishList";
 
 const RoadAtlas = dynamic(() => import("./RoadAtlas"));
 const PlayTable = dynamic(() => import("./PlayTable"));
+const StudioWall = dynamic(() => import("./StudioWall"));
 
 export type SectionInfo = { id: SectionId; title: string; rubric: string };
 
@@ -344,12 +346,14 @@ export default function Archive({
   sections,
   atlas,
   invites,
+  studio,
 }: {
   about: Entry;
   entries: Entry[];
   sections: SectionInfo[];
   atlas: { drawing: AtlasDrawing; words: AtlasWords };
   invites: { list: Invite[]; email: string };
+  studio: { paintings: Painting[]; notes: StudioNote[] };
 }) {
   // The first line of the About note doubles as the welcome under the title.
   const intro = about.body.split("\n\n")[0];
@@ -606,6 +610,10 @@ export default function Archive({
                   ))}
                 </div>
               )}
+              {active.section === "play" && active.hobby === "painting" ? (
+                <StudioWall paintings={studio.paintings} notes={studio.notes} />
+              ) : null}
+              {active.body ? (
               <div
                 className={`mt-8 space-y-5 font-serif text-[17px] ${
                   active.stamp
@@ -624,6 +632,7 @@ export default function Archive({
                   </p>
                 ))}
               </div>
+              ) : null}
               <div className="mt-10 flex flex-col items-center gap-2">
                 <span aria-hidden className="h-px w-10 bg-[#A07E55]/50" />
                 {!active.stamp && (
