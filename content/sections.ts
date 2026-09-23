@@ -9,8 +9,7 @@ export const SECTIONS: {
   {
     id: "destinations",
     title: "DESTINATIONS",
-    rubric:
-      "Traveling without too much structure—following recommendations and whimsy.",
+    rubric: "",
   },
   {
     id: "play",
