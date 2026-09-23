@@ -105,7 +105,21 @@ export const ENTRIES: Entry[] = [
   },
 
   { ...placeholder("ink-study-01", "play", "02.01", "09.06.2026"), hobby: "dance" },
-  { ...placeholder("vine-continuous", "play", "02.02", "09.09.2026"), hobby: "painting" },
+  {
+    id: "watercolors-so-far",
+    section: "play",
+    hobby: "painting",
+    index: "02.02",
+    date: "09.23.2026",
+    title: "Watercolors, so far",
+    dek: "",
+    body: "Gradually learning the different watercolor techniques and improving. My two favorites are the cafe front and fuchsia botanicals because they're with a lighter hand. I have noticed I lean into the mood of what I'm capturing rather than precisely capturing what is in front of me.",
+    image: "/play/paintings-so-far.jpg",
+    imageAlt:
+      "Paintings spread across a table: fuchsia botanicals, a tree on the coast, a café front sketched in ink and wash, purple flowers from Mendocino, and a green hill over water",
+    imageAspect: "landscape",
+    tags: [],
+  },
   { ...placeholder("botanical-field", "play", "02.03", "09.14.2026"), hobby: "cooking" },
   { ...placeholder("contact-sheet", "play", "02.04", "09.18.2026"), hobby: "writing" },
 
