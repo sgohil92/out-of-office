@@ -12,8 +12,8 @@ export const ATLAS = {
   tagline: "Revised at every snack stop.",
   /** The pencil note trailing off the newest stop. */
   next: "next: ? (ask Truffles)",
-  /** Where the trip starts. */
-  home: { label: "home", pin: [37.7749, -122.4194] as Pin },
+  /** Where the trip starts. `label` is optional pencil text by the house; "" hides it. */
+  home: { label: "", pin: [37.7749, -122.4194] as Pin },
 
   /**
    * Doodles on the map. A doodle only shows if its spot is inside the map,

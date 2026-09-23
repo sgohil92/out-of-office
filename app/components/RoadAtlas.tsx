@@ -639,13 +639,15 @@ export default function RoadAtlas<E extends ArchiveEntry>({
               </p>
             ))}
 
-          <p
-            aria-hidden
-            className="pointer-events-none absolute -translate-x-full pr-1 font-serif text-[11px] italic leading-none text-[#6B5E4E] sm:text-[12px]"
-            style={pct({ x: home.x - 4, y: home.y + 2 })}
-          >
-            {home.label}
-          </p>
+          {home.label ? (
+            <p
+              aria-hidden
+              className="pointer-events-none absolute -translate-x-full pr-1 font-serif text-[11px] italic leading-none text-[#6B5E4E] sm:text-[12px]"
+              style={pct({ x: home.x - 4, y: home.y + 2 })}
+            >
+              {home.label}
+            </p>
+          ) : null}
 
           {last ? (
             <p
