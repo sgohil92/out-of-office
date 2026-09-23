@@ -54,7 +54,7 @@ export default function MoodPortrait<E extends ArchiveEntry>({
               <button
                 type="button"
                 onClick={() => onOpen(entry)}
-                className="group grid w-full grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-4 py-3 text-left transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#A07E55]"
+                className="group grid w-full grid-cols-[5.75rem_minmax(0,1fr)] items-baseline gap-x-4 py-3 text-left transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#A07E55]"
               >
                 <time className="font-mono text-[10px] tracking-[0.16em] text-[#A07E55]">
                   {entry.date}

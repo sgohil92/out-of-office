@@ -276,7 +276,19 @@ export const ENTRIES: Entry[] = [
   placeholder("mood-log-01", "mood", "04.01", "09.07.2026"),
   placeholder("mood-log-02", "mood", "04.02", "09.13.2026"),
   placeholder("mood-log-03", "mood", "04.03", "09.18.2026"),
-  placeholder("mood-log-04", "mood", "04.04", "09.22.2026"),
+  {
+    id: "think-and-we-are",
+    section: "mood",
+    index: "04.04",
+    date: "",
+    title: "“I think, therefore I am” and “I am because we are”",
+    dek: "Work in progress.",
+    body: [
+      "[ Work in progress. ]",
+      "How to hold both of these at once, “I think, therefore I am” and “I am because we are”, and what they mean to me.",
+    ].join("\n\n"),
+    tags: [],
+  },
   {
     id: "ritual-of-coffee",
     section: "mood",
