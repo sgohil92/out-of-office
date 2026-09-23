@@ -58,10 +58,12 @@ export type Entry = {
   stamp?: string;
   /** Destinations only: where the stop sits on the map. */
   pin?: Pin;
-  /** Destinations only: how the dog arrives here from the previous stop. Defaults to "drive". */
+  /** Destinations only: how the dog arrives here from the stop before it in time (the one listed below it). Defaults to "drive". */
   arrive?: Travel;
   /** Play only: which object on the table this entry belongs to. */
   hobby?: Hobby;
+  /** What's Next only: true = checked off on the notepad. */
+  done?: boolean;
   /** Bookshelf only: a short title for the spine. Falls back to `title`. */
   spine?: string;
   /** true = shows on your computer, hidden on the live site. */

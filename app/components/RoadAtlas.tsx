@@ -721,7 +721,7 @@ export default function RoadAtlas<E extends ArchiveEntry>({
                     >
                       <span className="font-sc block text-[11px] leading-none text-[#2A2520] sm:text-[13px]">
                         <span className="mr-1 font-mono text-[8px] text-[#8C7D63] sm:text-[9px]">
-                          {String(k + 1).padStart(2, "0")}
+                          {String(stops.length - k).padStart(2, "0")}
                         </span>
                         {entry.place ?? entry.title}
                       </span>

@@ -8,7 +8,7 @@ Save the file, and the local site refreshes. Photos go in `public/`, then you po
 
 | What you want to change | File |
 | --- | --- |
-| About drawer (the three paragraphs) | `content/about.ts` |
+| About drawer, and the welcome line under the title (its first paragraph) | `content/about.ts` |
 | Section titles and the sentence under them | `content/sections.ts` |
 | A trip, a mood note, a wish, a book | `content/entries.ts` |
 | The road atlas title, jokes, and dog's name | `content/atlas.ts` |
@@ -17,13 +17,13 @@ Save the file, and the local site refreshes. Photos go in `public/`, then you po
 
 ## Add a trip (Destinations)
 
-The road atlas draws itself from your stops and zooms to fit them, so a stop anywhere in the world works. The dog travels the stops in the order they appear in `entries.ts`, starting from home. Copy a block, give it a new `id`, and put it after the other `section: "destinations"` entries.
+The road atlas draws itself from your stops and zooms to fit them, so a stop anywhere in the world works. Stops are listed **newest first**: the newest is 01 on the map. Truffles still travels them oldest to newest, starting from home. Copy a block, give it a new `id`, and put it **at the top** of the `section: "destinations"` entries. Then bump the other stops' `index` numbers down by one.
 
 ```ts
 {
   id: "lisbon",
   section: "destinations",
-  index: "01.05",
+  index: "01.01",
   date: "10.02.2026",
   place: "Lisbon",
   title: "Lisbon",
@@ -39,7 +39,7 @@ The road atlas draws itself from your stops and zooms to fit them, so a stop any
 ```
 
 - `pin` is where it sits on the map: `[latitude, longitude]`. In Google Maps, right-click the spot; the numbers at the top of the menu are the pin. Click them to copy.
-- `arrive` is how the dog gets there from the previous stop: `"drive"` (roadster), `"paddle"` (paddleboard) or `"fly"` (biplane).
+- `arrive` is how Truffles gets there from the stop before it in time (the one listed just below it): `"drive"` (roadster), `"paddle"` (paddleboard) or `"fly"` (biplane).
 - `dek` shows in pencil next to the place name on the map.
 - Photos go in `public/destinations/lisbon/`. `portrait` is taller (you in the frame). `landscape` is wider (a view).
 
@@ -76,7 +76,7 @@ The newest `section: "mood"` entry (last one in the list) is the handwritten lin
 
 ## What's next
 
-Each `section: "next"` entry is one line on the ruled paper. `title` is the line. `body` is what opens in the drawer.
+Each `section: "next"` entry is one line on the yellow notepad. `title` is the line (keep it short, it's one line). `body` is what opens in the drawer. Add `done: true` when you've done it: it gets a pencil check mark and a strike-through, and the "done" count goes up.
 
 ## Drafts
 

@@ -9,6 +9,8 @@ import type { AtlasWords } from "./RoadAtlas";
 import type { Invite } from "../../content/invites";
 import BookRecommendSlip from "./BookRecommendSlip";
 import InviteTicket from "./InviteTicket";
+import SleepingTruffles from "./SleepingTruffles";
+import { postmark } from "./types";
 import MoodPortrait from "./MoodPortrait";
 import WishList from "./WishList";
 
@@ -343,13 +345,19 @@ export default function Archive({
   sections,
   atlas,
   invites,
+  updated,
 }: {
   about: Entry;
   entries: Entry[];
   sections: SectionInfo[];
   atlas: { drawing: AtlasDrawing; words: AtlasWords };
   invites: { list: Invite[]; email: string };
+  /** When the site was last published, MM.DD.YYYY. */
+  updated: string;
 }) {
+  const stamp = postmark(updated);
+  // The first line of the About note doubles as the welcome under the title.
+  const intro = about.body.split("\n\n")[0];
   const [active, setActive] = useState<Entry | null>(null);
 
   useEffect(() => {
@@ -401,21 +409,37 @@ export default function Archive({
 
 
       <header className="relative z-10 border-b-[3px] border-double border-[#34302B] px-5 py-10 sm:px-10 lg:px-14">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div className="min-w-0">
             <h1 className="max-w-[11ch] font-serif text-[clamp(2.35rem,8.5vw,4.5rem)] leading-[0.9] tracking-[-0.03em]">
               Otherwise Occupied
             </h1>
-          </div>
-          <div className="flex shrink-0 flex-col gap-3 md:mb-3 md:items-end">
+            <p className="mt-5 max-w-md font-serif text-[18px] italic leading-snug text-[#B8B2A6] sm:text-[20px]">
+              {intro}
+            </p>
             <button
               type="button"
               onClick={() => setActive(about)}
-              className="font-mono text-[10px] tracking-[0.22em] text-[#8E8E93] transition hover:text-[#A07E55] md:text-right"
+              className="group mt-4 font-mono text-[10px] tracking-[0.22em] text-[#A07E55] focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55]"
             >
-              [ 00 / ABOUT ]
+              <span className="border-b border-[#A07E55]/40 pb-0.5 transition-colors group-hover:border-[#A07E55]">
+                WHY I&rsquo;M DOING THIS
+              </span>{" "}
+              <span aria-hidden className="inline-block transition-transform group-hover:translate-x-1">
+                →
+              </span>
             </button>
           </div>
+          <p
+            className="ooo-updated-stamp shrink-0 self-start font-mono md:mb-2 md:self-end"
+            aria-label={`Last updated ${stamp.month} ${stamp.day}, ${stamp.year}`}
+          >
+            <span className="block text-[8px] tracking-[0.3em]">LAST UPDATED</span>
+            <span className="mt-1 block text-[15px] font-bold tracking-[0.18em]">
+              {stamp.month} · {stamp.day}
+            </span>
+            <span className="block text-[8px] tracking-[0.3em]">{stamp.year}</span>
+          </p>
         </div>
       </header>
 
@@ -518,7 +542,15 @@ export default function Archive({
         })}
       </main>
 
-      <footer className="relative z-10 border-t-[3px] border-double border-[#34302B]" />
+      <footer className="relative z-10 flex flex-col items-center gap-3 border-t-[3px] border-double border-[#34302B] px-5 pb-14 pt-12 text-center">
+        <SleepingTruffles />
+        <p className="font-serif text-[17px] italic text-[#B8B2A6]">
+          Truffles approves this message.
+        </p>
+        <p className="font-mono text-[9px] tracking-[0.3em] text-[#6B6760]">
+          OTHERWISE OCCUPIED · SABBATICAL 2026 · VOL. 1
+        </p>
+      </footer>
 
       {active && (
         <div className="fixed inset-0 z-[60] flex justify-end">

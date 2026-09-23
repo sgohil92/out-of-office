@@ -529,3 +529,119 @@
   opacity: 0.8;
   mix-blend-mode: multiply;
 }
+
+/* "Last updated" postmark in the header */
+.ooo-updated-stamp {
+  color: #a07e55;
+  text-align: center;
+  border: 1.5px solid currentColor;
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
+  padding: 0.7em 1em;
+  transform: rotate(-4deg);
+  opacity: 0.9;
+}
+
+/* What's Next: a yellow legal pad */
+.ooo-notepad {
+  background:
+    radial-gradient(ellipse at 80% 100%, rgba(120, 90, 50, 0.12), transparent 60%),
+    #eee3bb;
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(0, 0, 0, 0.3),
+    4px 4px 0 -1px #d9cea4,
+    8px 8px 0 -2px #c9be94;
+  transform: rotate(-0.4deg);
+}
+
+.ooo-notepad::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  bottom: 0;
+  left: 46px;
+  border-left: 1.5px solid rgba(186, 72, 58, 0.55);
+}
+
+@media (min-width: 640px) {
+  .ooo-notepad::before {
+    left: 60px;
+  }
+}
+
+.ooo-notepad-binding {
+  height: 14px;
+  background: linear-gradient(180deg, #8a3326, #6e271c);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.ooo-notepad-head {
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid rgba(92, 128, 160, 0.45);
+}
+
+.ooo-notepad-lines {
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0 39px,
+    rgba(92, 128, 160, 0.4) 39px 40px
+  );
+}
+
+/* Sleeping Truffles in the footer */
+.ooo-breathe {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: ooo-breathe 3.6s ease-in-out infinite;
+}
+
+.ooo-z {
+  opacity: 0;
+  animation: ooo-z 3.6s ease-in-out infinite;
+}
+
+.ooo-z2 {
+  animation-delay: 0.5s;
+}
+
+.ooo-z3 {
+  animation-delay: 1s;
+}
+
+@keyframes ooo-breathe {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.045);
+  }
+}
+
+@keyframes ooo-z {
+  0%,
+  15% {
+    opacity: 0;
+    transform: translate(0, 4px);
+  }
+  40%,
+  70% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(4px, -6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ooo-breathe,
+  .ooo-z {
+    animation: none;
+  }
+
+  .ooo-z {
+    opacity: 0.7;
+  }
+}

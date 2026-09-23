@@ -15,7 +15,7 @@ export const SECTIONS: {
   {
     id: "play",
     title: "PLAY",
-    rubric: "Let my brain wander somewhere new: or forgotten.",
+    rubric: "Let my brain wander somewhere new—or forgotten.",
   },
   {
     id: "bookshelf",
