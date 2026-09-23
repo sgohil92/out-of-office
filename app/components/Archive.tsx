@@ -106,7 +106,7 @@ function PrintFrame({
   const portrait = aspect === "portrait";
   return (
     <figure
-      className={`print-tilt group relative -rotate-[0.6deg] border border-[#242220] bg-[#100F0E] p-3 shadow-[0_10px_30px_rgba(0,0,0,0.45)] transition duration-700 ease-out hover:rotate-0 ${
+      className={`print-tilt group relative -rotate-[0.6deg] border border-[#242220] bg-[#100F0E] p-3 shadow-[var(--shadow-float)] transition duration-700 ease-out hover:rotate-0 ${
         portrait ? `mx-auto w-full ${featured ? "max-w-md" : "max-w-sm"}` : ""
       } ${className}`}
     >
@@ -220,7 +220,7 @@ function ReelFrame({ video }: { video: Video }) {
         controls
         playsInline
         preload="metadata"
-        className={`block w-full border-[5px] border-[#E4DCC8] bg-black object-cover shadow-[0_12px_30px_rgba(0,0,0,0.5)] ${
+        className={`block w-full border-[5px] border-[#E4DCC8] bg-black object-cover shadow-[var(--shadow-float)] ${
           portrait ? "aspect-[9/16]" : "aspect-video"
         }`}
       />
@@ -251,7 +251,7 @@ function ScrapbookGrid({ prints }: { prints: { src: string; alt: string; caption
               style={{ "--tilt": `${GRID_TILTS[i % GRID_TILTS.length]}deg` } as CSSProperties}
             >
               <span aria-hidden className="tape absolute -top-2 left-1/2 z-10 h-4 w-12 -translate-x-1/2 rotate-[-4deg]" />
-              <span className="block bg-[#E4DCC8] p-[5px] shadow-[0_10px_24px_rgba(0,0,0,0.5)]">
+              <span className="block bg-[#E4DCC8] p-[5px] shadow-[var(--shadow-float)]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={print.src} alt={print.alt} loading="lazy" className="block h-auto w-full" />
               </span>

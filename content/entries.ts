@@ -464,6 +464,16 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
   {
+    id: "not-a-zero-sum-game",
+    section: "mood",
+    index: "04.07",
+    date: "",
+    title: "It's not a zero-sum game",
+    dek: "Thoughts on monogamy. Work in progress.",
+    body: "",
+    tags: [],
+  },
+  {
     id: "ritual-of-coffee",
     section: "mood",
     index: "04.05",

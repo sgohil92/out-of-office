@@ -15,7 +15,7 @@
 .ooo-atlas {
   background: #e6dcc4;
   box-shadow:
-    0 14px 34px rgba(0, 0, 0, 0.5),
+    var(--shadow-float),
     0 0 0 1px rgba(0, 0, 0, 0.35);
   overflow: hidden;
 }
@@ -299,7 +299,7 @@
 
 .ooo-object-body {
   transform: rotate(var(--tilt, 0deg));
-  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.55));
+  filter: drop-shadow(3px 5px 5px rgba(0, 0, 0, 0.5)) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
   transition:
     transform 500ms cubic-bezier(0.22, 0.61, 0.36, 1),
     filter 500ms ease;
@@ -308,7 +308,7 @@
 .ooo-object:hover .ooo-object-body,
 .ooo-object:focus-visible .ooo-object-body {
   transform: translateY(-8px) rotate(0deg);
-  filter: drop-shadow(0 16px 14px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(6px 14px 12px rgba(0, 0, 0, 0.5)) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
 }
 
 .ooo-tag {
@@ -371,7 +371,7 @@
   transform-origin: 50% 100%;
   box-shadow:
     inset 0 0 10px rgba(120, 90, 50, 0.18),
-    2px 3px 6px rgba(0, 0, 0, 0.5);
+    var(--shadow-rest);
   transition:
     transform 400ms cubic-bezier(0.22, 0.61, 0.36, 1),
     box-shadow 400ms ease;
@@ -382,7 +382,7 @@
   transform: translateY(-6px) rotate(-1deg);
   box-shadow:
     inset 0 0 10px rgba(120, 90, 50, 0.18),
-    4px 10px 14px rgba(0, 0, 0, 0.55);
+    var(--shadow-lift);
 }
 
 .ooo-slip {
@@ -392,7 +392,7 @@
     #e4dcc8;
   box-shadow:
     inset 0 0 22px rgba(120, 90, 50, 0.16),
-    0 12px 28px rgba(0, 0, 0, 0.5);
+    var(--shadow-float);
   transform: rotate(-0.4deg);
 }
 
@@ -465,11 +465,11 @@
 /* Invite ticket */
 .ooo-ticket {
   background:
-    radial-gradient(ellipse at 15% 0%, rgba(255, 255, 255, 0.35), transparent 55%),
-    radial-gradient(ellipse at 90% 110%, rgba(120, 90, 50, 0.14), transparent 60%),
-    #efe5cf;
+    radial-gradient(ellipse at 15% 0%, rgba(255, 255, 255, 0.14), transparent 55%),
+    radial-gradient(ellipse at 90% 110%, rgba(120, 90, 50, 0.2), transparent 60%),
+    #ddd3bc;
   box-shadow:
-    0 14px 30px rgba(0, 0, 0, 0.5),
+    var(--shadow-float),
     0 0 0 1px rgba(0, 0, 0, 0.3);
 }
 
@@ -539,7 +539,7 @@
     repeating-linear-gradient(35deg, rgba(0, 0, 0, 0.05) 0 2px, transparent 2px 5px),
     linear-gradient(135deg, #6b4a32, #4e3524 60%, #3e2a1c);
   box-shadow:
-    0 8px 18px rgba(0, 0, 0, 0.4),
+    var(--shadow-float),
     inset 2px 0 4px rgba(0, 0, 0, 0.3),
     inset 0 0 0 1px rgba(255, 220, 180, 0.08);
   transform: rotate(-0.6deg);
@@ -718,6 +718,10 @@
     animation: none;
     opacity: 0.55;
   }
+}
+
+.ooo-ipod-mini > svg {
+  filter: drop-shadow(3px 5px 5px rgba(0, 0, 0, 0.5)) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
 }
 
 .ooo-ipod-mini .ooo-earbuds {

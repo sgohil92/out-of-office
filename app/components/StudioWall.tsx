@@ -44,7 +44,7 @@ export default function StudioWall({
                 ) : (
                   <span aria-hidden className="tape absolute -top-2 left-1/2 z-10 h-4 w-12 -translate-x-1/2 rotate-[-4deg]" />
                 )}
-                <span className="block bg-[#F3EAD6] p-[5px] shadow-[0_10px_24px_rgba(0,0,0,0.5)]">
+                <span className="block bg-[#F3EAD6] p-[5px] shadow-[var(--shadow-float)]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={p.src} alt={p.alt} loading="lazy" className="block h-auto w-full" />
                 </span>
@@ -72,7 +72,7 @@ export default function StudioWall({
                     src={note.image}
                     alt={note.imageAlt ?? ""}
                     loading="lazy"
-                    className="mb-4 block h-auto w-full border-[5px] border-[#F3EAD6] shadow-[0_10px_24px_rgba(0,0,0,0.45)]"
+                    className="mb-4 block h-auto w-full border-[5px] border-[#F3EAD6] shadow-[var(--shadow-float)]"
                   />
                 ) : null}
                 <div className="space-y-4 font-serif text-[17px] italic leading-relaxed text-[#C9C2B4]">

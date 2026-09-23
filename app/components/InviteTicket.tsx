@@ -30,7 +30,7 @@ function Ticket({ invite, email }: { invite: Invite; email: string }) {
           YOU&rsquo;RE INVITED
         </p>
         <p className="font-mono text-[10px] tracking-[0.26em] text-[#8C7D63]">COME ALONG</p>
-        <h2 className="mt-2 max-w-[20ch] font-serif text-[26px] leading-[1.05] tracking-tight text-[#1E1A16] sm:max-w-none sm:text-[32px]">
+        <h2 className="mt-2 max-w-[20ch] font-serif text-[23px] leading-[1.1] tracking-tight text-[#1E1A16] sm:max-w-none sm:text-[27px]">
           {invite.title}
         </h2>
         <p className="mt-3 font-mono text-[11px] tracking-[0.12em] text-[#3A332B] sm:text-[12px]">
