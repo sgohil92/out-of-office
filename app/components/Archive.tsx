@@ -603,7 +603,7 @@ export default function Archive({
               className="group mt-4 font-mono text-[10px] tracking-[0.22em] text-[#A07E55] focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55]"
             >
               <span className="border-b border-[#A07E55]/40 pb-0.5 transition-colors group-hover:border-[#A07E55]">
-                WHY I&rsquo;M DOING THIS
+                THE BACKSTORY
               </span>{" "}
               <span aria-hidden className="inline-block transition-transform group-hover:translate-x-1">
                 →

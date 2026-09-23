@@ -6,7 +6,7 @@ export const ABOUT: Entry = {
   section: "about",
   index: "00",
   date: "",
-  title: "Why I'm doing this",
+  title: "The backstory",
   dek: "",
   // One paragraph per line, in quotes, each ending with a comma.
   // The first one is the welcome line under the site title; the About drawer starts from the second.
