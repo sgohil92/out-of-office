@@ -73,7 +73,9 @@ export type Entry = {
   hobby?: Hobby;
   /** What's Next only: true = checked off on the notepad. */
   done?: boolean;
-  /** Shelf only: "podcast" puts it on the bottom shelf as a cassette tape. Defaults to "book". */
+  /** Shelf only: true = the book I'm reading right now (pulled out a little, with a ribbon). */
+  reading?: boolean;
+  /** Shelf only: "podcast" puts it on the iPod on the bottom shelf. Defaults to "book". */
   format?: "book" | "podcast";
   /** A link to the episode (or book), shown as a button when it's opened. */
   link?: string;

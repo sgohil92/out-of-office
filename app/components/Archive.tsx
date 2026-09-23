@@ -322,9 +322,11 @@ function BookSpine({
       <button
         type="button"
         onClick={() => onOpen(entry)}
-        aria-label={`${entry.title} — open`}
+        aria-label={`${entry.title}${entry.reading ? " (currently reading)" : ""} — open`}
         title={entry.title}
-        className={`book book-cloth flex flex-col justify-between py-2 ${lean ? "book-lean" : ""}`}
+        className={`book book-cloth relative flex flex-col justify-between py-2 ${lean ? "book-lean" : ""} ${
+          entry.reading ? "book-reading" : ""
+        }`}
         style={{
           height: spine.h,
           width: spine.w,
@@ -332,6 +334,7 @@ function BookSpine({
           color: spine.ink,
         }}
       >
+        {entry.reading ? <span aria-hidden className="book-ribbon" /> : null}
         <span className="flex flex-col gap-[3px]">
           {band}
           {spine.bands === 2 && band}
@@ -757,7 +760,7 @@ export default function Archive({
               <div className="flex items-start justify-between gap-4 border-b-[3px] border-double border-[#34302B] pb-4">
                 <p className="font-mono text-[10px] tracking-[0.28em] text-[#A07E55]">
                   {active.stamp ??
-                    `${active.index} / ${sections.find((x) => x.id === active.section)?.title ?? (active.section === "mood" ? "PONDERINGS" : active.section.toUpperCase())}`}
+                    `${active.index} / ${sections.find((x) => x.id === active.section)?.title ?? (active.section === "mood" ? "PONDERINGS" : active.section.toUpperCase())}${active.reading ? " · CURRENTLY READING" : ""}`}
                 </p>
                 <button
                   type="button"

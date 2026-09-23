@@ -187,6 +187,26 @@ body,
   outline-offset: 3px;
 }
 
+/* The book I'm reading now: pulled up off the shelf, a ribbon bookmark hanging out the top */
+.book-reading {
+  transform: translateY(-12px) rotate(var(--tilt, 0deg));
+  box-shadow:
+    inset 3px 0 3px rgba(255, 255, 255, 0.08),
+    inset -4px 0 6px rgba(0, 0, 0, 0.4),
+    3px 10px 12px rgba(0, 0, 0, 0.55);
+}
+
+.book-ribbon {
+  position: absolute;
+  top: -15px;
+  right: 6px;
+  width: 6px;
+  height: 20px;
+  background: linear-gradient(90deg, #7a2a1f, #b0452f 50%, #7a2a1f);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 5px), 0 100%);
+  z-index: -1;
+}
+
 .book-lean {
   --tilt: 5deg;
   --tilt-hover: 2deg;
