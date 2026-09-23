@@ -5,8 +5,10 @@
  * date, and the whole strip hides when there are no invites.
  */
 
-/** Where RSVPs go. Tapping RSVP opens an email to this address. */
-export const RSVP_EMAIL = "shwetagohil9@gmail.com";
+import { CONTACT_EMAIL } from "./contact";
+
+/** Where RSVPs go (set in content/contact.ts). Tapping RSVP opens an email to this address. */
+export const RSVP_EMAIL = CONTACT_EMAIL;
 
 export type Invite = {
   id: string;

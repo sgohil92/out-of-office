@@ -3,23 +3,20 @@
 import {
   useEffect,
   useState,
+  useTransition,
   type ChangeEvent,
   type FormEvent,
   type ReactNode,
 } from "react";
 import { createPortal } from "react-dom";
+import { CONTACT_EMAIL } from "../../content/contact";
+import { recommendBook, type Slip } from "./recommendBook";
 import "./sections.css";
 
-/** Where visitor book recommendations are sent. Change this to your address. */
-export const RECOMMEND_EMAIL = "shwetagohil9@gmail.com";
+const EMPTY: Slip = { title: "", author: "", why: "", name: "", website: "" };
 
-type Slip = { title: string; author: string; why: string; name: string };
-
-const EMPTY: Slip = { title: "", author: "", why: "", name: "" };
-
-function mailtoFor(slip: Slip) {
-  const subject = `Book recommendation: ${slip.title}`;
-  const body = [
+function slipText(slip: Slip) {
+  return [
     `Title: ${slip.title}`,
     `Author: ${slip.author || "—"}`,
     "",
@@ -28,9 +25,13 @@ function mailtoFor(slip: Slip) {
     "",
     `— ${slip.name || "A visitor to the reading room"}`,
   ].join("\n");
-  return `mailto:${RECOMMEND_EMAIL}?subject=${encodeURIComponent(
+}
+
+function mailtoFor(slip: Slip) {
+  const subject = `Book recommendation: ${slip.title}`;
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
     subject,
-  )}&body=${encodeURIComponent(body)}`;
+  )}&body=${encodeURIComponent(slipText(slip))}`;
 }
 
 function Field({
@@ -127,9 +128,14 @@ export default function BookRecommendSlip() {
   );
 }
 
+const slipButton =
+  "mt-5 inline-block border border-[#5A5247]/60 px-3 py-2 font-mono text-[9px] tracking-[0.26em] text-[#3A332B] transition hover:border-[#1E1A16] hover:text-[#1E1A16] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#1E1A16]";
+
 function SlipForm() {
   const [slip, setSlip] = useState<Slip>(EMPTY);
-  const [sent, setSent] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "sent" | "fallback">("idle");
+  const [copied, setCopied] = useState(false);
+  const [sending, startSending] = useTransition();
 
   const set =
     (key: keyof Slip) =>
@@ -138,10 +144,30 @@ function SlipForm() {
 
   function submit(e: FormEvent) {
     e.preventDefault();
-    if (!slip.title.trim()) return;
-    const href = mailtoFor(slip);
-    setSent(href);
-    window.location.href = href;
+    if (!slip.title.trim() || sending) return;
+    startSending(async () => {
+      try {
+        const result = await recommendBook(slip);
+        setStatus(result.ok ? "sent" : "fallback");
+      } catch {
+        setStatus("fallback");
+      }
+    });
+  }
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(`To: ${CONTACT_EMAIL}\n\n${slipText(slip)}`);
+      setCopied(true);
+    } catch {
+      setCopied(false);
+    }
+  }
+
+  function reset() {
+    setSlip(EMPTY);
+    setStatus("idle");
+    setCopied(false);
   }
 
   const inputClass =
@@ -159,30 +185,37 @@ function SlipForm() {
       </div>
       <p className="font-sc mt-3 text-xl leading-tight">Recommend a book</p>
 
-      {sent ? (
+      {status === "sent" ? (
         <div className="relative py-6" role="status">
           <span className="ooo-received font-mono">RECEIVED</span>
           <p className="mt-6 font-serif text-[15px] italic leading-relaxed text-[#3A332B]">
             Your slip has been filed. Thank you for adding to the shelf.
           </p>
-          <p className="mt-2 font-mono text-[9px] leading-relaxed tracking-[0.14em] text-[#5A5247]">
-            MAIL DIDN&rsquo;T OPEN?{" "}
-            <a
-              href={sent}
-              className="underline decoration-[#A07E55] underline-offset-2 hover:text-[#1E1A16]"
-            >
-              SEND IT BY HAND
-            </a>
-          </p>
-          <button
-            type="button"
-            onClick={() => {
-              setSlip(EMPTY);
-              setSent(null);
-            }}
-            className="mt-5 border border-[#5A5247]/60 px-3 py-2 font-mono text-[9px] tracking-[0.26em] text-[#3A332B] transition hover:border-[#1E1A16] hover:text-[#1E1A16] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#1E1A16]"
-          >
+          <button type="button" onClick={reset} className={slipButton}>
             FILL ANOTHER SLIP
+          </button>
+        </div>
+      ) : status === "fallback" ? (
+        <div className="py-5" role="status">
+          <p className="font-mono text-[9px] tracking-[0.22em] text-[#9A3A28]">
+            COULDN&rsquo;T FILE IT AUTOMATICALLY
+          </p>
+          <p className="mt-3 font-serif text-[15px] italic leading-relaxed text-[#3A332B]">
+            Nothing&rsquo;s lost. Send it by email instead; it&rsquo;s all written out for you.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <a href={mailtoFor(slip)} className={slipButton.replace("mt-5 ", "")}>
+              EMAIL IT
+            </a>
+            <button type="button" onClick={copy} className={slipButton.replace("mt-5 ", "")}>
+              {copied ? "COPIED" : "COPY IT"}
+            </button>
+          </div>
+          <p className="mt-3 font-mono text-[9px] leading-relaxed tracking-[0.12em] text-[#5A5247]">
+            TO: {CONTACT_EMAIL}
+          </p>
+          <button type="button" onClick={reset} className={slipButton}>
+            START OVER
           </button>
         </div>
       ) : (
@@ -213,6 +246,17 @@ function SlipForm() {
               className={`${inputClass} ooo-slip-lines resize-none`}
             />
           </Field>
+          {/* Hidden from people; catches bots that fill in every field. */}
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden
+            value={slip.website}
+            onChange={set("website")}
+            className="absolute -left-[9999px] h-0 w-0 opacity-0"
+          />
           <Field id="rec-name" label="YOUR NAME">
             <input
               id="rec-name"
@@ -224,13 +268,14 @@ function SlipForm() {
           </Field>
           <div className="flex flex-wrap items-center justify-between gap-3 pt-3">
             <span className="font-mono text-[8px] tracking-[0.2em] text-[#5A5247]">
-              * REQUIRED · OPENS YOUR MAIL APP
+              * REQUIRED
             </span>
             <button
               type="submit"
-              className="border border-[#1E1A16] px-4 py-2 font-mono text-[10px] tracking-[0.28em] text-[#1E1A16] transition hover:bg-[#1E1A16] hover:text-[#E4DCC8] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#1E1A16]"
+              disabled={sending}
+              className="border border-[#1E1A16] px-4 py-2 font-mono text-[10px] tracking-[0.28em] text-[#1E1A16] transition hover:bg-[#1E1A16] hover:text-[#E4DCC8] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#1E1A16] disabled:opacity-60"
             >
-              FILE THE REQUEST
+              {sending ? "FILING…" : "FILE THE REQUEST"}
             </button>
           </div>
         </form>

@@ -81,6 +81,16 @@ They play in the drawer when someone clicks the record. Use `"portrait"` for pho
 
 Every `section: "bookshelf"` entry is a spine, top shelf first, then the bottom shelf. The spine shows `title`, or `spine` if you set it; use `spine` for a shorter version when the title is long.
 
+### "Recommend a book" slip
+
+Recommendations are emailed to the address in `content/contact.ts` through Resend (resend.com), a free email-sending service. To switch it on:
+
+1. Make a free account at resend.com with that same email address, and create an API key.
+2. On your computer, add a line to `.env.local`: `RESEND_API_KEY=re_...` (then restart the preview).
+3. On the live site, add `RESEND_API_KEY` in the host's environment variable settings.
+
+Until then, the slip says it couldn't file automatically and offers "Email it" and "Copy it" instead, so nothing gets lost.
+
 ## Current mood
 
 The newest `section: "mood"` entry (last one in the list) is the handwritten line at the top, if its `body` is a real sentence and not `[ Entry forthcoming. ]`. Older ones stay in Ponderings.
