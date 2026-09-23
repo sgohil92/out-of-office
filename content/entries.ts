@@ -307,7 +307,7 @@ export const ENTRIES: Entry[] = [
     index: "03.02",
     date: "",
     title: "Summer of Love",
-    dek: "",
+    dek: "Kerri Maher",
     body: "",
     tags: [],
   },
