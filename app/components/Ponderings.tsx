@@ -1,13 +1,11 @@
 import type { ArchiveEntry } from "./types";
 import "./sections.css";
 
-export default function MoodPortrait<E extends ArchiveEntry>({
-  mood,
+/** The list of ponderings, newest first; opens from the typed page on the Play table. */
+export default function Ponderings<E extends ArchiveEntry>({
   entries,
   onOpen,
 }: {
-  /** This week's line, from content/mood.ts. */
-  mood: { week: string; text: string };
   entries: E[];
   onOpen: (entry: E) => void;
 }) {
@@ -15,25 +13,7 @@ export default function MoodPortrait<E extends ArchiveEntry>({
   const log = [...entries].reverse();
 
   return (
-    <div>
-      {/* Quiet, like something said just to you. */}
-      <div className="max-w-md border-l border-[#A07E55]/50 pl-4">
-        {mood.week ? (
-          <p className="font-mono text-[9px] tracking-[0.28em] text-[#A07E55]/80">{mood.week.toUpperCase()}</p>
-        ) : null}
-        <p
-          className={`mt-2 font-serif text-[17px] italic leading-relaxed sm:text-[18px] ${
-            mood.text ? "text-[#C9C2B4]" : "text-[#8E8E93]/35"
-          }`}
-        >
-          {mood.text || "—"}
-        </p>
-      </div>
-
-      <div className="mt-8">
-        <p className="border-b border-[#242220] pb-2 font-mono text-[10px] tracking-[0.28em] text-[#8E8E93]">
-          Ponderings
-        </p>
+    <div className="mt-8">
         <ol>
           {log.map((entry) => (
             <li key={entry.id} className="border-b border-[#211F1C]">
@@ -70,7 +50,6 @@ export default function MoodPortrait<E extends ArchiveEntry>({
             </li>
           ))}
         </ol>
-      </div>
     </div>
   );
 }

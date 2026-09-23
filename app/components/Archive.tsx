@@ -13,7 +13,7 @@ import InviteTicket from "./InviteTicket";
 import Lightbox from "./Lightbox";
 import SleepingTruffles from "./SleepingTruffles";
 import type { Painting, StudioNote } from "../../content/studio";
-import MoodPortrait from "./MoodPortrait";
+import Ponderings from "./Ponderings";
 import WishList from "./WishList";
 
 const RoadAtlas = dynamic(() => import("./RoadAtlas"));
@@ -499,6 +499,11 @@ export default function Archive({
     : [];
 
 
+  // Ponderings (section "mood") open from the typed page on the Play table.
+  const ponderings = entries.filter((e) => e.section === "mood");
+  const latestPondering = ponderings[ponderings.length - 1];
+  const ponderingsEntry = entries.find((e) => e.section === "play" && e.hobby === "writing");
+
   // Destinations lead with the story; a big set of photos becomes a scrapbook grid.
   const storyFirst = active?.section === "destinations";
   const story = active?.body || active?.link ? (
@@ -607,6 +612,19 @@ export default function Archive({
                 →
               </span>
             </button>
+            {mood.text ? (
+              // This week's mood: a quiet note, like something said just to you.
+              <div className="mt-8 max-w-md border-l border-[#A07E55]/50 pl-4">
+                {mood.week ? (
+                  <p className="font-mono text-[9px] tracking-[0.28em] text-[#A07E55]/80">
+                    CURRENT MOOD · {mood.week.toUpperCase()}
+                  </p>
+                ) : null}
+                <p className="mt-2 font-serif text-[16px] italic leading-relaxed text-[#C9C2B4] sm:text-[17px]">
+                  {mood.text}
+                </p>
+              </div>
+            ) : null}
           </div>
         </div>
       </header>
@@ -646,11 +664,18 @@ export default function Archive({
                   onOpen={setActive}
                 />
               ) : section.id === "play" ? (
-                <PlayTable entries={section.entries} onOpen={setActive} />
+                <PlayTable
+                  entries={section.entries}
+                  onOpen={setActive}
+                  latestPondering={
+                    latestPondering
+                      ? { title: latestPondering.title, date: latestPondering.date }
+                      : undefined
+                  }
+                />
               ) : section.id === "next" ? (
                 <WishList entries={section.entries} onOpen={setActive} />
-              ) : section.id === "mood" ? (
-                <MoodPortrait mood={mood} entries={section.entries} onOpen={setActive} />
+
               ) : section.id === "bookshelf" ? (
                 <Bookshelf entries={section.entries} onOpen={setActive} />
               ) : (
@@ -735,7 +760,7 @@ export default function Archive({
               <div className="flex items-start justify-between gap-4 border-b-[3px] border-double border-[#34302B] pb-4">
                 <p className="font-mono text-[10px] tracking-[0.28em] text-[#A07E55]">
                   {active.stamp ??
-                    `${active.index} / ${sections.find((x) => x.id === active.section)?.title ?? active.section.toUpperCase()}`}
+                    `${active.index} / ${sections.find((x) => x.id === active.section)?.title ?? (active.section === "mood" ? "PONDERINGS" : active.section.toUpperCase())}`}
                 </p>
                 <button
                   type="button"
@@ -745,6 +770,15 @@ export default function Archive({
                   CLOSE
                 </button>
               </div>
+              {active.section === "mood" && ponderingsEntry ? (
+                <button
+                  type="button"
+                  onClick={() => setActive(ponderingsEntry)}
+                  className="mt-4 font-mono text-[10px] tracking-[0.22em] text-[#8E8E93] hover:text-[#A07E55]"
+                >
+                  ← ALL PONDERINGS
+                </button>
+              ) : null}
               {active.place && (
                 <p className="mt-6 block font-mono text-[11px] tracking-[0.2em] text-[#8E8E93]">
                   {active.place}
@@ -791,6 +825,9 @@ export default function Archive({
               {photos}
               {active.section === "play" && active.hobby === "painting" ? (
                 <StudioWall paintings={studio.paintings} notes={studio.notes} />
+              ) : null}
+              {active.section === "play" && active.hobby === "writing" ? (
+                <Ponderings entries={ponderings} onOpen={setActive} />
               ) : null}
               {storyFirst ? null : story}
               <div className="mt-10 flex flex-col items-center gap-2">

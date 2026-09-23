@@ -24,11 +24,6 @@ export const SECTIONS: {
       "Seeing where each conversation with friends and strangers takes me. Tell me what to read or listen to next.",
   },
   {
-    id: "mood",
-    title: "CURRENT MOOD",
-    rubric: "",
-  },
-  {
     id: "next",
     title: "WHAT'S NEXT",
     rubric:

@@ -7,7 +7,7 @@ const HOBBIES: { key: Hobby; label: string; tilt: number }[] = [
   { key: "dance", label: "DANCE", tilt: -5 },
   { key: "painting", label: "PAINTING", tilt: 4 },
   { key: "market", label: "FARMER'S MARKET", tilt: 2.5 },
-  { key: "writing", label: "WRITING", tilt: -3 },
+  { key: "writing", label: "PONDERINGS", tilt: -3 },
 ];
 
 const GROOVES = [23, 26, 29, 32, 35, 38, 41, 44, 46.5];
@@ -214,7 +214,8 @@ function Cookbook({ index }: { index: string }) {
   );
 }
 
-function TypedPage({ index }: { index: string }) {
+/** A typed page on the table, showing the latest pondering. */
+function TypedPage({ index, typed }: { index: string; typed?: { title: string; date: string } }) {
   return (
     <span className="ooo-paper relative block aspect-[4/5] px-3 pt-4 font-mono text-[6.5px] leading-[1.7] text-[#2A2520]">
       <svg
@@ -230,9 +231,10 @@ function TypedPage({ index }: { index: string }) {
           strokeLinecap="round"
         />
       </svg>
-      <span className="block text-right tracking-[0.14em]">{index}</span>
-      <span className="mt-1 block tracking-[0.12em]">UNTITLED</span>
-      <span className="mt-1 block">[ Entry forthcoming. ]</span>
+      <span className="block text-right tracking-[0.14em]">{typed?.date || index}</span>
+      <span className="mt-1 block text-[7.5px] font-bold leading-[1.35] tracking-[0.08em]">
+        {(typed?.title ?? "Untitled").toUpperCase()}
+      </span>
       {[92, 80, 88, 60, 84, 72].map((w, i) => (
         <span
           key={i}
@@ -245,7 +247,7 @@ function TypedPage({ index }: { index: string }) {
   );
 }
 
-function objectFor(hobby: Hobby, index: string): ReactNode {
+function objectFor(hobby: Hobby, index: string, typed?: { title: string; date: string }): ReactNode {
   switch (hobby) {
     case "dance":
       return <Record45 index={index} />;
@@ -254,16 +256,19 @@ function objectFor(hobby: Hobby, index: string): ReactNode {
     case "market":
       return <Cookbook index={index} />;
     case "writing":
-      return <TypedPage index={index} />;
+      return <TypedPage index={index} typed={typed} />;
   }
 }
 
 export default function PlayTable<E extends ArchiveEntry>({
   entries,
   onOpen,
+  latestPondering,
 }: {
   entries: E[];
   onOpen: (entry: E) => void;
+  /** Typed onto the page on the table. */
+  latestPondering?: { title: string; date: string };
 }) {
   return (
     <div className="ooo-table w-full min-w-0 border border-[#242220] px-3 py-8 sm:px-6">
@@ -285,7 +290,7 @@ export default function PlayTable<E extends ArchiveEntry>({
                     hobby.key === "writing" ? "w-[78%]" : "w-full"
                   }`}
                 >
-                  {objectFor(hobby.key, entry.index)}
+                  {objectFor(hobby.key, entry.index, latestPondering)}
                 </span>
                 <span className="ooo-tag font-mono text-[9px] tracking-[0.28em]">
                   {hobby.label}

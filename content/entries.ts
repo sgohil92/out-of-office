@@ -260,7 +260,18 @@ export const ENTRIES: Entry[] = [
   },
 
   { ...placeholder("farmers-market", "play", "02.03", "09.14.2026"), hobby: "market" },
-  { ...placeholder("contact-sheet", "play", "02.04", "09.18.2026"), hobby: "writing" },
+  {
+    // The typed page on the Play table: opens the list of ponderings (section "mood" below).
+    id: "ponderings",
+    section: "play",
+    hobby: "writing",
+    index: "02.04",
+    date: "",
+    title: "Ponderings",
+    dek: "",
+    body: "",
+    tags: [],
+  },
 
   placeholder("shelf-book-01", "bookshelf", "03.01", "09.05.2026"),
   placeholder("shelf-book-02", "bookshelf", "03.02", "09.10.2026"),
