@@ -44,6 +44,23 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
           strokeWidth="1.3"
           strokeLinecap="round"
         />
+        {/* a few music notes drifting up off it */}
+        <g fill="#C9A66B" stroke="#C9A66B" strokeLinecap="round">
+          <g className="ooo-note" style={{ animationDelay: "0s" }} transform="translate(-12 34)">
+            <ellipse cx="0" cy="8" rx="2.6" ry="1.9" transform="rotate(-20 0 8)" stroke="none" />
+            <path d="M 2.3 7.4 V -2 Q 5 1 6.5 3" fill="none" strokeWidth="0.8" />
+          </g>
+          <g className="ooo-note" style={{ animationDelay: "2.2s" }} transform="translate(-4 4) scale(0.85)">
+            <ellipse cx="0" cy="8" rx="2.6" ry="1.9" transform="rotate(-20 0 8)" stroke="none" />
+            <ellipse cx="8" cy="6" rx="2.6" ry="1.9" transform="rotate(-20 8 6)" stroke="none" />
+            <path d="M 2.3 7.4 V -2 L 10.3 -4 V 5.4" fill="none" strokeWidth="0.8" />
+            <path d="M 2.3 -2 L 10.3 -4" fill="none" strokeWidth="1.8" />
+          </g>
+          <g className="ooo-note" style={{ animationDelay: "4.1s" }} transform="translate(64 -10) scale(0.75)">
+            <ellipse cx="0" cy="8" rx="2.6" ry="1.9" transform="rotate(-20 0 8)" stroke="none" />
+            <path d="M 2.3 7.4 V -2 Q 5 1 6.5 3" fill="none" strokeWidth="0.8" />
+          </g>
+        </g>
         {/* the iPod */}
         <rect x="4" y="4" width="54" height="96" rx="8" fill="url(#ooo-ipod-body)" stroke="#3A2A1C" strokeWidth="0.8" />
         <path d="M 9 8 Q 31 5 53 8" fill="none" stroke="#B08A66" strokeWidth="0.6" opacity="0.6" />
