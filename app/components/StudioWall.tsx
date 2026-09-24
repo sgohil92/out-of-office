@@ -92,7 +92,8 @@ export default function StudioWall({
 
       {open !== null ? (
         <Lightbox
-          items={paintings.map((p) => ({ src: p.src, alt: p.alt, title: p.title, meta: p.medium, note: p.note }))}
+          // The note already sits under each painting on the wall, so the close-up is just the painting.
+          items={paintings.map((p) => ({ src: p.src, alt: p.alt, title: p.title, meta: p.medium }))}
           index={open}
           onMove={setOpen}
           onClose={() => setOpen(null)}
