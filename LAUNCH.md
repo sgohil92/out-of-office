@@ -10,3 +10,4 @@
 - [ ] **For the plate:** market haul and brunch photos, plus a line or two (the chapter appears once it has them).
 - [ ] **Podcast notes and links:** one line on why you love each, and a link for LISTEN →.
 - [ ] **Notes for the last few books:** The Shampoo Effect, How to Be Perfect, Nicomachean Ethics, The Little Monk (and its author).
+- [ ] **"New" markers (after launch):** a small gold dot on anything added in the last two weeks (books, paintings, ponderings, podcasts), so returning friends can spot what changed. Wait until after launch, since right now everything is new.

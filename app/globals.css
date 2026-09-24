@@ -209,8 +209,10 @@ body,
 }
 
 /* The book I'm reading now: pulled up off the shelf, a ribbon bookmark hanging out the top */
-.book-reading {
-  transform: translateY(-12px) rotate(var(--tilt, 0deg));
+.book-reading,
+.book-reading:hover,
+.book-reading:focus-visible {
+  transform: translateY(-30px) rotate(var(--tilt, 0deg));
   box-shadow:
     inset 3px 0 3px rgba(255, 255, 255, 0.08),
     inset -4px 0 6px rgba(0, 0, 0, 0.4),
