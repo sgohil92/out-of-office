@@ -292,8 +292,8 @@ export const ENTRIES: Entry[] = [
         title: "For the table",
         body: "I've started putting together a bouquet from the market every week. They're beautiful and bring me joy.",
         photos: [
-          { src: "/play/market/market-01.jpg", caption: "Jan 4", alt: "At the dining table with a bouquet of purple delphinium, Truffles lying on the rug below" },
-          { src: "/play/market/market-02.jpg", caption: "Feb 14", alt: "Pink tulips in a glass vase, the city through the window behind" },
+          { src: "/play/market/market-01.jpg", alt: "At the dining table with a bouquet of purple delphinium, Truffles lying on the rug below" },
+          { src: "/play/market/market-02.jpg", alt: "Pink tulips in a glass vase, the city through the window behind" },
           { src: "/play/market/market-03.jpg", caption: "Jul 4", alt: "Orange lilies and pink blooms beside bowls of cherries, apricots and blackberries" },
           { src: "/play/market/market-04.jpg", caption: "Aug 23", alt: "Sunflowers and deep red amaranth in a vase by the window" },
           { src: "/play/market/market-05.jpg", caption: "Aug 29", alt: "Sunflowers and orange zinnias in a tall glass vase" },
