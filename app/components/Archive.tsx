@@ -236,11 +236,20 @@ function ReelFrame({ video }: { video: Video }) {
 const GRID_TILTS = [-1.4, 1.1, -0.7, 1.6, -1.1, 0.8];
 
 /** Three or more photos: a two-column scrapbook, each opens full-screen. */
-function ScrapbookGrid({ prints }: { prints: { src: string; alt: string; caption?: string }[] }) {
+function ScrapbookGrid({
+  prints,
+  inOrder,
+}: {
+  prints: { src: string; alt: string; caption?: string }[];
+  /** Read left to right, row by row (for dated photos), instead of down each column. */
+  inOrder?: boolean;
+}) {
   const [open, setOpen] = useState<number | null>(null);
   return (
     <>
-      <ul className="mt-8 columns-2 gap-4 px-1 pt-2 sm:gap-6">
+      <ul
+        className={`mt-8 gap-4 px-1 pt-2 sm:gap-6 ${inOrder ? "grid grid-cols-2 items-start" : "columns-2"}`}
+      >
         {prints.map((print, i) => (
           <li key={print.src} className="mb-5 break-inside-avoid sm:mb-6">
             <button
@@ -804,6 +813,24 @@ export default function Archive({
                 </div>
               ) : null}
               {photos}
+              {active.chapters
+                ?.filter((ch) => ch.body || ch.photos.length)
+                .map((ch) => (
+                  <section key={ch.title} className="mt-14">
+                    <h4 className="font-sc flex items-center gap-4 text-[22px] leading-none text-[#EAE5D9]">
+                      {ch.title}
+                      <span aria-hidden className="h-px flex-1 bg-[#A07E55]/35" />
+                    </h4>
+                    {ch.body ? (
+                      <div className="mt-5 space-y-5 font-serif text-[17px] leading-[1.7]">
+                        {ch.body.split("\n\n").map((para) => (
+                          <p key={para.slice(0, 24)}>{para}</p>
+                        ))}
+                      </div>
+                    ) : null}
+                    {ch.photos.length ? <ScrapbookGrid prints={ch.photos} inOrder /> : null}
+                  </section>
+                ))}
               {active.section === "play" && active.hobby === "painting" ? (
                 <StudioWall paintings={studio.paintings} notes={studio.notes} />
               ) : null}

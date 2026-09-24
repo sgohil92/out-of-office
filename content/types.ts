@@ -33,6 +33,13 @@ export type Video = {
  * Photos are paths under /public, written without the word "public".
  * Example: public/destinations/hawaii/01.jpg → "/destinations/hawaii/01.jpg"
  */
+export type Chapter = {
+  title: string;
+  /** Paragraphs separated by a blank line, like `body`. */
+  body: string;
+  photos: { src: string; alt: string; caption?: string }[];
+};
+
 export type Entry = {
   id: string;
   section: SectionId;
@@ -61,6 +68,11 @@ export type Entry = {
   featured?: { src: string; stamp?: string }[];
   /** Videos shown in the drawer, above the text. */
   videos?: Video[];
+  /**
+   * Named parts of one post, each with its own words and photos (the market's
+   * "For the table" and "For the plate"). A part with no words or photos yet stays hidden.
+   */
+  chapters?: Chapter[];
   tags: string[];
   stamp?: string;
   /** Destinations only: where the stop sits on the map. */
