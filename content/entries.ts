@@ -351,7 +351,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "Klara and the Sun",
     dek: "Kazuo Ishiguro",
-    body: "",
+    body: "Loved the writing, hated the plot. I got through it, but since it was very AI-coded, it left me feeling uneasy about the future of humanity. Then, on top of that, I had a conversation about augmented humans, and humans preferring relationships with someone “perfect” for them, or with an AI. I can't stomach this.",
     tags: [],
   },
   {
