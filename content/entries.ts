@@ -372,7 +372,7 @@ export const ENTRIES: Entry[] = [
     title: "The Last Days of Socrates",
     spine: "Socrates",
     dek: "Plato",
-    body: "",
+    body: "Just feeds my endless curiosity right now.",
     tags: [],
   },
   {
