@@ -433,7 +433,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "Nicomachean Ethics",
     dek: "Aristotle",
-    body: "Still trying to figure out what the right balance of each virtue is, but I do agree that relationships are key to a flourishing life.",
+    body: "Still trying to figure out what the right balance of each virtue is, but I do agree that relationships are key to a flourishing life. Thanks for the rec, Sid, and for helping me figure out where to start, ha.",
     tags: [],
   },
   {
