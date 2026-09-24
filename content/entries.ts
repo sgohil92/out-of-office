@@ -393,7 +393,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "Yesteryear",
     dek: "Caro Claire Burke",
-    body: "",
+    body: "A bit hyped, but it got me thinking about those who oppose progress vs. those who jump on the progress bandwagon just for the sake of progress. Again, this ties back to the AI angst for me: what's the right balance?",
     tags: [],
   },
   {
