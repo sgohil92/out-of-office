@@ -268,7 +268,7 @@ export default function PlayTable<E extends ArchiveEntry>({
 }) {
   return (
     <div className="ooo-table w-full min-w-0 border border-[#242220] px-3 py-8 sm:px-6">
-      <ul className="grid grid-cols-2 items-end gap-x-5 gap-y-10 sm:gap-x-8">
+      <ul className="grid grid-cols-2 items-end gap-x-5 gap-y-10 sm:gap-x-8 md:grid-cols-4">
         {entries.map((entry, i) => {
           const hobby =
             HOBBIES.find((h) => h.key === entry.hobby) ?? HOBBIES[i % HOBBIES.length];

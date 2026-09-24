@@ -607,7 +607,7 @@ export default function Archive({
       <PaperOverlay />
 
 
-      <header className="relative z-10 border-b-[3px] border-double border-[#34302B] px-5 py-10 sm:px-10 lg:px-14">
+      <header className="relative z-10 border-b-[3px] border-double border-[#34302B] px-5 py-10 sm:px-[max(2rem,calc((100%-56rem)/2))]">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div className="min-w-0">
             <h1 className="whitespace-nowrap font-serif text-[clamp(2rem,10.5vw,4.5rem)] leading-[0.9] tracking-[-0.03em]">
@@ -654,16 +654,16 @@ export default function Archive({
 
       <InviteTicket invites={invites.list} email={invites.email} />
 
-      <main className="relative z-10 grid grid-cols-1 md:grid-cols-2">
+      {/* One section after another, like walking room to room; content stays within a comfortable reading width */}
+      <main className="relative z-10">
         {bySection.map((section, i) => {
           const isLast = i === bySection.length - 1;
-          const spansRow = isLast && i % 2 === 0;
           return (
             <section
               key={section.id}
-              className={`ruled-paper min-w-0 border-double border-[#34302B] p-5 sm:p-8 lg:p-10 ${
+              className={`ruled-paper min-w-0 border-double border-[#34302B] px-5 py-10 sm:px-[max(2rem,calc((100%-56rem)/2))] sm:py-14 ${
                 isLast ? "" : "border-b-[3px]"
-              } ${spansRow ? "md:col-span-2" : i % 2 === 0 ? "md:border-r-[3px]" : ""}`}
+              }`}
             >
               <div className="mb-8 border-b border-[#242220] pb-4">
                 <h2 className="font-sc text-left text-3xl sm:text-4xl">
