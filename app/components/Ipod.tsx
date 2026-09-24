@@ -18,7 +18,7 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
     <button
       type="button"
       onClick={onOpen}
-      aria-label="Open the iPod: podcasts I'm obsessed with"
+      aria-label="Open the iPod: podcasts I'm listening to"
       className="ooo-ipod-mini group relative block w-[112px] shrink-0 transition-transform duration-500 hover:-translate-y-1 focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55] sm:w-[124px]"
     >
       <svg viewBox="0 0 124 104" className="block w-full overflow-visible" aria-hidden>
@@ -118,6 +118,17 @@ export function IpodPlayer({ podcasts, onClose }: { podcasts: Entry[]; onClose: 
   const [sel, setSel] = useState(0);
   const [playing, setPlaying] = useState(0);
   const wheel = useRef<{ angle: number; spin: number } | null>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+
+  // Like a real iPod: the list scrolls to keep the highlighted row on screen.
+  useEffect(() => {
+    const list = listRef.current;
+    const row = list?.children[sel] as HTMLElement | undefined;
+    if (!list || !row) return;
+    if (row.offsetTop < list.scrollTop) list.scrollTop = row.offsetTop;
+    else if (row.offsetTop + row.offsetHeight > list.scrollTop + list.clientHeight)
+      list.scrollTop = row.offsetTop + row.offsetHeight - list.clientHeight;
+  }, [sel, view]);
 
   const rows: Row[] =
     view === "podcasts"
@@ -200,7 +211,7 @@ export function IpodPlayer({ podcasts, onClose }: { podcasts: Entry[]; onClose: 
 
   const current = podcasts[playing];
   const note = current && current.body && current.body !== PLACEHOLDER_BODY ? current.body : "";
-  const title = view === "podcasts" ? "Obsessed" : "Now Playing";
+  const title = view === "podcasts" ? "Podcasts" : "Now Playing";
 
   return createPortal(
     <div role="dialog" aria-modal="true" aria-label="iPod" className="fixed inset-0 z-[70] flex flex-col bg-[#0C0B0A]/92 backdrop-blur-sm">
@@ -218,7 +229,7 @@ export function IpodPlayer({ podcasts, onClose }: { podcasts: Entry[]; onClose: 
         <div className="ooo-ipod relative w-[min(290px,78vw)] shrink-0 rounded-[34px] p-[7%] pb-[9%] shadow-[0_24px_60px_rgba(0,0,0,0.65)]">
           {/* screen */}
           <div
-            className="overflow-hidden rounded-[6px] border-[3px] border-[#2A2A2A] bg-[#E3ECF1] text-[#1E2A33]"
+            className="flex flex-col overflow-hidden rounded-[6px] border-[3px] border-[#2A2A2A] bg-[#E3ECF1] text-[#1E2A33]"
             style={{ aspectRatio: "4 / 3", fontFamily: "'Helvetica Neue', Arial, sans-serif" }}
           >
             <div className="flex items-center justify-between border-b border-[#9FB0BC] bg-gradient-to-b from-[#F4F7F9] to-[#CBD5DC] px-2 py-[3px] text-[11px] font-bold">
@@ -232,7 +243,7 @@ export function IpodPlayer({ podcasts, onClose }: { podcasts: Entry[]; onClose: 
             </div>
 
             {view === "podcasts" ? (
-              <ul className="text-[13px]">
+              <ul ref={listRef} className="relative min-h-0 flex-1 overflow-y-auto text-[13px] [scrollbar-width:none]">
                 {rows.map((row, i) => (
                   <li key={row.key}>
                     <button
