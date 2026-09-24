@@ -383,7 +383,7 @@ export const ENTRIES: Entry[] = [
     title: "Strangers - A Marriage Memoir",
     spine: "Strangers",
     dek: "Belle Burden",
-    body: "Beautifully written, so raw and real. The point that really resonated: you can build an entire life with someone, not really know what's going on in their head, and one day just be strangers in passing.",
+    body: "Beautifully written, so raw and real. The point that really resonated: you can build an entire life with someone, not really know what's going on in their head, and one day just be strangers in passing. Building a life with someone is a funny thing: completely intimate and in sync one day, and blindsided the next.",
     tags: [],
   },
   {
