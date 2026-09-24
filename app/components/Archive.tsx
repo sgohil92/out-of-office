@@ -437,10 +437,27 @@ export default function Archive({
   const intro = about.body.split("\n\n")[0];
   const [active, setActive] = useState<Entry | null>(null);
 
+  // An open post counts as a page in the browser's history, so a phone's back
+  // gesture (or the back button) closes the post instead of leaving the site.
+  const isOpen = active !== null;
+  useEffect(() => {
+    if (!isOpen) return;
+    window.history.pushState({ oooDrawer: true }, "");
+    const onPop = () => setActive(null);
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, [isOpen]);
+  const closeDrawer = () => {
+    if (window.history.state?.oooDrawer) window.history.back();
+    else setActive(null);
+  };
+
   useEffect(() => {
     if (!active) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActive(null);
+      if (e.key !== "Escape") return;
+      if (window.history.state?.oooDrawer) window.history.back();
+      else setActive(null);
     };
     window.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
@@ -602,7 +619,7 @@ export default function Archive({
             <button
               type="button"
               onClick={() => setActive(about)}
-              className="group mt-4 font-mono text-[10px] tracking-[0.22em] text-[#A07E55] focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55]"
+              className="group mt-1 py-3 font-mono text-[10px] tracking-[0.22em] text-[#A07E55] focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55]"
             >
               <span className="border-b border-[#A07E55]/40 pb-0.5 transition-colors group-hover:border-[#A07E55]">
                 THE BACKSTORY
@@ -613,7 +630,7 @@ export default function Archive({
             </button>
             {mood?.text ? (
               // This week's mood: a quiet note, like something said just to you.
-              <div className="mt-8 max-w-md border-l border-[#A07E55]/50 pl-4">
+              <div className="mt-5 max-w-md border-l border-[#A07E55]/50 pl-4">
                 {mood.week ? (
                   <p className="font-mono text-[10px] tracking-[0.24em] text-[#A07E55]/80">
                     CURRENT MOOD · {mood.week.toUpperCase()}
@@ -625,7 +642,7 @@ export default function Archive({
                 <button
                   type="button"
                   onClick={() => setActive(moodArchive)}
-                  className="mt-3 font-mono text-[10px] tracking-[0.22em] text-[#8E8E93] underline-offset-4 hover:text-[#A07E55] hover:underline"
+                  className="py-3 font-mono text-[10px] tracking-[0.22em] text-[#8E8E93] underline-offset-4 hover:text-[#A07E55] hover:underline"
                 >
                   ARCHIVE →
                 </button>
@@ -743,18 +760,19 @@ export default function Archive({
             type="button"
             aria-label="Close drawer"
             className="drawer-veil absolute inset-0 bg-black/80 sm:bg-black/75 sm:backdrop-blur-md"
-            onClick={() => setActive(null)}
+            onClick={closeDrawer}
           />
           <aside className="drawer-panel relative z-10 flex h-full w-full max-w-2xl min-w-0 flex-col overflow-y-auto overflow-x-hidden border-l border-[#242220] bg-[#141312]">
             <div className="stagger p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:p-10">
-              <div className="flex items-start justify-between gap-4 border-b-[3px] border-double border-[#34302B] pb-4">
-                <p className="font-mono text-[10px] tracking-[0.28em] text-[#A07E55]">
+              {/* Stays at the top while you scroll, so CLOSE is always in reach */}
+              <div className="sticky top-0 z-20 -mx-6 -mt-6 flex items-start justify-between gap-4 border-b-[3px] border-double border-[#34302B] bg-[#141312] px-6 pb-3 pt-4 sm:-mx-10 sm:-mt-10 sm:px-10 sm:pt-8">
+                <p className="pt-3 font-mono text-[10px] tracking-[0.28em] text-[#A07E55]">
                   {active.stamp ??
                     `${sections.find((x) => x.id === active.section)?.title ?? (active.section === "mood" ? "PONDERINGS" : active.section.toUpperCase())}${active.reading ? " · CURRENTLY READING" : ""}`}
                 </p>
                 <button
                   type="button"
-                  onClick={() => setActive(null)}
+                  onClick={closeDrawer}
                   className="min-h-11 px-2 font-mono text-[10px] tracking-[0.24em] text-[#8E8E93] hover:text-[#EAE5D9]"
                 >
                   CLOSE

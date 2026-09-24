@@ -138,6 +138,14 @@ body,
   scrollbar-color: #34302b transparent;
 }
 
+/* Phones: the top shelf scrolls sideways; a soft fade on the right hints at more books */
+@media (max-width: 640px) {
+  .shelf-back:not(.shelf-back-low) {
+    -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent);
+    mask-image: linear-gradient(90deg, #000 85%, transparent);
+  }
+}
+
 /* The bottom shelf only holds the request card and the iPod, so it sits lower */
 .shelf-back.shelf-back-low {
   min-height: 150px;

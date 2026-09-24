@@ -288,7 +288,7 @@ export default function PlayTable<E extends ArchiveEntry>({
                 >
                   {objectFor(hobby.key, ponderings)}
                 </span>
-                <span className="ooo-tag font-mono text-[10px] tracking-[0.24em]">
+                <span className="ooo-tag whitespace-nowrap font-mono text-[10px] tracking-[0.16em] sm:tracking-[0.24em]">
                   {hobby.label}
                   <span aria-hidden className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </span>
