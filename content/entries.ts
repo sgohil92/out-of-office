@@ -284,8 +284,8 @@ export const ENTRIES: Entry[] = [
     index: "02.03",
     date: "",
     title: "Flowers for the table",
-    dek: "Market flowers to brighten up the space.",
-    body: "I've started putting together a bouquet every week. They're beautiful and bring me joy.",
+    dek: "",
+    body: "I've started putting together a bouquet from the market every week. They're beautiful and bring me joy.",
     images: [
       "/play/market/market-01.jpg",
       "/play/market/market-02.jpg",
