@@ -578,6 +578,16 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
   {
+    id: "productivity-and-mastery",
+    section: "mood",
+    index: "04.09",
+    date: "",
+    title: "Why are we all so obsessed with productivity and mastery?",
+    dek: "Work in progress.",
+    body: "",
+    tags: [],
+  },
+  {
     id: "ritual-of-coffee",
     section: "mood",
     index: "04.05",
