@@ -7,16 +7,6 @@ import "./sections.css";
 
 const TILTS = [-1.6, 1.2, -0.8, 1.8, -1.2, 0.9];
 
-function Pin() {
-  return (
-    <svg viewBox="0 0 20 20" className="absolute -top-2.5 left-1/2 z-10 h-5 w-5 -translate-x-1/2" aria-hidden>
-      <circle cx="10" cy="9" r="6" fill="#9A3A28" />
-      <circle cx="8" cy="7" r="2" fill="#F3EAD6" opacity="0.55" />
-      <path d="M 10 15 L 10 19" stroke="#5E2418" strokeWidth="1.2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 export default function StudioWall({
   paintings,
   notes,
@@ -35,15 +25,11 @@ export default function StudioWall({
               <button
                 type="button"
                 onClick={() => setOpen(i)}
-                aria-label={`${p.title ?? "Painting"}${p.favorite ? " (a favorite)" : ""}. Open`}
+                aria-label={`${p.title ?? "Painting"}. Open`}
                 className="group relative block w-full rotate-(--tilt) transition-[rotate,translate] duration-500 hover:-translate-y-1 hover:rotate-0 focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55]"
                 style={{ "--tilt": `${TILTS[i % TILTS.length]}deg` } as CSSProperties}
               >
-                {p.favorite ? (
-                  <Pin />
-                ) : (
-                  <span aria-hidden className="tape absolute -top-2 left-1/2 z-10 h-4 w-12 -translate-x-1/2 rotate-[-4deg]" />
-                )}
+                <span aria-hidden className="tape absolute -top-2 left-1/2 z-10 h-4 w-12 -translate-x-1/2 rotate-[-4deg]" />
                 <span className="block bg-[#F3EAD6] p-[5px] shadow-[var(--shadow-float)]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={p.src} alt={p.alt} loading="lazy" className="block h-auto w-full" />

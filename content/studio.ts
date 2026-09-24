@@ -18,8 +18,6 @@ export type Painting = {
   medium?: string;
   /** Your caption, shown in pencil when it's opened. */
   note?: string;
-  /** true = gets a pin on the wall. */
-  favorite?: boolean;
 };
 
 export type StudioNote = {
@@ -46,7 +44,6 @@ export const PAINTINGS: Painting[] = [
     title: "Fuchsia botanical",
     medium: "Watercolor + ink",
     note: "Love how adding ink changes the feel of the painting. And yes I know the flowerpot shape is off, oh well. I was chatting with a friend and she didn't believe that i don't erase when I sketch... imperfection makes it more me",
-    favorite: true,
   },
 ];
 

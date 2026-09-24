@@ -63,7 +63,7 @@ Each `section: "play"` entry sits on one object on the table. Set `hobby` to `"d
 
 Tapping the painting on the table opens your studio wall, a running portfolio with no dates. In `content/studio.ts`:
 
-- **A painting:** copy a block in `PAINTINGS` and put it at the top. `note` is your caption (shown in pencil when it's opened). `favorite: true` gives it a pin. Photos go in `public/studio/`.
+- **A painting:** copy a block in `PAINTINGS` and put it at the top. `note` is your caption, shown right under the painting on the wall. Photos go in `public/studio/`.
 - **A studio note:** add a `text` to `STUDIO_NOTES`, newest at the top. A note doesn't need to go with a painting; it's your running stream of thoughts. It can have an `image` if you like.
 
 ### Dance videos
