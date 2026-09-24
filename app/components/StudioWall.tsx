@@ -64,30 +64,30 @@ export default function StudioWall({
       ) : null}
 
       {notes.length > 0 ? (
-        <section className="mt-6 border-t-[3px] border-double border-[#34302B] pt-6">
-          <h4 className="font-mono text-[10px] tracking-[0.28em] text-[#A07E55]">STUDIO NOTES</h4>
-          <ol className="mt-4 space-y-8">
-            {notes.map((note, i) => (
-              <li key={i} className="relative pl-5">
-                <span aria-hidden className="absolute left-0 top-[0.7em] h-px w-3 bg-[#A07E55]/60" />
-                {note.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={note.image}
-                    alt={note.imageAlt ?? ""}
-                    loading="lazy"
-                    className="mb-4 block h-auto w-full border-[5px] border-[#F3EAD6] shadow-[var(--shadow-float)]"
-                  />
-                ) : null}
-                <div className="space-y-4 font-serif text-[17px] italic leading-relaxed text-[#C9C2B4]">
-                  {note.text.split("\n\n").map((para) => (
-                    <p key={para.slice(0, 24)}>{para}</p>
-                  ))}
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
+        // Notes carry on down the wall: a taped photo, then the thought beneath it.
+        <ol className="mt-2 space-y-10 px-1">
+          {notes.map((note, i) => (
+            <li key={i}>
+              {note.image ? (
+                <span
+                  className="relative block rotate-(--tilt)"
+                  style={{ "--tilt": `${TILTS[(paintings.length + i) % TILTS.length]}deg` } as CSSProperties}
+                >
+                  <span aria-hidden className="tape absolute -top-2 left-1/2 z-10 h-4 w-12 -translate-x-1/2 rotate-[-4deg]" />
+                  <span className="block bg-[#F3EAD6] p-[5px] shadow-[var(--shadow-float)]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={note.image} alt={note.imageAlt ?? ""} loading="lazy" className="block h-auto w-full" />
+                  </span>
+                </span>
+              ) : null}
+              <div className="mt-4 space-y-4 px-1 font-serif text-[15px] italic leading-snug text-[#B8B2A6]">
+                {note.text.split("\n\n").map((para) => (
+                  <p key={para.slice(0, 24)}>{para}</p>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ol>
       ) : null}
 
       {open !== null ? (
