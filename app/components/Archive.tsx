@@ -491,7 +491,8 @@ export default function Archive({
   const ponderingsEntry = entries.find((e) => e.section === "play" && e.hobby === "writing");
 
   // Destinations lead with the story; a big set of photos becomes a scrapbook grid.
-  const storyFirst = active?.section === "destinations";
+  // Trips and the market read words-first: the photos then illustrate the story.
+  const storyFirst = active?.section === "destinations" || active?.hobby === "market";
   // The About note's first line already greets people under the title, so the drawer starts after it.
   const storyBody =
     active?.id === about.id ? active.body.split("\n\n").slice(1).join("\n\n") : (active?.body ?? "");
