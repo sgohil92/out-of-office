@@ -81,7 +81,7 @@ export const ENTRIES: Entry[] = [
     dek: "Outdoor showers only.",
     pin: [22.2, -159.5],
     arrive: "fly",
-    body: "I basically moved my body all day and it felt great. But, my favorite part of the trip was taking outdoor showers while feeling the sun beating down, listening to the ocean + birds, and smelling a combination of lavender + nature ..... I can't tell you how much that regulated my nervous system. I don't think I took a shower indoors once that trip",
+    body: "I basically moved my body all day and it felt great. But, my favorite part of the trip was taking outdoor showers while feeling the sun beating down, listening to the ocean + birds, and smelling a combination of lavender + nature ..... I can't tell you how much that regulated my nervous system. I don't think I took a shower indoors once that trip. Now if I could only do that in SF.",
     images: [
       "/hawaii/hawaii-01.jpg",
       "/hawaii/hawaii-02.jpg",
