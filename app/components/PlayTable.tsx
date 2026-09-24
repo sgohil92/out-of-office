@@ -290,6 +290,7 @@ export default function PlayTable<E extends ArchiveEntry>({
                 </span>
                 <span className="ooo-tag font-mono text-[10px] tracking-[0.24em]">
                   {hobby.label}
+                  <span aria-hidden className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </span>
               </button>
             </li>

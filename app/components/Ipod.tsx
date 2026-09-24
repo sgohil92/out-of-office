@@ -89,6 +89,7 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
       </span>
       <span className="mt-1 block text-center font-mono text-[10px] tracking-[0.22em] text-[#8E8E93] group-hover:text-[#EAE5D9]">
         PODCASTS
+        <span aria-hidden className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
       </span>
     </button>
   );

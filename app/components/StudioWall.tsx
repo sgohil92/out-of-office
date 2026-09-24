@@ -29,7 +29,7 @@ export default function StudioWall({
   return (
     <div className="mt-8">
       {paintings.length > 0 ? (
-        <ul className="ooo-studio-wall columns-2 gap-5 px-1 pt-3 sm:gap-7">
+        <ul className="ooo-studio-wall columns-1 gap-5 px-1 pt-3 min-[480px]:columns-2 sm:gap-7">
           {paintings.map((p, i) => (
             <li key={p.id} className="mb-7 break-inside-avoid">
               <button
@@ -54,6 +54,10 @@ export default function StudioWall({
                   </span>
                 ) : null}
               </button>
+              {/* Your caption, right on the wall, like a note pinned beside the painting */}
+              {p.note ? (
+                <p className="mt-2 px-1 font-serif text-[15px] italic leading-snug text-[#B8B2A6]">{p.note}</p>
+              ) : null}
             </li>
           ))}
         </ul>
