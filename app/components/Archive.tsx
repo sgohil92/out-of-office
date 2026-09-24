@@ -347,7 +347,7 @@ function BookSpine({
           {band}
           {spine.bands === 2 && band}
         </span>
-        <span className="font-sc mx-auto min-h-0 overflow-hidden text-[13px] leading-none tracking-[0.08em] [writing-mode:vertical-rl]">
+        <span className="font-sc mx-auto min-h-0 flex-1 overflow-hidden py-2 text-center text-[13px] leading-none tracking-[0.08em] [writing-mode:vertical-rl]">
           {entry.spine ?? entry.title}
         </span>
         {band}

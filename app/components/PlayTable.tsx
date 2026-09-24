@@ -288,9 +288,13 @@ export default function PlayTable<E extends ArchiveEntry>({
                 >
                   {objectFor(hobby.key, ponderings)}
                 </span>
-                <span className="ooo-tag whitespace-nowrap font-mono text-[10px] tracking-[0.16em] sm:tracking-[0.24em]">
-                  {hobby.label}
-                  <span aria-hidden className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+                {/* Long labels may wrap, but the arrow always stays with the last word */}
+                <span className="ooo-tag text-center font-mono text-[10px] tracking-[0.16em] sm:tracking-[0.24em]">
+                  {hobby.label.split(" ").slice(0, -1).join(" ")}{" "}
+                  <span className="whitespace-nowrap">
+                    {hobby.label.split(" ").at(-1)}
+                    <span aria-hidden className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  </span>
                 </span>
               </button>
             </li>
