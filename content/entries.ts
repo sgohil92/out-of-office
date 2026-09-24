@@ -433,7 +433,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "A Gentleman in Moscow",
     dek: "Amor Towles",
-    body: "",
+    body: "Was supposed to be similar to Remains of the Day, but I just couldn't get through it. The writing is extremely slow, flowery, and chock-full of references. DNF for me.",
     tags: [],
   },
   { ...placeholder("shelf-podcast-01", "bookshelf", "03.12", "09.21.2026"), format: "podcast" },
