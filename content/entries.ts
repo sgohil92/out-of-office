@@ -413,7 +413,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "Monogamy",
     dek: "Sue Miller",
-    body: "A bit underwhelming. Doesn't offer a fresh take on non-monogamy lifestyles and I lost interest about half way through. A bit too surface level for me.",
+    body: "A bit underwhelming. Doesn't offer a fresh take on non-monogamy lifestyles and I lost interest about half way through. Too surface level for me.",
     tags: [],
   },
   {
