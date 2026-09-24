@@ -29,7 +29,7 @@ export default function Home() {
       studio={{ paintings: PAINTINGS, notes: STUDIO_NOTES }}
       moods={MOODS}
       invites={{
-        list: showDrafts ? INVITES : INVITES.filter((invite) => !invite.draft),
+        list: INVITES.filter((invite) => !invite.hidden && (showDrafts || !invite.draft)),
         email: RSVP_EMAIL,
       }}
     />

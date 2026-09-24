@@ -25,6 +25,8 @@ export type Invite = {
   rsvpLink?: string;
   /** true = shows on your computer, hidden on the live site. */
   draft?: boolean;
+  /** true = kept here for later but not shown anywhere, not even on your computer. */
+  hidden?: boolean;
 };
 
 export const INVITES: Invite[] = [
@@ -37,5 +39,6 @@ export const INVITES: Invite[] = [
     note: "Help me pick the week's produce. Lunch is on me, results not guaranteed.",
     until: "09.27.2026",
     draft: true,
+    hidden: true,
   },
 ];
