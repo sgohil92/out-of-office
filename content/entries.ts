@@ -320,7 +320,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "Summer of Love",
     dek: "Kerri Maher",
-    body: "",
+    body: "I've fallen a bit out of love with SF recently, too much of an AI monolith for me. This book was the perfect read to romanticize SF and wine country, and it just had a great plot. Focused on women characters and familial bonds.",
     tags: [],
   },
   {
