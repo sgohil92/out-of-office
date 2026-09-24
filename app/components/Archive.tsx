@@ -609,11 +609,11 @@ export default function Archive({
 
       <header className="relative z-10 border-b-[3px] border-double border-[#34302B] px-5 py-10 sm:px-[max(2rem,calc((100%-56rem)/2))]">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             <h1 className="whitespace-nowrap font-serif text-[clamp(2rem,10.5vw,4.5rem)] leading-[0.9] tracking-[-0.03em]">
               Otherwise Engaged
             </h1>
-            <p className="mt-5 max-w-md font-serif text-[18px] italic leading-snug text-[#B8B2A6] sm:text-[20px]">
+            <p className="mt-5 font-serif text-[18px] italic leading-snug text-[#B8B2A6] sm:text-[20px]">
               {intro}
             </p>
             <button
@@ -630,7 +630,7 @@ export default function Archive({
             </button>
             {mood?.text ? (
               // This week's mood: a quiet note, like something said just to you.
-              <div className="mt-5 max-w-md border-l border-[#A07E55]/50 pl-4">
+              <div className="mt-5 border-l border-[#A07E55]/50 pl-4">
                 {mood.week ? (
                   <p className="font-mono text-[10px] tracking-[0.24em] text-[#A07E55]/80">
                     CURRENT MOOD · {mood.week.toUpperCase()}

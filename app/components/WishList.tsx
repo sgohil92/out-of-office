@@ -33,7 +33,7 @@ export default function WishList<E extends ArchiveEntry>({
 }) {
   return (
     // An open leather journal: aged paper, a ribbon bookmark, an elastic band.
-    <div className="ooo-journal-cover mx-auto max-w-[400px]">
+    <div className="ooo-journal-cover w-full">
     <div className="ooo-notepad relative">
       <span aria-hidden className="ooo-journal-ribbon" />
       <span aria-hidden className="ooo-journal-band" />
