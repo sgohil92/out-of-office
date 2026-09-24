@@ -534,6 +534,16 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
   {
+    id: "third-space",
+    section: "next",
+    index: "05.06",
+    date: "",
+    title: "Build a third space, or start that Paris-style intellectual salon",
+    dek: "",
+    body: "",
+    tags: [],
+  },
+  {
     id: "milestone-birthday",
     section: "next",
     index: "05.04",
