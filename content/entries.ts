@@ -6,26 +6,6 @@ import type { Entry } from "./types";
  * Order inside a section is the order on the page.
  */
 
-function placeholder(
-  id: string,
-  section: Entry["section"],
-  index: string,
-  date: string,
-): Entry {
-  return {
-    id,
-    section,
-    index,
-    date,
-    title: `Untitled — Entry ${index}`,
-    spine: "Untitled",
-    dek: "Awaiting dispatch.",
-    body: "[ Entry forthcoming. ]",
-    tags: [],
-    draft: true,
-  };
-}
-
 export const ENTRIES: Entry[] = [
   {
     // Home base: local adventures in SF. Opens from the line under the map, not a numbered stop.
@@ -557,9 +537,6 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
 
-  placeholder("mood-log-01", "mood", "04.01", "09.07.2026"),
-  placeholder("mood-log-02", "mood", "04.02", "09.13.2026"),
-  placeholder("mood-log-03", "mood", "04.03", "09.18.2026"),
   {
     id: "think-and-we-are",
     section: "mood",

@@ -124,7 +124,7 @@ The last line of the journal lets friends "suggest something for me to try". Sug
 
 ## Drafts
 
-Anything with `draft: true` (including every `placeholder(...)` line) shows while you preview on your computer but is hidden on the live site. When an entry is ready, replace the placeholder with a full block, or remove `draft: true`.
+Anything with `draft: true` shows while you preview on your computer but is hidden on the live site. When an entry is ready, remove `draft: true`.
 
 ## Photos and videos
 
