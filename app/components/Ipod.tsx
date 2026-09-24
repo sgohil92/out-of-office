@@ -21,6 +21,7 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
       aria-label="Open the iPod: podcasts I'm listening to"
       className="ooo-ipod-mini group relative block w-[112px] shrink-0 transition-transform duration-500 hover:-translate-y-1 focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55] sm:w-[124px]"
     >
+      <span className="relative block">
       <svg viewBox="0 0 124 104" className="block w-full overflow-visible" aria-hidden>
         <defs>
           <linearGradient id="ooo-ipod-body" x1="0" x2="1" y1="0" y2="1">
@@ -38,7 +39,7 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
         {/* the earbuds cord, looping off to the right toward the shelf's edge */}
         <path
           className="ooo-earbuds"
-          d="M 45 6 C 48 -4 72 -6 84 10 C 96 26 92 60 106 84 C 112 94 118 100 122 104"
+          d="M 45 6 C 48 -4 72 -6 84 10 C 96 26 92 60 106 84 C 113 93 122 96 122 104"
           fill="none"
           stroke="#EDEBE6"
           strokeWidth="1.3"
@@ -83,6 +84,9 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
           MENU
         </text>
       </svg>
+      {/* The rest of the cord: one piece with the iPod, so it can never come apart */}
+      <DanglingEarbuds />
+      </span>
       <span className="mt-1 block text-center font-mono text-[10px] tracking-[0.22em] text-[#8E8E93] group-hover:text-[#EAE5D9]">
         PODCASTS
       </span>
@@ -91,22 +95,29 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
 }
 
 /** The earbuds hanging over the front of the shelf, swaying a little. Sits inside the shelf plank. */
-export function DanglingEarbuds({ className = "" }: { className?: string }) {
+function DanglingEarbuds() {
+  // Hangs from the iPod's cord end (x 122 of 124, the svg's bottom edge) and
+  // sways from that same point, so the join never opens up.
   return (
-    <svg viewBox="0 -20 40 98" className={`ooo-dangle pointer-events-none absolute -top-[20px] z-10 h-[98px] w-[40px] ${className}`} aria-hidden>
+    <svg
+      viewBox="0 0 40 110"
+      className="ooo-dangle pointer-events-none absolute top-full h-[110px] w-[40px] overflow-visible"
+      style={{ right: "calc(1.6% - 22px)" }}
+      aria-hidden
+    >
       <g fill="none" stroke="#EDEBE6" strokeWidth="1.3" strokeLinecap="round">
-        <path d="M 18 -20 C 19 -10 20 -4 20 0 C 21 8 20 16 20 26 C 20 34 19 40 20 46" />
-        <path d="M 20 46 C 16 52 12 58 11 66" />
-        <path d="M 20 46 C 24 54 27 60 29 70" />
+        <path d="M 18 -0.5 C 18 14 20 22 20 34 C 20 50 19 60 20 70" />
+        <path d="M 20 70 C 16 76 12 82 11 90" />
+        <path d="M 20 70 C 24 78 27 84 29 94" />
       </g>
-      <rect x="18.2" y="42" width="3.6" height="5" rx="1" fill="#EDEBE6" />
+      <rect x="18.2" y="66" width="3.6" height="5" rx="1" fill="#EDEBE6" />
       <g>
-        <ellipse cx="11" cy="69" rx="4.5" ry="5.5" fill="#F4F2EE" stroke="#BDB8AF" strokeWidth="0.6" />
-        <circle cx="11" cy="70" r="1.6" fill="#8E8A84" />
+        <ellipse cx="11" cy="93" rx="4.5" ry="5.5" fill="#F4F2EE" stroke="#BDB8AF" strokeWidth="0.6" />
+        <circle cx="11" cy="94" r="1.6" fill="#8E8A84" />
       </g>
       <g>
-        <ellipse cx="29" cy="72" rx="4.5" ry="5.5" fill="#F4F2EE" stroke="#BDB8AF" strokeWidth="0.6" />
-        <circle cx="29" cy="73" r="1.6" fill="#8E8A84" />
+        <ellipse cx="29" cy="96" rx="4.5" ry="5.5" fill="#F4F2EE" stroke="#BDB8AF" strokeWidth="0.6" />
+        <circle cx="29" cy="97" r="1.6" fill="#8E8A84" />
       </g>
     </svg>
   );

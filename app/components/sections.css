@@ -679,7 +679,7 @@
 }
 
 .ooo-dangle {
-  transform-origin: 50% 20%;
+  transform-origin: 45% 0%;
   animation: ooo-dangle 5s ease-in-out infinite;
 }
 
@@ -730,5 +730,5 @@
 
 .ooo-ipod-mini:hover .ooo-earbuds,
 .ooo-ipod-mini:focus-visible .ooo-earbuds {
-  transform: translateY(-2px);
+  transform: none;
 }

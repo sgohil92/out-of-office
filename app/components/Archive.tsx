@@ -8,7 +8,7 @@ import type { AtlasDrawing } from "../../lib/atlas";
 import type { AtlasWords } from "./RoadAtlas";
 import type { Invite } from "../../content/invites";
 import BookRecommendSlip from "./BookRecommendSlip";
-import { DanglingEarbuds, IpodOnShelf, IpodPlayer } from "./Ipod";
+import { IpodOnShelf, IpodPlayer } from "./Ipod";
 import InviteTicket from "./InviteTicket";
 import Lightbox from "./Lightbox";
 import SleepingTruffles from "./SleepingTruffles";
@@ -386,18 +386,17 @@ function Bookshelf({
         <div aria-hidden className="shelf-plank" />
       </div>
       <div className="shelf-row mt-2">
-        <div className="shelf-back shelf-back-low flex items-end gap-4 overflow-x-auto overflow-y-hidden px-2 pb-1 pt-6 sm:px-3">
+        {/* Not clipped, so the iPod's earbuds can hang down over the shelf's edge */}
+        <div className="shelf-back shelf-back-low flex items-end gap-4 overflow-visible px-2 pb-1 pt-6 sm:px-3">
           <BookRecommendSlip open={slipOpen} onOpenChange={setSlipOpen} />
-          <div className="ml-auto pr-2">
+          <div className="relative z-10 ml-auto pr-2">
             <IpodOnShelf podcasts={podcasts} onOpen={() => setIpodOpen(true)} />
           </div>
           {ipodOpen ? (
             <IpodPlayer podcasts={podcasts} onClose={() => setIpodOpen(false)} />
           ) : null}
         </div>
-        <div aria-hidden className="shelf-plank">
-          <DanglingEarbuds className="-right-1 sm:right-0" />
-        </div>
+        <div aria-hidden className="shelf-plank" />
       </div>
     </div>
   );
