@@ -538,7 +538,7 @@ export const ENTRIES: Entry[] = [
     section: "next",
     index: "05.06",
     date: "",
-    title: "Build a third space, or start that Paris-style intellectual salon",
+    title: "Build a third space, or a Paris-style salon",
     dek: "",
     body: "",
     tags: [],
