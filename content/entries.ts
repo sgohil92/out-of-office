@@ -361,7 +361,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "Heartburn",
     dek: "Nora Ephron",
-    body: "",
+    body: "A great laugh, nothing too serious. Thanks for the rec, Nitisha!",
     tags: [],
   },
   {
