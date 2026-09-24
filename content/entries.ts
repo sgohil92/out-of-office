@@ -393,7 +393,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "Yesteryear",
     dek: "Caro Claire Burke",
-    body: "A bit hyped, but it got me thinking about those who oppose progress vs. those who jump on the progress bandwagon just for the sake of progress. Again, this ties back to the AI angst for me: what's the right balance?",
+    body: "A bit hyped (somehow we were reading this at the same time and didn't even know, Omi!), but it got me thinking about those who oppose progress vs. those who jump on the progress bandwagon just for the sake of progress. Again, this ties back to the AI angst for me: what's the right balance?",
     tags: [],
   },
   {
@@ -413,7 +413,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "Monogamy",
     dek: "Sue Miller",
-    body: "Honestly a bit underwhelming. Doesn't offer a fresh take on non-monogamy lifestyles and I lost interest about half way through. A bit too surface level for me.",
+    body: "A bit underwhelming. Doesn't offer a fresh take on non-monogamy lifestyles and I lost interest about half way through. A bit too surface level for me.",
     tags: [],
   },
   {
