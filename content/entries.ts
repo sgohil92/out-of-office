@@ -331,7 +331,7 @@ export const ENTRIES: Entry[] = [
     title: "The Remains of the Day",
     spine: "Remains of the Day",
     dek: "Kazuo Ishiguro",
-    body: "",
+    body: "Honestly my favorite book of the past few months. Very relevant to why I decided to leave corporate and chase meaning and fulfillment. The ending was devastating, though (sorry for the spoiler). Thanks for the rec, Amar!",
     tags: [],
   },
   {
