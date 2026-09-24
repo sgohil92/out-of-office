@@ -310,7 +310,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "Violeta",
     dek: "Isabel Allende",
-    body: "Interesting read for historical fiction buffs and those who love a woman lead. I then found out the author is based in CA, of course.",
+    body: "Picked up in Mexico City. Interesting read for historical fiction buffs and those who love a woman lead. I then found out the author is based in CA, of course.",
     tags: [],
   },
   {
