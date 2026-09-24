@@ -277,7 +277,34 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
 
-  { ...placeholder("farmers-market", "play", "02.03", "09.14.2026"), hobby: "market" },
+  {
+    id: "farmers-market",
+    section: "play",
+    hobby: "market",
+    index: "02.03",
+    date: "01-09.2026",
+    title: "Flowers for the table",
+    dek: "Market flowers to brighten up the space.",
+    body: "They're beautiful and bring me joy.",
+    images: [
+      "/play/market/market-01.jpg",
+      "/play/market/market-02.jpg",
+      "/play/market/market-03.jpg",
+      "/play/market/market-04.jpg",
+      "/play/market/market-05.jpg",
+      "/play/market/market-06.jpg",
+    ],
+    imageAlts: [
+      "At the dining table with a bouquet of purple delphinium, Truffles lying on the rug below",
+      "Pink tulips in a glass vase, the city through the window behind",
+      "Orange lilies and pink blooms beside bowls of fruit, cherries, apricots and blackberries",
+      "Sunflowers and deep red amaranth in a vase by the window",
+      "Sunflowers and orange zinnias in a tall glass vase",
+      "A wildflower mix with a sunflower and pink cosmos by the window",
+    ],
+    imageAspects: ["portrait", "portrait", "portrait", "portrait", "portrait", "portrait"],
+    tags: [],
+  },
   {
     // The typed page on the Play table: opens the list of ponderings (section "mood" below).
     id: "ponderings",
