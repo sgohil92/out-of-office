@@ -32,6 +32,14 @@ export type StudioNote = {
 
 export const PAINTINGS: Painting[] = [
   {
+    id: "rincon-park",
+    src: "/studio/rincon-park.jpg",
+    alt: "Watercolor and ink of Rincon Park on the Embarcadero: the pink Cupid's Span bow and arrow in the grass, the Hills Bros Coffee building behind, the Bay Bridge overhead, and a few small ink figures along the waterfront",
+    title: "Rincon Park",
+    medium: "Watercolor + ink",
+    note: "And this is why I love my SF walks, such a beautiful city. Started playing with ink sketches of humans!",
+  },
+  {
     id: "fuchsia-botanical",
     src: "/studio/fuchsia-botanical.jpg",
     alt: "Watercolor and ink fuchsia botanical: pink and purple blooms hanging from a branching stem above a brown pot, with a pale pink-washed sky",
