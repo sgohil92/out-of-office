@@ -282,10 +282,10 @@ export const ENTRIES: Entry[] = [
     section: "play",
     hobby: "market",
     index: "02.03",
-    date: "01-09.2026",
+    date: "",
     title: "Flowers for the table",
     dek: "Market flowers to brighten up the space.",
-    body: "They're beautiful and bring me joy.",
+    body: "I've started putting together a bouquet every week. They're beautiful and bring me joy.",
     images: [
       "/play/market/market-01.jpg",
       "/play/market/market-02.jpg",
