@@ -270,7 +270,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "The weekend market",
     dek: "",
-    body: "",
+    body: "This is my way of bringing a bit of the intentional slow living I've experienced on my European travels to its literal opposite: the hustle culture of SF.",
     // Add new photos to the END of a chapter's list, with the date as the caption.
     chapters: [
       {
