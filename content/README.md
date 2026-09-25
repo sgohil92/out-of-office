@@ -114,7 +114,7 @@ Until then, the slip says it couldn't file automatically and offers "Email it" a
 
 The quiet note under the site title lives in `content/mood.ts`. Add each new week at the **top** of `MOODS` (`week` like "Week of 9/28", and `text`). The newest one shows on the page; all of them, this week included, open from the "ARCHIVE →" link under it.
 
-Ponderings, the longer essays, are the `section: "mood"` entries in `entries.ts`. They open from the typed page on the Play table. The list sorts itself: finished pieces by their month (`date: "09.2026"`), newest first, then drafts, newest last in the file first. A topic you haven't written yet gets `future: true` and sits under "Future topics"; remove that line once you start writing it.
+Ponderings, the longer essays, are the `section: "mood"` entries in `entries.ts`. They open from the typed page on the Play table. The list sorts itself: pieces still brewing (no `date` yet) come first, then finished pieces by their month (`date: "09.2026"`), newest first. A topic you haven't written yet gets `future: true` and sits under "Future topics"; remove that line once you start writing it.
 
 ## What's next
 

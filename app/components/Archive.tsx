@@ -539,7 +539,8 @@ export default function Archive({
   };
 
   // Ponderings (section "mood") open from the typed page on the Play table.
-  // Ponderings, newest first: finished pieces by date, then works in progress (most recently added first).
+  // Ponderings, newest first: pieces still brewing (no month yet) lead, then finished ones by month,
+  // most recently added first within each. Future topics get their own list in <Ponderings>.
   const dateKey = (date: string) => {
     const p = date.split(".").map(Number);
     return p.length === 3 ? p[2] * 10000 + p[0] * 100 + p[1] : p.length === 2 ? p[1] * 10000 + p[0] * 100 : 0;
@@ -547,7 +548,12 @@ export default function Archive({
   const ponderings = entries
     .filter((e) => e.section === "mood")
     .map((e, i) => ({ e, i }))
-    .sort((a, b) => dateKey(b.e.date) - dateKey(a.e.date) || b.i - a.i)
+    .sort(
+      (a, b) =>
+        Number(!b.e.date) - Number(!a.e.date) ||
+        dateKey(b.e.date) - dateKey(a.e.date) ||
+        b.i - a.i,
+    )
     .map(({ e }) => e);
   const ponderingsEntry = entries.find((e) => e.section === "play" && e.hobby === "writing");
 
