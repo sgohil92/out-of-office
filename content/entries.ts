@@ -681,7 +681,7 @@ export const ENTRIES: Entry[] = [
     section: "next",
     index: "05.07",
     date: "",
-    title: "Explore the local art gallery scene",
+    title: "Local art gallery scene",
     dek: "",
     body: "",
     tags: [],
