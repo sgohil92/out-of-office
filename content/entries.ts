@@ -629,7 +629,7 @@ export const ENTRIES: Entry[] = [
     index: "04.05",
     date: "08.2026",
     title: "The Ritual of Coffee",
-    dek: "",
+    dek: "No, I'm not a coffee purist.",
     body: [
       "That first sip feels like relief. The warming layers, the smoothness, such a delicate balance of flavors, and the immediate signal to my brain that it's go time.",
       "The power of a ritual is that it's different from a habit or doing something for the sake of the function. It's a bit more sacred, almost spiritual, and always intentional. It becomes so essential and ingrained in your life that taking it away feels unsettling.",
