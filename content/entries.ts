@@ -573,7 +573,7 @@ export const ENTRIES: Entry[] = [
     index: "04.06",
     date: "",
     title: "Solitude vs. loneliness",
-    dek: "",
+    dek: "Loving my own company.",
     body: "",
     tags: [],
   },
