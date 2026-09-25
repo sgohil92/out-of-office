@@ -242,6 +242,7 @@ export const ENTRIES: Entry[] = [
         aspect: "portrait",
       },
     ],
+    videoNote: "(My current teacher would kill me for how large my steps are here, but hey, at least I'm smiling.)",
     tags: [],
   },
   {

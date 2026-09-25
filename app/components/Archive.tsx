@@ -823,6 +823,11 @@ export default function Archive({
                   ))}
                 </div>
               ) : null}
+              {active.videoNote ? (
+                <p className="mt-4 text-center font-serif text-[15px] italic leading-snug text-[#B8B2A6]">
+                  {active.videoNote}
+                </p>
+              ) : null}
               {photos}
               {active.chapters
                 ?.filter((ch) => ch.body || ch.photos.length)

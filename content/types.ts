@@ -68,6 +68,8 @@ export type Entry = {
   featured?: { src: string; stamp?: string }[];
   /** Videos shown in the drawer, above the text. */
   videos?: Video[];
+  /** A short aside shown right under the videos. */
+  videoNote?: string;
   /**
    * Named parts of one post, each with its own words and photos (the market's
    * "For the table" and "For the plate"). A part with no words or photos yet stays hidden.
