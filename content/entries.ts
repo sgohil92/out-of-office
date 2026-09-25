@@ -721,6 +721,17 @@ export const ENTRIES: Entry[] = [
     dek: "",
     body: "",
     tags: [],
+    done: true,
+  },
+  {
+    id: "far-away-hike",
+    section: "next",
+    index: "05.08",
+    date: "",
+    title: "Hike in a far-away land",
+    dek: "",
+    body: "",
+    tags: [],
   },
   {
     id: "milestone-birthday",

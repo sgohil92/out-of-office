@@ -39,7 +39,8 @@ export default function WishList<E extends ArchiveEntry>({
       <span aria-hidden className="ooo-journal-band" />
       <div className="px-3 pb-3 pt-4 sm:px-4">
         <ol className="ooo-notepad-lines">
-          {entries.map((entry) => (
+          {/* Still to do first; checked-off wishes drift to the bottom */}
+          {[...entries.filter((e) => !e.done), ...entries.filter((e) => e.done)].map((entry) => (
             <li key={entry.id}>
               {/* Only wishes with a note open; the rest are just lines on the pad. */}
               {entry.body ? (
