@@ -579,10 +579,10 @@ export const ENTRIES: Entry[] = [
     id: "not-a-zero-sum-game",
     section: "mood",
     index: "04.07",
-    date: "",
+    date: "09.25.2026",
     title: "It's not a zero-sum game",
-    dek: "Thoughts on monogamy. Work in progress.",
-    body: "",
+    dek: "Thoughts on non-monogamy.",
+    body: "* The expectations on both partners just keep increasing: friend, confidant, adventure buddy, romantic suitor, sexual match, provider, and the list goes on and on. I don't think it's realistic or feasible. By the way, that list of needs and wants changes in each phase of your life, so how is your partner expected to keep up?\n* Yes, you choose to be in a partnership to build something together, but you're still two separate people with your own goals, dreams, and desires. Human beings are dynamic, and it's my job to build a life that is fulfilling for me while supporting the person I choose to spend the most time with. That doesn't mean I stifle my growth or theirs. I buy into the fact that a certain amount of molding and compromise is needed, but I see absolutely nothing wrong with looking outside of the primary relationship.\n* When did society decide that sexual, and sometimes emotional, intimacy should be reserved for the primary partner? Why are those put on a pedestal of loyalty and not, for example, lifting weights together? Can you imagine if someone said you can only deadlift with your partner? Insane. Also, it's not a zero-sum game, as long as you're respectful of everyone's boundaries.\n* Every couple chooses their own form of ethical non-monogamy (ENM). There isn't a one-size-fits-all. However, the three things I think are ever-present are trust, communication, and compersion.\n* ENM is more common than you'd think, maybe not as well defined, but certainly present in places you'd least expect it. Forever is a long time.\n* These connections are not meaningless or fleeting, at least not for me. And yes, they come with a risk of destabilizing the primary, but it is well worth it. The pros outweigh the cons.\n* There are uncomfortable feelings involved because we're all human and emotions come up: jealousy, comparison, uncertainty. But being able to sit with them and talk through them has made my partnership stronger.\n* As relationships have moved from need and utility to choice and something more virtue-based, I truly think non-traditional structures will become more common.",
     tags: [],
   },
   {
