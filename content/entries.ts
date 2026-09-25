@@ -257,7 +257,7 @@ export const ENTRIES: Entry[] = [
     index: "02.02",
     date: "",
     title: "The studio wall",
-    dek: "More to come!",
+    dek: "More to come.",
     body: "",
     tags: [],
   },
