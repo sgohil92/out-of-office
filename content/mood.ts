@@ -12,6 +12,6 @@ export type Mood = {
 export const MOODS: Mood[] = [
   {
     week: "Week of 9/21",
-    text: "Feeling a bit indulgent and bored with the city, so trying to find its swankier side. Has to exist, right? Let's try the SF Symphony and Bar Crenn.",
+    text: "Feeling a bit indulgent and bored with the city, so trying to find its swankier side. Has to exist, right? Let's try the SF Symphony and Bar Crenn. Although if anyone tries to talk productivity or AI to me, I will not-so-politely pull an Irish goodbye.",
   },
 ];
