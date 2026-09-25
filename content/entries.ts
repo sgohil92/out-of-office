@@ -562,7 +562,7 @@ export const ENTRIES: Entry[] = [
     index: "04.04",
     date: "",
     title: "Can you hold both at once?",
-    dek: "",
+    dek: "Collectivism and individualism.",
     body: "How to hold both of these at once, “I think, therefore I am” and “I am because we are”, and what they mean to me.",
     tags: [],
   },
