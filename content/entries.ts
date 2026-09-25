@@ -462,9 +462,9 @@ export const ENTRIES: Entry[] = [
     title: "Stories of Art",
     dek: "HENI Talks",
     body: [
-      "I can't get enough of this podcast. My current favorite episodes are about Lee Miller, and now I want to read her biography! The podcasters are amazing storytellers. Overall, a gem of a find since I'm deep-diving into art.",
+      "I can't get enough of this podcast. My current favorite episodes are about Lee Miller, and now I want to read her biography! The podcasters are amazing storytellers. Overall, a gem of a find since I'm deep-diving into art, including photography.",
       "Other episodes that were super interesting: Monet (which paired perfectly with the Venice exhibit at the de Young) and Impressionism. Oh, and by the way, the Matisse: A Modern Scandal exhibit at SFMOMA is so, so good.",
-      "Talk to me about your favorite artist, please :)",
+      "Talk to me about your favorite artist, please.",
     ].join("\n\n"),
     tags: [],
   },
