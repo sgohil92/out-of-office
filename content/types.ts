@@ -99,4 +99,6 @@ export type Entry = {
   draft?: boolean;
   /** true = kept here for later but not shown anywhere, not even on your computer. */
   hidden?: boolean;
+  /** Ponderings only: true = a topic you haven't written yet, listed under "Future topics". */
+  future?: boolean;
 };
