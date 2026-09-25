@@ -360,16 +360,44 @@ function BookSpine({
  * The book I'm reading right now, lying flat on the bottom shelf with its ribbon hanging out.
  * Not clickable: a book only opens once it's finished and back on the top shelf.
  */
-function FlatBook({ entry }: { entry: Entry }) {
+/** What I'm reading now: lying flat on the bottom shelf, stacked if there's more than one. */
+const READING_CLOTH = ["#3B4654", "#2E2B28", "#4A3A2E"];
+
+function ReadingStack({ books, onOpen }: { books: Entry[]; onOpen: (entry: Entry) => void }) {
+  // The newest pick sits on top; the ribbon peeks out of the top book.
+  const stack = [...books].reverse();
   return (
-    <div className="flex min-w-0 max-w-[168px] flex-1 flex-col items-stretch" title={entry.title}>
-      <span className="book-lying book-cloth relative block h-[30px] w-full" style={{ backgroundColor: "#3B4654", color: "#D9D1BF" }}>
-        <span aria-hidden className="book-ribbon-flat" />
-        <span className="font-sc absolute inset-y-0 left-2.5 right-2.5 flex items-center justify-center overflow-hidden whitespace-nowrap text-[10px] tracking-[0.03em] sm:left-3 sm:right-3 sm:text-[11px] sm:tracking-[0.08em]">
-          <span className="sr-only">Currently reading: {entry.title}</span>
-          <span aria-hidden>{entry.spine ?? entry.title}</span>
-        </span>
-      </span>
+    <div className="flex min-w-0 max-w-[168px] flex-1 flex-col items-stretch">
+      {stack.map((entry, k) => {
+        const fromBottom = stack.length - 1 - k;
+        return (
+          <button
+            key={entry.id}
+            type="button"
+            onClick={() => onOpen(entry)}
+            title={entry.title}
+            aria-label={`Currently reading: ${entry.title}. Open`}
+            className="book-lying book-cloth relative block h-[30px] text-left transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#A07E55]"
+            style={{
+              backgroundColor: READING_CLOTH[fromBottom % READING_CLOTH.length],
+              color: "#D9D1BF",
+              // each book a touch shorter and nudged over, like a real stack
+              width: `${100 - fromBottom * 8}%`,
+              marginLeft: `${fromBottom * 5}%`,
+              rotate: fromBottom ? `${fromBottom % 2 ? -1.2 : 0.8}deg` : undefined,
+              zIndex: stack.length - k,
+            }}
+          >
+            {k === 0 ? <span aria-hidden className="book-ribbon-flat" /> : null}
+            <span
+              aria-hidden
+              className="font-sc absolute inset-y-0 left-2.5 right-2.5 flex items-center justify-center overflow-hidden whitespace-nowrap text-[10px] tracking-[0.03em] sm:left-3 sm:right-3 sm:text-[11px] sm:tracking-[0.08em]"
+            >
+              {entry.spine ?? entry.title}
+            </span>
+          </button>
+        );
+      })}
       <span aria-hidden className="mt-2 block text-center font-mono text-[10px] tracking-[0.16em] text-[#8E8E93] sm:tracking-[0.22em]">
         CURRENTLY READING
       </span>
@@ -385,9 +413,9 @@ function Bookshelf({
   onOpen: (entry: Entry) => void;
 }) {
   // Books stand on the top shelf; podcasts live on the iPod on the bottom one.
-  // The one I'm reading now lies flat on the bottom shelf instead.
+  // What I'm reading now lies flat on the bottom shelf instead, stacked if there's more than one.
   const books = entries.filter((e) => e.format !== "podcast" && !e.reading);
-  const reading = entries.find((e) => e.format !== "podcast" && e.reading);
+  const reading = entries.filter((e) => e.format !== "podcast" && e.reading);
   const podcasts = entries.filter((e) => e.format === "podcast");
   const spineFor = (i: number) => SPINES[i % SPINES.length];
   const [ipodOpen, setIpodOpen] = useState(false);
@@ -421,7 +449,7 @@ function Bookshelf({
       <div className="shelf-row mt-2">
         {/* Not clipped, so the iPod's earbuds can hang down over the shelf's edge */}
         <div className="shelf-back shelf-back-low flex items-end gap-4 overflow-visible px-3 pb-1 pt-6 sm:px-5">
-          {reading ? <FlatBook entry={reading} /> : null}
+          {reading.length ? <ReadingStack books={reading} onOpen={onOpen} /> : null}
           <div className="relative z-10 ml-auto shrink-0 pr-2">
             <IpodOnShelf podcasts={podcasts} onOpen={() => setIpodOpen(true)} />
           </div>

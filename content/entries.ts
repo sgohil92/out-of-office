@@ -320,6 +320,18 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
   {
+    id: "lives-of-lee-miller",
+    section: "bookshelf",
+    reading: true,
+    index: "03.26",
+    date: "",
+    title: "The Lives of Lee Miller",
+    spine: "Lee Miller",
+    dek: "Antony Penrose (her son)",
+    body: "",
+    tags: [],
+  },
+  {
     id: "violeta",
     section: "bookshelf",
     index: "03.01",
