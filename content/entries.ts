@@ -356,7 +356,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "The Shampoo Effect",
     dek: "Jenny Jackson",
-    body: "",
+    body: "I grabbed this one as soon as Bianca told me Jenny Jackson had done it again, mainly because Pineapple Street was such a fun, light, yet thought-provoking read about class and wealth dynamics, an outsider breaking into an established circle, and just absurdity. She hit it out of the park again. I'd say my main takeaways were that you outgrow friends, relationship structures are fluid, and there's a reason I don't live in a small town — waaay too claustrophobic and incestuous for me.",
     tags: [],
   },
   {
