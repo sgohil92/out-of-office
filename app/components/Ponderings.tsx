@@ -1,7 +1,7 @@
 import { formatDate, type ArchiveEntry } from "./types";
 import "./sections.css";
 
-/** The list of ponderings, newest first; opens from the typed page on the Play table. */
+/** The list of ponderings, already sorted newest first; opens from the typed page on the Play table. */
 export default function Ponderings<E extends ArchiveEntry>({
   entries,
   onOpen,
@@ -9,8 +9,8 @@ export default function Ponderings<E extends ArchiveEntry>({
   entries: E[];
   onOpen: (entry: E) => void;
 }) {
-  const latest = entries[entries.length - 1];
-  const log = [...entries].reverse();
+  const latest = entries.find((e) => e.date);
+  const log = entries;
 
   return (
     <div className="mt-8">
@@ -23,7 +23,7 @@ export default function Ponderings<E extends ArchiveEntry>({
                 className="group grid w-full grid-cols-[5.75rem_minmax(0,1fr)] items-baseline gap-x-4 py-3 text-left transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#A07E55]"
               >
                 <time className="font-mono text-[10px] tracking-[0.16em] text-[#A07E55]">
-                  {formatDate(entry.date)}
+                  {formatDate(entry.date, "short")}
                 </time>
                 <span className="min-w-0">
                   <span className="block font-serif text-lg leading-tight transition-colors duration-300 group-hover:text-[#A07E55]">

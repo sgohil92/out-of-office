@@ -539,7 +539,16 @@ export default function Archive({
   };
 
   // Ponderings (section "mood") open from the typed page on the Play table.
-  const ponderings = entries.filter((e) => e.section === "mood");
+  // Ponderings, newest first: finished pieces by date, then works in progress (most recently added first).
+  const dateKey = (date: string) => {
+    const p = date.split(".").map(Number);
+    return p.length === 3 ? p[2] * 10000 + p[0] * 100 + p[1] : p.length === 2 ? p[1] * 10000 + p[0] * 100 : 0;
+  };
+  const ponderings = entries
+    .filter((e) => e.section === "mood")
+    .map((e, i) => ({ e, i }))
+    .sort((a, b) => dateKey(b.e.date) - dateKey(a.e.date) || b.i - a.i)
+    .map(({ e }) => e);
   const ponderingsEntry = entries.find((e) => e.section === "play" && e.hobby === "writing");
 
   // Destinations lead with the story; a big set of photos becomes a scrapbook grid.
@@ -711,7 +720,7 @@ export default function Archive({
                 <PlayTable
                   entries={section.entries}
                   onOpen={setActive}
-                  ponderings={[...ponderings].reverse().map((p) => p.title)}
+                  ponderings={ponderings.map((p) => p.title)}
                 />
               ) : section.id === "next" ? (
                 <WishList entries={section.entries} onOpen={setActive} />
