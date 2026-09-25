@@ -95,7 +95,7 @@ export default function BookRecommendSlip({
           +
         </span>
         <span className="font-serif text-[16px] italic leading-snug text-[#8E8E93] transition-colors group-hover:text-[#EAE5D9]">
-          recommend a book or podcast. I&rsquo;m all ears.
+          recommend a book or podcast
         </span>
       </button>
 

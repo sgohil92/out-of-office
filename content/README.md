@@ -102,7 +102,7 @@ Add `format: "podcast"` and it goes on the iPod instead (bottom shelf). Picking 
 
 ### "Recommend a book or podcast" slip
 
-It opens from the "+ recommend a book or podcast. I'm all ears." line just under the bookcase. Recommendations are emailed to the address in `content/contact.ts` through Resend (resend.com), a free email-sending service. To switch it on:
+It opens from the "+ recommend a book or podcast" line just under the bookcase. Recommendations are emailed to the address in `content/contact.ts` through Resend (resend.com), a free email-sending service. To switch it on:
 
 1. Make a free account at resend.com with that same email address, and create an API key.
 2. On your computer, add a line to `.env.local`: `RESEND_API_KEY=re_...` (then restart the preview).
