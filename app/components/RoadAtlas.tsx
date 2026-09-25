@@ -14,7 +14,6 @@ export type AtlasWords = {
 const COAT = "#1B1917";
 const INK = "#2A2520";
 const ROAD = "#9A3A28";
-const SEA_INK = "#3F6479";
 const BONE =
   "M -8.27 -2.15 A 5.2 5.2 0 1 0 -15.92 0 A 5.2 5.2 0 1 0 -8.27 2.15 H 8.27 A 5.2 5.2 0 1 0 15.92 0 A 5.2 5.2 0 1 0 8.27 -2.15 Z";
 
@@ -334,20 +333,18 @@ export default function RoadAtlas<E extends ArchiveEntry>({
                 </g>
               ))}
 
-            {/* the route */}
+            {/* the route: every trip taken is drawn the same way, in ink; only the next trip (below) is pencil */}
             {legs.map((leg, i) => (
-              <g key={i}>
-                {leg.mode === "drive" ? (
-                  <>
-                    <path d={leg.d} fill="none" stroke={ROAD} strokeWidth="3.4" strokeLinecap="round" />
-                    <path d={leg.d} fill="none" stroke="#F3EAD6" strokeWidth="0.9" strokeDasharray="4 4" />
-                  </>
-                ) : leg.mode === "paddle" ? (
-                  <path d={leg.d} fill="none" stroke={SEA_INK} strokeWidth="2.6" strokeDasharray="0.1 5.5" strokeLinecap="round" />
-                ) : (
-                  <path d={leg.d} fill="none" stroke={INK} strokeWidth="1.2" strokeDasharray="7 5" strokeOpacity="0.75" />
-                )}
-              </g>
+              <path
+                key={i}
+                d={leg.d}
+                fill="none"
+                stroke={INK}
+                strokeWidth="1.4"
+                strokeDasharray="6 4"
+                strokeLinecap="round"
+                strokeOpacity="0.8"
+              />
             ))}
 
             {last && words.next ? (
