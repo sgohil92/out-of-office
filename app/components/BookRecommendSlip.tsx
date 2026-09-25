@@ -84,17 +84,18 @@ export default function BookRecommendSlip({
 
   return (
     <>
+      {/* One quiet line under the bookcase, like the "suggest something" line under What's Next */}
       <button
         type="button"
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
-        className="ooo-request-card mb-0 mr-1 flex h-[100px] w-[82px] shrink-0 sm:mr-4 sm:h-[112px] sm:w-[94px] flex-col justify-between bg-[#E4DCC8] px-2 py-2.5 text-left text-[#1E1A16] focus-visible:outline-1 focus-visible:outline-offset-3 focus-visible:outline-[#A07E55]"
+        className="group flex items-baseline gap-3 py-2 text-left focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55]"
       >
-        <span className="block border-b border-[#5A5247]/50 pb-1 font-mono text-[8px] leading-tight tracking-[0.16em] text-[#5A5247]">
-          REQUEST CARD
+        <span aria-hidden className="w-3 shrink-0 text-center font-serif text-[16px] leading-none text-[#B0452F]">
+          +
         </span>
-        <span className="font-sc block text-[12px] leading-[1.1]">
-          Recommend a book or podcast
+        <span className="font-serif text-[16px] italic leading-snug text-[#8E8E93] transition-colors group-hover:text-[#EAE5D9]">
+          recommend a book or podcast. I&rsquo;m all ears.
         </span>
       </button>
 

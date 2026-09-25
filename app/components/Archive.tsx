@@ -394,6 +394,7 @@ function Bookshelf({
   const [slipOpen, setSlipOpen] = useState(false);
 
   return (
+    <div>
     <div className="bookcase w-full min-w-0 border border-[#242220] px-2 pt-2 sm:px-3">
       <div className="shelf-row">
         <div className="shelf-back flex items-end gap-3 overflow-x-auto overflow-y-hidden px-2 pt-6 sm:px-3">
@@ -419,8 +420,7 @@ function Bookshelf({
       </div>
       <div className="shelf-row mt-2">
         {/* Not clipped, so the iPod's earbuds can hang down over the shelf's edge */}
-        <div className="shelf-back shelf-back-low flex items-end gap-2 overflow-visible px-2 pb-1 pt-6 sm:gap-4 sm:px-3">
-          <BookRecommendSlip open={slipOpen} onOpenChange={setSlipOpen} />
+        <div className="shelf-back shelf-back-low flex items-end gap-4 overflow-visible px-3 pb-1 pt-6 sm:px-5">
           {reading ? <FlatBook entry={reading} /> : null}
           <div className="relative z-10 ml-auto shrink-0 pr-2">
             <IpodOnShelf podcasts={podcasts} onOpen={() => setIpodOpen(true)} />
@@ -430,6 +430,10 @@ function Bookshelf({
           ) : null}
         </div>
         <div aria-hidden className="shelf-plank" />
+      </div>
+    </div>
+      <div className="mt-4 px-1">
+        <BookRecommendSlip open={slipOpen} onOpenChange={setSlipOpen} />
       </div>
     </div>
   );
