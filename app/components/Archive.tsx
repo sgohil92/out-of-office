@@ -356,6 +356,29 @@ function BookSpine({
   );
 }
 
+/** The book I'm reading right now, lying flat on the bottom shelf with its ribbon hanging out. */
+function FlatBook({ entry, onOpen }: { entry: Entry; onOpen: (entry: Entry) => void }) {
+  return (
+    <button
+      type="button"
+      onClick={() => onOpen(entry)}
+      aria-label={`${entry.title} (currently reading) — open`}
+      title={entry.title}
+      className="group flex min-w-0 max-w-[168px] flex-1 flex-col items-stretch focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55]"
+    >
+      <span className="book-lying book-cloth relative block h-[30px] w-full" style={{ backgroundColor: "#3B4654", color: "#D9D1BF" }}>
+        <span aria-hidden className="book-ribbon-flat" />
+        <span className="font-sc absolute inset-y-0 left-2.5 right-2.5 flex items-center justify-center overflow-hidden whitespace-nowrap text-[10px] tracking-[0.03em] sm:left-3 sm:right-3 sm:text-[11px] sm:tracking-[0.08em]">
+          {entry.spine ?? entry.title}
+        </span>
+      </span>
+      <span className="mt-2 block text-center font-mono text-[10px] tracking-[0.16em] text-[#8E8E93] group-hover:text-[#EAE5D9] sm:tracking-[0.22em]">
+        CURRENTLY <span className="whitespace-nowrap">READING<span aria-hidden className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></span>
+      </span>
+    </button>
+  );
+}
+
 function Bookshelf({
   entries,
   onOpen,
@@ -364,7 +387,9 @@ function Bookshelf({
   onOpen: (entry: Entry) => void;
 }) {
   // Books stand on the top shelf; podcasts live on the iPod on the bottom one.
-  const books = entries.filter((e) => e.format !== "podcast");
+  // The one I'm reading now lies flat on the bottom shelf instead.
+  const books = entries.filter((e) => e.format !== "podcast" && !e.reading);
+  const reading = entries.find((e) => e.format !== "podcast" && e.reading);
   const podcasts = entries.filter((e) => e.format === "podcast");
   const spineFor = (i: number) => SPINES[i % SPINES.length];
   const [ipodOpen, setIpodOpen] = useState(false);
@@ -396,9 +421,10 @@ function Bookshelf({
       </div>
       <div className="shelf-row mt-2">
         {/* Not clipped, so the iPod's earbuds can hang down over the shelf's edge */}
-        <div className="shelf-back shelf-back-low flex items-end gap-4 overflow-visible px-2 pb-1 pt-6 sm:px-3">
+        <div className="shelf-back shelf-back-low flex items-end gap-2 overflow-visible px-2 pb-1 pt-6 sm:gap-4 sm:px-3">
           <BookRecommendSlip open={slipOpen} onOpenChange={setSlipOpen} />
-          <div className="relative z-10 ml-auto pr-2">
+          {reading ? <FlatBook entry={reading} onOpen={onOpen} /> : null}
+          <div className="relative z-10 ml-auto shrink-0 pr-2">
             <IpodOnShelf podcasts={podcasts} onOpen={() => setIpodOpen(true)} />
           </div>
           {ipodOpen ? (

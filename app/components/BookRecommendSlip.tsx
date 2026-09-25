@@ -88,7 +88,7 @@ export default function BookRecommendSlip({
         type="button"
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
-        className="ooo-request-card mb-0 mr-4 flex h-[112px] w-[94px] shrink-0 flex-col justify-between bg-[#E4DCC8] px-2 py-2.5 text-left text-[#1E1A16] focus-visible:outline-1 focus-visible:outline-offset-3 focus-visible:outline-[#A07E55]"
+        className="ooo-request-card mb-0 mr-1 flex h-[100px] w-[82px] shrink-0 sm:mr-4 sm:h-[112px] sm:w-[94px] flex-col justify-between bg-[#E4DCC8] px-2 py-2.5 text-left text-[#1E1A16] focus-visible:outline-1 focus-visible:outline-offset-3 focus-visible:outline-[#A07E55]"
       >
         <span className="block border-b border-[#5A5247]/50 pb-1 font-mono text-[8px] leading-tight tracking-[0.16em] text-[#5A5247]">
           REQUEST CARD

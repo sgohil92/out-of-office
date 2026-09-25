@@ -19,7 +19,7 @@ export function IpodOnShelf({ podcasts, onOpen }: { podcasts: Entry[]; onOpen: (
       type="button"
       onClick={onOpen}
       aria-label="Open the iPod: podcasts I'm listening to"
-      className="ooo-ipod-mini group relative block w-[112px] shrink-0 transition-transform duration-500 hover:-translate-y-1 focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55] sm:w-[124px]"
+      className="ooo-ipod-mini group relative block w-[96px] shrink-0 transition-transform duration-500 hover:-translate-y-1 focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55] sm:w-[124px]"
     >
       <span className="relative block">
       <svg viewBox="0 0 124 104" className="block w-full overflow-visible" aria-hidden>
