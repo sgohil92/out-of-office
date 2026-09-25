@@ -732,3 +732,25 @@
 .ooo-ipod-mini:focus-visible .ooo-earbuds {
   transform: none;
 }
+
+/* Truffles at the door: a happy, unhurried wag */
+.ooo-wag {
+  transform-box: view-box;
+  transform-origin: 118px 64px;
+  animation: ooo-wag 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes ooo-wag {
+  from {
+    transform: rotate(-14deg);
+  }
+  to {
+    transform: rotate(16deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ooo-wag {
+    animation: none;
+  }
+}

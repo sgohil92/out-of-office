@@ -15,7 +15,7 @@ export default function UnlockForm() {
         Otherwise Engaged
       </h1>
       <p className="mt-3 font-mono text-[11px] leading-relaxed tracking-[0.14em] text-[#8E8E93] sm:tracking-[0.18em]">
-        RESTRICTED READING ROOM — ENTER PASSPHRASE
+        FOR FRIENDS, NOT FOR CIRCULATION.
       </p>
       <label htmlFor="passcode" className="sr-only">
         Passcode
@@ -31,7 +31,7 @@ export default function UnlockForm() {
       />
       {state.error && !pending && (
         <p className="mt-3 font-mono text-[11px] tracking-widest text-[#A07E55]">
-          ACCESS DENIED — CHECK THE STAMP
+          NOT QUITE. TRUFFLES ISN&rsquo;T CONVINCED.
         </p>
       )}
       <button
@@ -39,8 +39,11 @@ export default function UnlockForm() {
         disabled={pending}
         className="mt-6 w-full border border-[#A07E55] px-4 py-3 font-mono text-[11px] tracking-[0.32em] text-[#A07E55] transition hover:bg-[#A07E55] hover:text-[#0C0B0A] disabled:opacity-60"
       >
-        {pending ? "CHECKING…" : "OPEN THE VOLUME"}
+        {pending ? "CHECKING…" : "COME IN"}
       </button>
+      <p className="mt-4 text-center font-serif text-[15px] italic text-[#8E8E93]">
+        Don&rsquo;t have it? Text me.
+      </p>
     </form>
   );
 }
