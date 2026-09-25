@@ -226,6 +226,18 @@ export const ENTRIES: Entry[] = [
   },
 
   {
+    // Opens the studio wall. Add paintings and notes in content/studio.ts.
+    id: "studio",
+    section: "play",
+    hobby: "painting",
+    index: "02.02",
+    date: "",
+    title: "The studio wall",
+    dek: "More to come.",
+    body: "",
+    tags: [],
+  },
+  {
     id: "salsa-week-one",
     section: "play",
     hobby: "dance",
@@ -247,18 +259,6 @@ export const ENTRIES: Entry[] = [
       },
     ],
     videoNote: "(My current teacher would kill me for how large my steps are here, but hey, at least I'm smiling.)",
-    tags: [],
-  },
-  {
-    // Opens the studio wall. Add paintings and notes in content/studio.ts.
-    id: "studio",
-    section: "play",
-    hobby: "painting",
-    index: "02.02",
-    date: "",
-    title: "The studio wall",
-    dek: "More to come.",
-    body: "",
     tags: [],
   },
 
