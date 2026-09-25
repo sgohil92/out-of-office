@@ -19,6 +19,6 @@ export const config = {
   matcher: [
     // Everything except the gate itself, the site's code/styles, live-reload
     // while previewing, and the favicon + robots file.
-    "/((?!unlock|_next/static|_next/hmr|_next/webpack-hmr|__nextjs|favicon.ico|robots.txt).*)",
+    "/((?!unlock|_next/static|_next/hmr|_next/webpack-hmr|__nextjs|favicon.ico|icon.svg|robots.txt).*)",
   ],
 };

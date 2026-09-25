@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-16 -16 32 32">
+  <!-- Truffles's paw, the same one on the trip postmarks. A deeper gold in light browsers so it doesn't fade out. -->
+  <style>
+    g { fill: #9C7A44; }
+    @media (prefers-color-scheme: dark) { g { fill: #C9A66B; } }
+  </style>
+  <g>
+    <ellipse cx="0" cy="4" rx="8" ry="6.5"/>
+    <ellipse cx="-9" cy="-5" rx="3" ry="4" transform="rotate(-20 -9 -5)"/>
+    <ellipse cx="-3.5" cy="-10" rx="3" ry="4"/>
+    <ellipse cx="3.5" cy="-10" rx="3" ry="4"/>
+    <ellipse cx="9" cy="-5" rx="3" ry="4" transform="rotate(20 9 -5)"/>
+  </g>
+</svg>
