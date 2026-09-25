@@ -606,6 +606,16 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
   {
+    id: "out-of-love-with-sf",
+    section: "mood",
+    index: "04.10",
+    date: "",
+    title: "I think I've fallen out of love with SF",
+    dek: "Work in progress.",
+    body: "",
+    tags: [],
+  },
+  {
     id: "ritual-of-coffee",
     section: "mood",
     index: "04.05",
