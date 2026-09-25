@@ -12,7 +12,7 @@ import Archive from "./components/Archive";
 const showDrafts = process.env.NODE_ENV !== "production";
 
 export default function Home() {
-  const entries = showDrafts ? ENTRIES : ENTRIES.filter((entry) => !entry.draft);
+  const entries = ENTRIES.filter((entry) => !entry.hidden && (showDrafts || !entry.draft));
   const { home, doodles, ...words } = ATLAS;
   // Stops are listed newest first; Truffles travels them oldest first.
   const drawing = drawAtlas(

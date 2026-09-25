@@ -83,7 +83,7 @@ They play in the drawer when someone clicks the record. Use `"portrait"` for pho
 
 Every `section: "bookshelf"` entry is a book spine on the top shelf. The spine shows `title`, or `spine` if you set it (use it for a shorter version).
 
-Add `format: "podcast"` and it goes on the iPod instead (bottom shelf). Tapping the iPod opens straight to the list of podcast names; picking one shows "Now Playing" with your `body` as a note and a LISTEN → button for `link`:
+Add `format: "podcast"` and it goes on the iPod instead (bottom shelf). Picking one shows "Now Playing" with your `body` as a note and a LISTEN → button for `link`. Right now the iPod plays one show at a time: the others have `hidden: true`, which keeps them in the file without showing them anywhere. To swap, move `hidden: true` from the new favorite to the old one. With just one show, tapping the iPod opens straight to Now Playing.
 
 ```ts
 {

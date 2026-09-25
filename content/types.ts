@@ -97,4 +97,6 @@ export type Entry = {
   spine?: string;
   /** true = shows on your computer, hidden on the live site. */
   draft?: boolean;
+  /** true = kept here for later but not shown anywhere, not even on your computer. */
+  hidden?: boolean;
 };

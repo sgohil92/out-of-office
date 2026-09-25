@@ -126,7 +126,8 @@ function DanglingEarbuds() {
 
 /** The full-size iPod: a working menu, click wheel and Now Playing screen. */
 export function IpodPlayer({ podcasts, onClose }: { podcasts: Entry[]; onClose: () => void }) {
-  const [view, setView] = useState<View>("podcasts");
+  // With just one show on it, the iPod opens straight to Now Playing.
+  const [view, setView] = useState<View>(podcasts.length === 1 ? "now" : "podcasts");
   const [sel, setSel] = useState(0);
   const [playing, setPlaying] = useState(0);
   const wheel = useRef<{ angle: number; spin: number } | null>(null);

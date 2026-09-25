@@ -453,6 +453,7 @@ export const ENTRIES: Entry[] = [
   },
 
   // Podcasts: they live on the iPod, top of the list first.
+  // One at a time for now: the rest have `hidden: true`. Move that line to swap which one is playing.
   {
     id: "stories-of-art",
     section: "bookshelf",
@@ -472,6 +473,7 @@ export const ENTRIES: Entry[] = [
     id: "the-book-review",
     section: "bookshelf",
     format: "podcast",
+    hidden: true,
     index: "03.24",
     date: "",
     title: "The Book Review",
@@ -483,6 +485,7 @@ export const ENTRIES: Entry[] = [
     id: "sex-with-emily",
     section: "bookshelf",
     format: "podcast",
+    hidden: true,
     index: "03.19",
     date: "",
     title: "Sex with Emily",
@@ -494,6 +497,7 @@ export const ENTRIES: Entry[] = [
     id: "the-happiness-lab",
     section: "bookshelf",
     format: "podcast",
+    hidden: true,
     index: "03.20",
     date: "",
     title: "The Happiness Lab",
@@ -505,6 +509,7 @@ export const ENTRIES: Entry[] = [
     id: "hidden-brain",
     section: "bookshelf",
     format: "podcast",
+    hidden: true,
     index: "03.25",
     date: "",
     title: "Hidden Brain",
@@ -516,6 +521,7 @@ export const ENTRIES: Entry[] = [
     id: "where-should-we-begin",
     section: "bookshelf",
     format: "podcast",
+    hidden: true,
     index: "03.21",
     date: "",
     title: "Where Should We Begin?",
@@ -527,6 +533,7 @@ export const ENTRIES: Entry[] = [
     id: "prof-g-markets",
     section: "bookshelf",
     format: "podcast",
+    hidden: true,
     index: "03.22",
     date: "",
     title: "Prof G Markets",
@@ -538,6 +545,7 @@ export const ENTRIES: Entry[] = [
     id: "conan-needs-a-friend",
     section: "bookshelf",
     format: "podcast",
+    hidden: true,
     index: "03.23",
     date: "",
     title: "Conan O'Brien Needs a Friend",
