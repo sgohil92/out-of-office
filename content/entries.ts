@@ -596,6 +596,16 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
   {
+    id: "out-of-love-with-sf",
+    section: "mood",
+    index: "04.10",
+    date: "",
+    title: "I think I've fallen out of love with SF",
+    dek: "Work in progress.",
+    body: "",
+    tags: [],
+  },
+  {
     id: "productivity-and-mastery",
     section: "mood",
     index: "04.09",
@@ -607,16 +617,6 @@ export const ENTRIES: Entry[] = [
       "My response: just being. Being curious, being present, being aware, being playful. Just being whatever I feel like that day. Busyness is a means, but it was never the goal, right? I'm not trying to be productive just to fit into my surroundings, but I've realized many people are, often for external validation. The next promotion, the higher valuation, that incredible exit… okay, yes, wealth generation is important, but there's an FU number I'm not interested in surpassing.",
       "Actually, productivity and mastery have even been superimposed onto my current pursuits. Take dance or painting, for example. I'm often asked: Do you want to eventually compete? Do you want to have a gallery opening? What's the ultimate end goal? There isn't one. I'm trying to do things that bring me joy, for as long as they continue to bring me joy. I love learning, but I don't want this to become another grind. That's the antithesis of the ethos I've chosen to embody right now.",
     ].join("\n\n"),
-    tags: [],
-  },
-  {
-    id: "out-of-love-with-sf",
-    section: "mood",
-    index: "04.10",
-    date: "",
-    title: "I think I've fallen out of love with SF",
-    dek: "Work in progress.",
-    body: "",
     tags: [],
   },
   {
