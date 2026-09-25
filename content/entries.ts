@@ -418,7 +418,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "How to Be Perfect",
     dek: "Michael Schur",
-    body: "Loved it, but still processing my thoughts. Will revert.",
+    body: "Loved it, but still processing my thoughts. Will circle back.",
     tags: [],
   },
   {
