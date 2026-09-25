@@ -117,7 +117,11 @@ export const ENTRIES: Entry[] = [
     place: "Colombia",
     title: "Colombia",
     dek: "Where I learned to salsa.",
-    body: "[ Entry forthcoming. ]",
+    body: [
+      "The tattoo was a huge milestone for me. I've been talking all of your heads off about it for over a year, and I finally did it, and that too in a completely unplanned way.",
+      "My friend Sam, one of the most spontaneous and brave humans I know, said she would get one with me to mark our travels, found an artist, and just booked her. Meanwhile, I was sitting there with a ton of questions running through my head: Would it hurt? Is it safe? Will I like it when I'm 80? What could go wrong getting it in the middle of Medellín? We agreed that I would go to the tattoo studio, talk to the artist, and then make the final decision, but I was under no circumstance allowed to back out AFTER she got hers (she went first).",
+      "I saw the design the artist made for me and just started crying. It was perfect. She captured the delicate, powerful, sexy combination and the meaning perfectly. (If you don't know the meaning, feel free to ask.) Needless to say, I'm still obsessed with my tattoo, it makes for a fun story, and hey, now I want a second one.",
+    ].join("\n\n"),
     pin: [6.2442, -75.5812],
     arrive: "fly",
     images: [
