@@ -46,6 +46,8 @@ export type AtlasDrawing = {
   doodles: AtlasDoodle[];
   /** Where the "next: ?" pencil line ends. */
   next: { x: number; y: number };
+  /** The next trip, drawn in pencil (not a stop yet). */
+  upcoming: { x: number; y: number; place: string; when: string } | null;
 };
 
 type Countries = Topology<{ countries: GeometryCollection }>;
@@ -64,9 +66,14 @@ export function drawAtlas(
   destinations: Entry[],
   home: { label: string; pin: Pin },
   doodles: { kind: AtlasDoodle["kind"]; pin: Pin; text?: string; note?: string }[],
+  upcoming: { place: string; when: string; pin: Pin } | null = null,
 ): AtlasDrawing {
   const pinned = destinations.filter((d) => d.pin);
-  const pins: Pin[] = [home.pin, ...pinned.map((d) => d.pin as Pin)];
+  const pins: Pin[] = [
+    home.pin,
+    ...pinned.map((d) => d.pin as Pin),
+    ...(upcoming ? [upcoming.pin] : []),
+  ];
   const lnglat = (p: Pin): [number, number] => [p[1], p[0]];
 
   const projection = geoNaturalEarth1()
@@ -143,5 +150,6 @@ export function drawAtlas(
       .map((d) => ({ kind: d.kind, text: d.text, note: d.note, ...at(d.pin) }))
       .filter(inside),
     next,
+    upcoming: upcoming ? { place: upcoming.place, when: upcoming.when, ...at(upcoming.pin) } : null,
   };
 }

@@ -10,6 +10,15 @@ export const ATLAS = {
   title: "Following the Whim",
   /** A pencil note trailing off the newest stop, like "next: ? (ask Truffles)". "" hides it. */
   next: "",
+  /**
+   * The next trip, sketched in pencil: a hollow pin with a dotted line from the newest stop.
+   * It doesn't open anything. Once you've been, add it as a real stop in entries.ts and set this to null.
+   */
+  upcoming: { place: "Mandarina", when: "Oct–Nov", pin: [20.98, -105.35] as Pin } as {
+    place: string;
+    when: string;
+    pin: Pin;
+  } | null,
   /** Where the trip starts. `label` is optional pencil text by the house; "" hides it. */
   home: { label: "", pin: [37.7749, -122.4194] as Pin },
 

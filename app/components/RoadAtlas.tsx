@@ -361,6 +361,30 @@ export default function RoadAtlas<E extends ArchiveEntry>({
               />
             ) : null}
 
+            {/* the next trip, in pencil: a dotted line from the newest stop to a hollow pin */}
+            {drawing.upcoming && last ? (
+              <g aria-hidden>
+                <path
+                  d={`M ${last.x} ${last.y} Q ${(last.x + drawing.upcoming.x) / 2 - 30} ${(last.y + drawing.upcoming.y) / 2} ${drawing.upcoming.x} ${drawing.upcoming.y}`}
+                  fill="none"
+                  stroke="#7A7670"
+                  strokeWidth="1.2"
+                  strokeDasharray="1 4"
+                  strokeLinecap="round"
+                />
+                <circle
+                  cx={drawing.upcoming.x}
+                  cy={drawing.upcoming.y}
+                  r="6.5"
+                  fill="#F3EAD6"
+                  fillOpacity="0.9"
+                  stroke="#4A4035"
+                  strokeWidth="1.4"
+                  strokeDasharray="2.2 1.6"
+                />
+              </g>
+            ) : null}
+
             {/* home: nudged out into the ocean with a dotted line back to SF, so it isn't hidden under nearby pins */}
             <path
               d={`M ${home.x} ${home.y} L ${homeMark.x} ${homeMark.y - 6}`}
@@ -461,6 +485,16 @@ export default function RoadAtlas<E extends ArchiveEntry>({
               style={pct({ x: home.x - 4, y: home.y + 2 })}
             >
               {home.label}
+            </p>
+          ) : null}
+
+          {drawing.upcoming ? (
+            <p
+              className="pointer-events-none absolute -translate-x-1/2 translate-y-[12px] whitespace-nowrap rounded-sm bg-[#E6DCC4]/85 px-1.5 py-0.5 text-center font-serif text-[11px] italic leading-tight text-[#4A4035] sm:text-[13px]"
+              style={pct(drawing.upcoming)}
+            >
+              Next: {drawing.upcoming.place}
+              <span className="block text-[10px] text-[#7A7670] sm:text-[11px]">{drawing.upcoming.when}</span>
             </p>
           ) : null}
 

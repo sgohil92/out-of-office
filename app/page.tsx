@@ -13,12 +13,13 @@ const showDrafts = process.env.NODE_ENV !== "production";
 
 export default function Home() {
   const entries = ENTRIES.filter((entry) => !entry.hidden && (showDrafts || !entry.draft));
-  const { home, doodles, ...words } = ATLAS;
+  const { home, doodles, upcoming, ...words } = ATLAS;
   // Stops are listed newest first; Truffles travels them oldest first.
   const drawing = drawAtlas(
     entries.filter((entry) => entry.section === "destinations" && !entry.homeBase).reverse(),
     home,
     doodles,
+    upcoming,
   );
   return (
     <Archive
