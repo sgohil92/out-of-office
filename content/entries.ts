@@ -677,6 +677,16 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
   {
+    id: "local-galleries",
+    section: "next",
+    index: "05.07",
+    date: "",
+    title: "Explore the local art gallery scene",
+    dek: "",
+    body: "",
+    tags: [],
+  },
+  {
     id: "milestone-birthday",
     section: "next",
     index: "05.04",
