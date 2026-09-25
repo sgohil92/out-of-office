@@ -218,22 +218,61 @@ export default function RoadAtlas<E extends ArchiveEntry>({
     return () => watch.disconnect();
   }, [stops, W]);
 
+  const last = stops[stops.length - 1];
+  const pct = (p: Point) => ({ left: `${(p.x / W) * 100}%`, top: `${(p.y / H) * 100}%` });
+  const homeMark = { x: Math.max(24, home.x - 40), y: Math.min(H - 30, home.y + 30) };
+
+  // Truffles drives to whichever place you pick, then the post opens.
+  // He starts parked by the SF house and stays wherever he last went.
+  const parkedAt = (k: number | "home") =>
+    k === "home"
+      ? { x: homeMark.x - 46, y: homeMark.y + 1.5 }
+      : stops[k].x - 50 >= 46
+        ? { x: stops[k].x - 50, y: Math.min(H - 20, stops[k].y + 8) } // just left of the pin
+        : { x: Math.max(46, stops[k].x + 4), y: Math.min(H - 20, stops[k].y + 44) }; // by the map's edge: just below it
+  const [truffles, setTruffles] = useState<{ at: number | "home"; left: boolean; ms: number }>({
+    at: "home",
+    left: false,
+    ms: 0,
+  });
+  const [moving, setMoving] = useState(false);
+  const arrive = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (arrive.current) clearTimeout(arrive.current);
+  }, []);
+  const driveTo = (to: number | "home", then: () => void) => {
+    const from = parkedAt(truffles.at);
+    const dest = parkedAt(to);
+    const still =
+      to === truffles.at || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (arrive.current) clearTimeout(arrive.current);
+    if (still) {
+      setTruffles({ at: to, left: truffles.left, ms: 0 });
+      then();
+      return;
+    }
+    const ms = Math.round(Math.min(1400, Math.max(600, Math.hypot(dest.x - from.x, dest.y - from.y) * 3)));
+    setTruffles({ at: to, left: dest.x < from.x, ms });
+    setMoving(true);
+    arrive.current = setTimeout(() => {
+      setMoving(false);
+      then();
+    }, ms + 120);
+  };
+
   const visit = (k: number) => {
     const entry = byId.get(stops[k].id);
     if (!entry) return;
     setCurrent(k);
-    onOpen(entry);
+    driveTo(k, () => onOpen(entry));
   };
 
   // Home base (San Francisco) opens from the SF house.
   const homeEntry = entries.find((e) => e.homeBase);
   const goHome = () => {
-    if (homeEntry) onOpen(homeEntry);
+    if (homeEntry) driveTo("home", () => onOpen(homeEntry));
   };
-
-  const last = stops[stops.length - 1];
-  const pct = (p: Point) => ({ left: `${(p.x / W) * 100}%`, top: `${(p.y / H) * 100}%` });
-  const homeMark = { x: Math.max(24, home.x - 40), y: Math.min(H - 30, home.y + 30) };
+  const spot = parkedAt(truffles.at);
 
   return (
     <div>
@@ -345,13 +384,21 @@ export default function RoadAtlas<E extends ArchiveEntry>({
               <path d="M 0 -16 L 3 0 L 0 0 Z" fill={ROAD} />
             </g>
 
-            {/* Truffles, parked in the roadster by the SF house */}
+            {/* Truffles in the roadster: parked by the SF house until someone picks a place */}
             <g
-              className="ooo-rider"
-              data-mode="drive"
-              transform={`translate(${homeMark.x - 46} ${homeMark.y + 1.5}) scale(${RIDER_SCALE})`}
+              style={{
+                transform: `translate(${spot.x}px, ${spot.y}px)`,
+                transition: `transform ${truffles.ms}ms ease-in-out`,
+              }}
             >
-              <Roadster />
+              {/* turns to face the way he's heading, without squashing mid-trip */}
+              <g
+                className={`ooo-rider ${moving ? "is-moving" : ""}`}
+                data-mode="drive"
+                transform={`scale(${truffles.left ? -RIDER_SCALE : RIDER_SCALE} ${RIDER_SCALE})`}
+              >
+                <Roadster />
+              </g>
             </g>
 
             <rect width={W} height={H} fill="url(#ooo-atlas-age)" pointerEvents="none" />
