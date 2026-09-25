@@ -263,6 +263,18 @@ export const ENTRIES: Entry[] = [
   },
 
   {
+    // The typed page on the Play table: opens the list of ponderings (section "mood" below).
+    id: "ponderings",
+    section: "play",
+    hobby: "writing",
+    index: "02.04",
+    date: "",
+    title: "Ponderings",
+    dek: "Longer thoughts, typed up. Some finished, some still brewing.",
+    body: "",
+    tags: [],
+  },
+  {
     id: "farmers-market",
     section: "play",
     hobby: "market",
@@ -292,18 +304,6 @@ export const ENTRIES: Entry[] = [
         photos: [],
       },
     ],
-    tags: [],
-  },
-  {
-    // The typed page on the Play table: opens the list of ponderings (section "mood" below).
-    id: "ponderings",
-    section: "play",
-    hobby: "writing",
-    index: "02.04",
-    date: "",
-    title: "Ponderings",
-    dek: "Longer thoughts, typed up. Some finished, some still brewing.",
-    body: "",
     tags: [],
   },
 
