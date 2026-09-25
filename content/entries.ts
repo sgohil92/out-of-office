@@ -578,7 +578,23 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
   {
+    // Stand-in on the live site while the full piece below is a draft.
+    id: "not-a-zero-sum-game-topic",
+    section: "mood",
+    future: true,
+    liveOnly: true,
+    index: "04.07",
+    date: "",
+    title: "It's not a zero-sum game",
+    dek: "Thoughts on non-monogamy.",
+    body: "",
+    tags: [],
+  },
+  {
     id: "not-a-zero-sum-game",
+    // The full piece: a draft, so it only shows on your computer. Remove this line to publish it
+    // (and delete the stand-in just above).
+    draft: true,
     section: "mood",
     index: "04.07",
     date: "09.2026",

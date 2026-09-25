@@ -99,6 +99,8 @@ export type Entry = {
   draft?: boolean;
   /** true = kept here for later but not shown anywhere, not even on your computer. */
   hidden?: boolean;
+  /** true = only on the live site, hidden in your preview (a stand-in while the real piece is a draft). */
+  liveOnly?: boolean;
   /** Ponderings only: true = a topic you haven't written yet, listed under "Future topics". */
   future?: boolean;
 };
