@@ -8,7 +8,7 @@ Save the file, and the local site refreshes. Photos go in `public/`, then you po
 
 | What you want to change | File |
 | --- | --- |
-| About drawer, and the welcome line under the title (its first paragraph) | `content/about.ts` |
+| The backstory (About drawer) | `content/about.ts` |
 | Section titles and the sentence under them | `content/sections.ts` |
 | A trip, a pondering, a wish, a book | `content/entries.ts` |
 | This week's Current Mood (and past weeks) | `content/mood.ts` |

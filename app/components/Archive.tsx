@@ -433,8 +433,6 @@ export default function Archive({
   /** Weekly moods, newest first; the first shows under the title, all are in the archive. */
   moods: Mood[];
 }) {
-  // The first line of the About note doubles as the welcome under the title.
-  const intro = about.body.split("\n\n")[0];
   const [active, setActive] = useState<Entry | null>(null);
 
   // An open post counts as a page in the browser's history, so a phone's back
@@ -519,9 +517,7 @@ export default function Archive({
   // Destinations lead with the story; a big set of photos becomes a scrapbook grid.
   // Trips and the market read words-first: the photos then illustrate the story.
   const storyFirst = active?.section === "destinations" || active?.hobby === "market";
-  // The About note's first line already greets people under the title, so the drawer starts after it.
-  const storyBody =
-    active?.id === about.id ? active.body.split("\n\n").slice(1).join("\n\n") : (active?.body ?? "");
+  const storyBody = active?.body ?? "";
   const story = active && (storyBody || active.link) ? (
     <div
       className={`mt-8 space-y-5 font-serif text-[17px] ${
@@ -613,13 +609,10 @@ export default function Archive({
             <h1 className="whitespace-nowrap font-serif text-[clamp(2rem,10.5vw,4.5rem)] leading-[0.9] tracking-[-0.03em]">
               Otherwise Engaged
             </h1>
-            <p className="mt-5 font-serif text-[18px] italic leading-snug text-[#B8B2A6] sm:text-[20px]">
-              {intro}
-            </p>
             <button
               type="button"
               onClick={() => setActive(about)}
-              className="group mt-1 py-3 font-mono text-[10px] tracking-[0.22em] text-[#A07E55] focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55]"
+              className="group mt-4 py-3 font-mono text-[10px] tracking-[0.22em] text-[#A07E55] focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A07E55]"
             >
               <span className="border-b border-[#A07E55]/40 pb-0.5 transition-colors group-hover:border-[#A07E55]">
                 THE BACKSTORY

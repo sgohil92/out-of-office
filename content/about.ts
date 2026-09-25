@@ -9,9 +9,7 @@ export const ABOUT: Entry = {
   title: "The backstory",
   dek: "",
   // One paragraph per line, in quotes, each ending with a comma.
-  // The first one is the welcome line under the site title; the About drawer starts from the second.
   body: [
-    "On pause from standard orbits to focus on reflection, curiosity, and creative flow.",
     "Y'all know I quit my job end of June-ish and turned down another one in July because something just felt misaligned. I went from degree to degree, climbed the ladder, did everything “right”… and one day I didn't recognize myself, and questioned whether this was all there was.",
     "When I was little and people asked what I wanted to be, I said a Renaissance woman. Yeah, I know, not the typical response. So that's what I'm doing now: painting, dancing, cooking my way through the farmers market, writing, and letting myself be the free-spirited kid I used to be. I wonder what awe-inspiring experiences and new passions I'll uncover along the way.",
     "Since I don't have any social media, this is a more personal digital journal of sorts, a way to capture the transition in real time. Honestly, I have no idea what's next. But I have full conviction I made the right choice, and that whatever comes will be beautiful.",

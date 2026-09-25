@@ -33,12 +33,12 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Otherwise Engaged",
   description:
-    "On pause from standard orbits to focus on reflection, curiosity, and creative flow.",
+    "For friends, not for circulation.",
   robots: { index: false, follow: false },
   openGraph: {
     title: "Otherwise Engaged",
     description:
-      "On pause from standard orbits to focus on reflection, curiosity, and creative flow.",
+      "For friends, not for circulation.",
     type: "website",
   },
 };
