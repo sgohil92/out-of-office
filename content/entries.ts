@@ -287,7 +287,8 @@ export const ENTRIES: Entry[] = [
       },
       {
         title: "For the plate",
-        body: "",
+        // A placeholder until the photos arrive: replace it with your words then.
+        body: "Weekend brunches and recipes, coming soon.",
         photos: [],
       },
     ],
