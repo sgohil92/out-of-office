@@ -317,7 +317,13 @@ export function IpodPlayer({ podcasts, onClose }: { podcasts: Entry[]; onClose: 
         <div className="mt-8 w-full max-w-md text-center">
           {view === "now" && current ? (
             <>
-              {note ? <p className="font-serif text-[17px] italic leading-relaxed text-[#C9C2B4]">{note}</p> : null}
+              {note ? (
+                <div className="space-y-4 font-serif text-[17px] italic leading-relaxed text-[#C9C2B4]">
+                  {note.split("\n\n").map((para) => (
+                    <p key={para.slice(0, 24)}>{para}</p>
+                  ))}
+                </div>
+              ) : null}
               {current.link ? (
                 <a
                   href={current.link}
