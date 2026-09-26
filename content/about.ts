@@ -1,6 +1,6 @@
 import type { Entry } from "./types";
 
-/** The [ ABOUT ] drawer. Edit the words here; photo lives in public/about.jpg */
+/** The [ ABOUT ] drawer. Edit the words here; photo lives in public/about.jpg (the vineyard one is saved as about-vineyard.jpg) */
 export const ABOUT: Entry = {
   id: "manifesto",
   section: "about",
@@ -17,8 +17,8 @@ export const ABOUT: Entry = {
     "I'll probably update this once a week. If you see an invite up top, come along! Thanks for being part of my life. I appreciate you, friends :)",
   ].join("\n\n"),
   image: "/about.jpg",
-  imageAlt: "Portrait at a vineyard, glass of red wine in hand",
-  imageAspect: "portrait",
+  imageAlt: "Lying on a sun lounger reading on a tablet, a floral tattoo on my shoulder, greenery all around",
+  imageAspect: "landscape",
   tags: [],
   stamp: "[ ABOUT ]",
 };
