@@ -30,6 +30,14 @@ export type StudioNote = {
 
 export const PAINTINGS: Painting[] = [
   {
+    id: "market-dahlias",
+    src: "/studio/market-dahlias.jpg",
+    alt: "Watercolor and ink bouquet: two pink dahlias with deep crimson centers, a magenta plume, violet blooms, golden and pink grasses, stems drawn inside a glass vase left as an ink outline",
+    title: "Market dahlias",
+    medium: "Watercolor + ink",
+    note: "Painted from this week's market bouquet.",
+  },
+  {
     id: "rincon-park",
     src: "/studio/rincon-park.jpg",
     alt: "Watercolor and ink of Rincon Park on the Embarcadero: the pink Cupid's Span bow and arrow in the grass, the Hills Bros Coffee building behind, the Bay Bridge overhead, and a few small ink figures along the waterfront",
