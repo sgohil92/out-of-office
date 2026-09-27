@@ -118,9 +118,9 @@ export const ENTRIES: Entry[] = [
     title: "Colombia",
     dek: "A tattoo, and some salsa.",
     body: [
-      "The tattoo was a huge milestone for me. I've been talking all of your heads off about it for over a year, and I finally did it, and that too in a completely unplanned way.",
+      "The tattoo was a huge milestone for me. I've been talking everyone's heads off about it for over a year, and I finally did it, and that too in a completely unplanned way.",
       "My friend Sam, one of the most spontaneous and brave humans I know, said she would get one with me to mark our travels, found an artist, and just booked her. Meanwhile, I was sitting there with a ton of questions running through my head: Would it hurt? Is it safe? Will I like it when I'm 80? What could go wrong getting it in the middle of Medellín? We agreed that I would go to the tattoo studio, talk to the artist, and then make the final decision, but I was under no circumstance allowed to back out AFTER she got hers (she went first).",
-      "I saw the design the artist made for me and just started crying. It was perfect. She captured the delicate, powerful, sexy combination and the meaning perfectly. (If you don't know the meaning, feel free to ask.) Needless to say, I'm still obsessed with my tattoo, it makes for a fun story, and hey, now I want a second one.",
+      "I saw the design the artist made for me and just started crying. It was perfect. She captured the delicate, powerful, sexy combination and the meaning perfectly. Needless to say, I'm still obsessed with my tattoo, it makes for a fun story, and hey, now I want a second one.",
     ].join("\n\n"),
     pin: [6.2442, -75.5812],
     arrive: "fly",
@@ -245,7 +245,7 @@ export const ENTRIES: Entry[] = [
     date: "06.2026",
     title: "Huh, salsa. Who knew?",
     dek: "",
-    body: "My first week learning salsa, actually me in brown might even be my second day... and it taught me a lot. It allowed me to stop thinking so much and just be in my body. It was a flow state very different from what I've experienced when working (that cerebral locked-in flow vs being sensual and free). This was back in June and I've grown so much as a salsera since then ..... but one thing I'm still trying to overcome, the need for perfection before dancing with someone new. Come dance with me at Cigar bar in SF? We can make mistakes together :)",
+    body: "My first week learning salsa, actually me in brown might even be my second day... and it taught me a lot. It allowed me to stop thinking so much and just be in my body. It was a flow state very different from what I've experienced when working (that cerebral locked-in flow vs being sensual and free). This was back in June and I've grown so much as a salsera since then ..... but one thing I'm still trying to overcome, the need for perfection before dancing with someone new. Next up: dancing at Cigar Bar in SF, mistakes and all.",
     videos: [
       {
         src: "/play/salsa-01.mp4",
@@ -360,7 +360,7 @@ export const ENTRIES: Entry[] = [
     title: "The Remains of the Day",
     spine: "Remains of the Day",
     dek: "Kazuo Ishiguro",
-    body: "Honestly my favorite book of the past few months. Very relevant to why I decided to leave corporate and chase meaning and fulfillment. The ending was devastating, though (sorry for the spoiler).",
+    body: "Honestly my favorite book of the past few months. Very relevant to why I decided to leave corporate and chase meaning and fulfillment. The ending was devastating, though.",
     tags: [],
   },
   {
@@ -390,7 +390,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "Heartburn",
     dek: "Nora Ephron",
-    body: "A great laugh, nothing too serious. Thanks for the rec, Nitisha!",
+    body: "A great laugh, nothing too serious. (Rec from Nitisha.)",
     tags: [],
   },
   {
@@ -422,7 +422,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "Yesteryear",
     dek: "Caro Claire Burke",
-    body: "A bit hyped (somehow we were reading this at the same time and didn't even know, Omi!), but it got me thinking about those who oppose progress vs. those who jump on the progress bandwagon just for the sake of progress. Again, this ties back to the AI angst for me: what's the right balance?",
+    body: "A bit hyped (somehow Omi and I were reading this at the same time and didn't even know), but it got me thinking about those who oppose progress vs. those who jump on the progress bandwagon just for the sake of progress. Again, this ties back to the AI angst for me: what's the right balance?",
     tags: [],
   },
   {
@@ -452,7 +452,7 @@ export const ENTRIES: Entry[] = [
     date: "",
     title: "Nicomachean Ethics",
     dek: "Aristotle",
-    body: "Still trying to figure out what the right balance of each virtue is, but I do agree that relationships are key to a flourishing life. Thanks for the rec, Sid, and for helping me figure out where to start, ha.",
+    body: "Still trying to figure out what the right balance of each virtue is, but I do agree that relationships are key to a flourishing life. Rec from Sid, who also helped me figure out where to start, ha.",
     tags: [],
   },
   {
@@ -479,7 +479,6 @@ export const ENTRIES: Entry[] = [
     body: [
       "I can't get enough of this podcast. My current favorite episodes are about Lee Miller, a true Renaissance woman (probably why I'm completely mesmerized by her), and now I want to read her biography! The podcasters are amazing storytellers. Overall, a gem of a find since I'm deep-diving into art, including photography.",
       "Other episodes that were super interesting: Monet (which paired perfectly with the Venice exhibit at the de Young) and Impressionism. Oh, and by the way, the Matisse: A Modern Scandal exhibit at SFMOMA is so, so good.",
-      "Talk to me about your favorite artist, please.",
     ].join("\n\n"),
     tags: [],
   },
@@ -669,7 +668,7 @@ export const ENTRIES: Entry[] = [
       "And it doesn't have to be somewhere far away or exotic. The cafés I cycle between, Saint Frank, Spro, and Blue Bottle, are all within a five-minute walk, and they feel just as special. My order is an oat latte or an oat cappuccino, depending on the day. I know the baristas and they know me, to the point where every interaction flows seamlessly from the last one. Close to home, it's a mix of flavor, pleasure, familiarity, and groundedness.",
       "Funny thing is, I call it the magic of coffee, yet it's not really about the coffee at all. It has to be palatable, sure. I know good beans, enough to be competent without being a snob, but it doesn't even matter how good the drink is. And still, nothing else will do. I have a relationship with coffee that can't be replaced, at least if we're staying in the realm of ritual and keeping utility at arm's length.",
       "I'm not sure coffee was always a ritual for me. In school it was survival, obscene amounts of it during finals just to stay upright over a textbook. Later it was fuel, gulped between meetings to get through the workday. Somewhere after I stepped away from that life, it changed. With nowhere to rush to, the cup slowed down with me. I'm trying to be more intentional now, to observe and listen to what's around me, and to make decisions outside the fight-or-flight mode I lived in for so long. Maybe that's how a habit becomes a ritual. You finally start paying attention to it, and to the intention behind it.",
-      "So now I'm curious about yours. Is there something small you do that feels more sacred than routine, more than necessity? When did it become a ritual for you, and what happens when you skip it? For me, the day just feels a bit incomplete. I can't tell you how many coffees I had in Kona with absolutely zero need to be caffeinated.",
+      "When I skip it, the day just feels a bit incomplete. I can't tell you how many coffees I had in Kona with absolutely zero need to be caffeinated.",
     ].join("\n\n"),
     tags: [],
   },

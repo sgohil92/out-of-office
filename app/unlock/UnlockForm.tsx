@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { SHARED } from "../../content/site";
 import { unlock } from "./actions";
 
 export default function UnlockForm() {
@@ -15,7 +16,7 @@ export default function UnlockForm() {
         Otherwise Engaged
       </h1>
       <p className="mt-3 font-mono text-[11px] leading-relaxed tracking-[0.14em] text-[#8E8E93] sm:tracking-[0.18em]">
-        FOR FRIENDS, NOT FOR CIRCULATION.
+        {SHARED ? "FOR FRIENDS, NOT FOR CIRCULATION." : "A PRIVATE NOTEBOOK."}
       </p>
       <label htmlFor="passcode" className="sr-only">
         Passcode
@@ -41,9 +42,11 @@ export default function UnlockForm() {
       >
         {pending ? "CHECKING…" : "COME IN"}
       </button>
-      <p className="mt-4 text-center font-serif text-[15px] italic text-[#8E8E93]">
-        Don&rsquo;t have it? Text me.
-      </p>
+      {SHARED ? (
+        <p className="mt-4 text-center font-serif text-[15px] italic text-[#8E8E93]">
+          Don&rsquo;t have it? Text me.
+        </p>
+      ) : null}
     </form>
   );
 }

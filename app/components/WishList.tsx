@@ -4,6 +4,7 @@ import { useState, useTransition, type FormEvent } from "react";
 import { CONTACT_EMAIL } from "../../content/contact";
 import { suggestSomething } from "./recommendBook";
 import { formatDate, type ArchiveEntry } from "./types";
+import { SHARED } from "../../content/site";
 import "./sections.css";
 
 /** A pencil tick for wishes that came true. */
@@ -92,7 +93,7 @@ export default function WishList<E extends ArchiveEntry>({
             </li>
           ))}
         </ol>
-        <SuggestLine />
+        {SHARED ? <SuggestLine /> : null}
       </div>
     </div>
     </div>

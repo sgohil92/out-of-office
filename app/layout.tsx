@@ -33,12 +33,12 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Otherwise Engaged",
   description:
-    "For friends, not for circulation.",
+    "A private notebook.",
   robots: { index: false, follow: false },
   openGraph: {
     title: "Otherwise Engaged",
     description:
-      "For friends, not for circulation.",
+      "A private notebook.",
     type: "website",
   },
 };

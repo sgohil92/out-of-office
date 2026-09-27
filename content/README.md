@@ -51,6 +51,10 @@ The road atlas draws itself from your stops and zooms to fit them, so a stop any
 
 The map's title, home pin and optional doodles (bone, ball, nap zone, ocean label) live in `content/atlas.ts`. Change the map's name with `title` there.
 
+## Just for me, or shared?
+
+`content/site.ts` has one switch, `SHARED`. At `false` (now), the site is a private notebook: the recommend-a-book card, "suggest something for me to try", invites, and "Text me" on the password page are all off. Set it to `true` to bring them back for friends.
+
 ## Invites
 
 Each entry in `content/invites.ts` shows as a ticket at the top of the main page, with an RSVP button that opens an email to you. Set `until` to the last day it should show (`MM.DD.YYYY`); it disappears on its own the day after. To use a link instead of email (Partiful, a group chat), set `rsvpLink`. No invites = no ticket strip. To park one without deleting it, add `hidden: true` (remove that line to bring it back).

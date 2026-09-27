@@ -12,6 +12,7 @@ import { IpodOnShelf, IpodPlayer } from "./Ipod";
 import InviteTicket from "./InviteTicket";
 import Lightbox from "./Lightbox";
 import SleepingTruffles from "./SleepingTruffles";
+import { SHARED } from "../../content/site";
 import { formatDate } from "./types";
 import type { Painting, StudioNote } from "../../content/studio";
 import type { Mood } from "../../content/mood";
@@ -460,9 +461,11 @@ function Bookshelf({
         <div aria-hidden className="shelf-plank" />
       </div>
     </div>
-      <div className="mt-4 px-1">
-        <BookRecommendSlip open={slipOpen} onOpenChange={setSlipOpen} />
-      </div>
+      {SHARED ? (
+        <div className="mt-4 px-1">
+          <BookRecommendSlip open={slipOpen} onOpenChange={setSlipOpen} />
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -716,7 +719,7 @@ export default function Archive({
         </div>
       </header>
 
-      <InviteTicket invites={invites.list} email={invites.email} />
+      {SHARED ? <InviteTicket invites={invites.list} email={invites.email} /> : null}
 
       {/* One section after another, like walking room to room; content stays within a comfortable reading width */}
       <main className="relative z-10">
