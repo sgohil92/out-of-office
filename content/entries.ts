@@ -295,6 +295,7 @@ export const ENTRIES: Entry[] = [
           { src: "/play/market/market-04.jpg", caption: "Aug 23", alt: "Sunflowers and deep red amaranth in a vase by the window" },
           { src: "/play/market/market-05.jpg", caption: "Aug 29", alt: "Sunflowers and orange zinnias in a tall glass vase" },
           { src: "/play/market/market-06.jpg", caption: "Sep 20", alt: "A wildflower mix with a sunflower and pink cosmos by the window" },
+          { src: "/play/market/market-07.jpg", caption: "Sep 27", alt: "Pink dahlias, feathery pink and magenta celosia and golden solidago in a glass vase by the window, a box of paints beside it" },
         ],
       },
       {
