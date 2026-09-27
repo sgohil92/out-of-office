@@ -35,7 +35,7 @@ export const PAINTINGS: Painting[] = [
     alt: "Watercolor and ink bouquet: two pink dahlias with deep crimson centers, a magenta plume, violet blooms, golden and pink grasses, stems drawn inside a glass vase left as an ink outline",
     title: "Market dahlias",
     medium: "Watercolor + ink",
-    note: "This is a joint effort between Kaushal and me. We have very different styles (him more measured and detailed, me more fluid and abstract), but we came together to create an intriguing look.",
+    note: "This is a joint effort: Kaushal sketched, and I painted. We have very different styles (him more measured and detailed, me more fluid and abstract), but they came together to create an intriguing look.",
   },
   {
     id: "rincon-park",
