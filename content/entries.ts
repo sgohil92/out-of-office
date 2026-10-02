@@ -309,18 +309,6 @@ export const ENTRIES: Entry[] = [
   },
 
   {
-    id: "little-monk",
-    section: "bookshelf",
-    reading: true,
-    index: "03.17",
-    date: "",
-    title: "The Little Monk and the Significance of Silence",
-    spine: "The Little Monk",
-    dek: "",
-    body: "",
-    tags: [],
-  },
-  {
     id: "lives-of-lee-miller",
     section: "bookshelf",
     reading: true,
@@ -483,6 +471,17 @@ export const ENTRIES: Entry[] = [
     title: "The Stranger",
     dek: "Albert Camus",
     body: "",
+    tags: [],
+  },
+  {
+    id: "little-monk",
+    section: "bookshelf",
+    index: "03.17",
+    date: "",
+    title: "The Little Monk and the Significance of Silence",
+    spine: "The Little Monk",
+    dek: "",
+    body: "DNF. Too Christianity-coded. There were some relevant tidbits about cutting through the noise in order to see clearly, and reminding yourself that you are not your emotions… but it was mostly religion-focused.",
     tags: [],
   },
 
