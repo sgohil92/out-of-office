@@ -465,6 +465,26 @@ export const ENTRIES: Entry[] = [
     body: "Was supposed to be similar to Remains of the Day, but I just couldn't get through it. The writing is extremely slow, flowery, and chock-full of references. DNF for me.",
     tags: [],
   },
+  {
+    id: "art-of-spending-money",
+    section: "bookshelf",
+    index: "03.27",
+    date: "",
+    title: "The Art of Spending Money",
+    dek: "Morgan Housel",
+    body: "",
+    tags: [],
+  },
+  {
+    id: "the-stranger",
+    section: "bookshelf",
+    index: "03.28",
+    date: "",
+    title: "The Stranger",
+    dek: "Albert Camus",
+    body: "",
+    tags: [],
+  },
 
   // Podcasts: they live on the iPod, top of the list first.
   // One at a time for now: the rest have `hidden: true`. Move that line to swap which one is playing.
