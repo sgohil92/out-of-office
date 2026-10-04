@@ -321,6 +321,17 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
   {
+    id: "uncanny-valley",
+    section: "bookshelf",
+    reading: true,
+    index: "03.29",
+    date: "",
+    title: "Uncanny Valley",
+    dek: "Anna Wiener",
+    body: "",
+    tags: [],
+  },
+  {
     id: "violeta",
     section: "bookshelf",
     index: "03.01",
