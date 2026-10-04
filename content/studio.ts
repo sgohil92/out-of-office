@@ -30,6 +30,14 @@ export type StudioNote = {
 
 export const PAINTINGS: Painting[] = [
   {
+    id: "embarcadero-walk",
+    src: "/studio/embarcadero-walk.jpg",
+    alt: "Watercolor of the Embarcadero waterfront: a lamppost with two hanging flower baskets in the foreground, a railing, blue bay water, and the shoreline fading into the distance",
+    title: "Embarcadero walk",
+    medium: "Watercolor + pencil",
+    note: "Working on depth and perspective. Also, this is one of my favorite walks along the Embarcadero. It reminds me a bit of Europe.",
+  },
+  {
     id: "market-dahlias",
     src: "/studio/market-dahlias.jpg",
     alt: "Watercolor and ink bouquet: two pink dahlias with deep crimson centers, a magenta plume, violet blooms, golden and pink grasses, stems drawn inside a glass vase left as an ink outline",
