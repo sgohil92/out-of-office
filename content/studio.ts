@@ -30,6 +30,14 @@ export type StudioNote = {
 
 export const PAINTINGS: Painting[] = [
   {
+    id: "dancer-lamp",
+    src: "/studio/dancer-lamp.jpg",
+    alt: "Pencil and sepia watercolor of a statue lamp: a dancing woman in a flowing draped dress on a pedestal, arm raised, with tulip-shaped lamp shades and small golden flames fanning out around her",
+    title: "The dancer lamp",
+    medium: "Watercolor + pencil",
+    note: "Tried something new today and quite happy with how it turned out.",
+  },
+  {
     id: "embarcadero-walk",
     src: "/studio/embarcadero-walk.jpg",
     alt: "Watercolor of the Embarcadero waterfront: a lamppost with two hanging flower baskets in the foreground, a railing, blue bay water, and the shoreline fading into the distance",
