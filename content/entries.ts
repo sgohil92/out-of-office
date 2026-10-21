@@ -296,7 +296,7 @@ export const ENTRIES: Entry[] = [
           { src: "/play/market/market-05.jpg", caption: "Aug 29", alt: "Sunflowers and orange zinnias in a tall glass vase" },
           { src: "/play/market/market-06.jpg", caption: "Sep 20", alt: "A wildflower mix with a sunflower and pink cosmos by the window" },
           { src: "/play/market/market-07.jpg", caption: "Sep 27", alt: "Pink dahlias, feathery pink and magenta celosia and golden solidago in a glass vase by the window, a box of paints beside it" },
-          { src: "/play/market/market-08.jpg", caption: "Oct 21", alt: "A single king protea in a glass vase on the round stone table, sunlight through the blinds, eucalyptus and a cozy blanket on the bench beside it" },
+          { src: "/play/market/market-08.jpg", caption: "Oct 17", alt: "A single king protea in a glass vase on the round stone table, sunlight through the blinds, eucalyptus and a cozy blanket on the bench beside it" },
         ],
       },
       {
