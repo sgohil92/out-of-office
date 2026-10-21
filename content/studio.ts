@@ -30,6 +30,14 @@ export type StudioNote = {
 
 export const PAINTINGS: Painting[] = [
   {
+    id: "spooky-cozy",
+    src: "/studio/spooky-cozy.jpg",
+    alt: "Watercolor and ink Halloween scene: a ghost in a witch hat reading on a broom, another ghost at a café table with coffee, a crackling fireplace, pumpkins and a jack-o'-lantern, a dog asleep on a round bed, and in a dream bubble a skeleton at a laptop beside a gravestone reading 1991–AGI RIP",
+    title: "Halloween at home",
+    medium: "Watercolor + ink",
+    note: "Spooky yet cozy vibes.",
+  },
+  {
     id: "dancer-lamp",
     src: "/studio/dancer-lamp.jpg",
     alt: "Pencil and sepia watercolor of a statue lamp: a dancing woman in a flowing draped dress on a pedestal, arm raised, with tulip-shaped lamp shades and small golden flames fanning out around her",
