@@ -516,6 +516,16 @@ export const ENTRIES: Entry[] = [
     body: "",
     tags: [],
   },
+  {
+    id: "uneasy-street",
+    section: "bookshelf",
+    index: "03.32",
+    date: "",
+    title: "Uneasy Street",
+    dek: "Rachel Sherman",
+    body: "",
+    tags: [],
+  },
 
   // Podcasts: they live on the iPod, top of the list first.
   // One at a time for now: the rest have `hidden: true`. Move that line to swap which one is playing.
