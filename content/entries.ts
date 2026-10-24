@@ -332,6 +332,18 @@ export const ENTRIES: Entry[] = [
     tags: [],
   },
   {
+    id: "free-food-for-millionaires",
+    section: "bookshelf",
+    reading: true,
+    index: "03.33",
+    date: "",
+    title: "Free Food for Millionaires",
+    spine: "Free Food",
+    dek: "Min Jin Lee",
+    body: "",
+    tags: [],
+  },
+  {
     id: "violeta",
     section: "bookshelf",
     index: "03.01",
