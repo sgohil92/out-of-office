@@ -419,34 +419,42 @@ function Bookshelf({
   const reading = entries.filter((e) => e.format !== "podcast" && e.reading);
   const podcasts = entries.filter((e) => e.format === "podcast");
   const spineFor = (i: number) => SPINES[i % SPINES.length];
+  // A new shelf for every dozen or so books, split evenly so no shelf looks half-empty.
+  const shelfCount = Math.max(1, Math.ceil(books.length / 12));
+  const perShelf = Math.ceil(books.length / shelfCount);
+  const shelves = Array.from({ length: shelfCount }, (_, r) => books.slice(r * perShelf, (r + 1) * perShelf));
   const [ipodOpen, setIpodOpen] = useState(false);
   const [slipOpen, setSlipOpen] = useState(false);
 
   return (
     <div>
     <div className="bookcase w-full min-w-0 border border-[#242220] px-2 pt-2 sm:px-3">
-      <div className="shelf-row">
-        <div className="shelf-back flex items-end gap-3 overflow-x-auto overflow-y-hidden px-2 pt-6 sm:px-3">
-          <span aria-hidden className="bookend shrink-0" />
-          <ul className="flex shrink-0 items-end gap-[2px]" aria-label="Books">
-            {books.map((entry, i) => (
-              <BookSpine
-                key={entry.id}
-                entry={entry}
-                spine={spineFor(i)}
-                lean={i === books.length - 1 && books.length > 2}
-                onOpen={onOpen}
-              />
-            ))}
-          </ul>
-          <span aria-hidden className="ml-auto flex shrink-0 flex-col items-center">
-            <span className="book-flat h-[11px] w-[58px] bg-[#4A4A3A]" />
-            <span className="book-flat h-[14px] w-[66px] bg-[#3B4654]" />
-            <span className="book-flat h-[10px] w-[62px] bg-[#8C7D63]" />
-          </span>
+      {shelves.map((row, r) => (
+        <div key={r} className={`shelf-row ${r ? "mt-2" : ""}`}>
+          <div className="shelf-back flex items-end gap-3 overflow-x-auto overflow-y-hidden px-2 pt-6 sm:px-3">
+            <span aria-hidden className="bookend shrink-0" />
+            <ul className="flex shrink-0 items-end gap-[2px]" aria-label={r ? "More books" : "Books"}>
+              {row.map((entry, i) => (
+                <BookSpine
+                  key={entry.id}
+                  entry={entry}
+                  spine={spineFor(r * perShelf + i)}
+                  lean={i === row.length - 1 && row.length > 2}
+                  onOpen={onOpen}
+                />
+              ))}
+            </ul>
+            {r === 0 ? (
+              <span aria-hidden className="ml-auto flex shrink-0 flex-col items-center">
+                <span className="book-flat h-[11px] w-[58px] bg-[#4A4A3A]" />
+                <span className="book-flat h-[14px] w-[66px] bg-[#3B4654]" />
+                <span className="book-flat h-[10px] w-[62px] bg-[#8C7D63]" />
+              </span>
+            ) : null}
+          </div>
+          <div aria-hidden className="shelf-plank" />
         </div>
-        <div aria-hidden className="shelf-plank" />
-      </div>
+      ))}
       <div className="shelf-row mt-2">
         {/* Not clipped, so the iPod's earbuds can hang down over the shelf's edge */}
         <div className="shelf-back shelf-back-low flex items-end gap-4 overflow-visible px-3 pb-1 pt-6 sm:px-5">
